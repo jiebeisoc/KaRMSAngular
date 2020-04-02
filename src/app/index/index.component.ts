@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-index',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+    private activatedRoute: ActivatedRoute,
+    public sessionService: SessionService) { }
 
   ngOnInit(): void {
   }

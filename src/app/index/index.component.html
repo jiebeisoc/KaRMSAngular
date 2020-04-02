@@ -1,1 +1,22 @@
-<p>index works!</p>
+<app-header></app-header>
+
+<section id="content" class="content">
+
+    <article *ngIf="sessionService.getIsLogin() != true">
+
+        <h3>Login + Register</h3>
+        
+    </article>
+
+    <article *ngIf="sessionService.getIsLogin() == true">
+
+        <h3>Login successfully</h3>
+
+    </article>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>
+

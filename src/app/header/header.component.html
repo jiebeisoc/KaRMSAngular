@@ -1,1 +1,12 @@
-<p>header works!</p>
+<header class="header">
+
+    <h1>Sing-Ah Reservation System</h1>
+    <aside id="loginbox" class="loginbox">
+
+        <div *ngIf="sessionService.getIsLogin() == true">
+            Welcome, {{sessionService.getCurrentCustomer().name}}
+            <input type="button" (click)="customerLogout()" value="Logout" />
+        </div>
+
+    </aside>
+</header>

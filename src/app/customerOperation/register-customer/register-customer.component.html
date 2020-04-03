@@ -11,7 +11,7 @@
                 </tr>
                 <tr style="border: hidden;">
                     <td style="border: hidden;">
-                        <input type="text" name="username" #username="ngModel" [(ngModel)]="newCustomer.username" placeholder="Username" required="true">
+                        <input class="input" type="text" name="username" #username="ngModel" [(ngModel)]="newCustomer.username" placeholder="Username" required="true">
                     </td>
                     <td style="border: hidden;">
                         <div *ngIf="username.invalid && (username.dirty || username.touched || submitted)" class="errorText">
@@ -24,7 +24,7 @@
 
                 <tr style="border: hidden;">
                     <td style="border: hidden;">
-                        <input type="password" name="password" #password="ngModel" [(ngModel)]="newCustomer.password" placeholder="Password" required="true">
+                        <input class="input" type="password" name="password" #password="ngModel" [(ngModel)]="newCustomer.password" placeholder="Password" required="true">
                     </td>
                     <td style="border: hidden;">
                         <div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
@@ -37,7 +37,7 @@
 
                 <tr style="border: hidden;">
                     <td style="border: hidden;">
-                        <input type="text" name="name" #name="ngModel" [(ngModel)]="newCustomer.name" placeholder="Name" required="true">
+                        <input class="input" type="text" name="name" #name="ngModel" [(ngModel)]="newCustomer.name" placeholder="Name" required="true">
                     </td>
                     <td style="border: hidden;">
                         <div *ngIf="name.invalid && (name.dirty || name.touched || submitted)" class="errorText">
@@ -50,7 +50,7 @@
 
                 <tr style="border: hidden;">
                     <td style="border: hidden;">
-                        <input type="email" name="email" #email="ngModel" [(ngModel)]="newCustomer.email" pattern="^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$" placeholder="Email" required="true">
+                        <input class="input" type="email" name="email" #email="ngModel" [(ngModel)]="newCustomer.email" pattern="^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$" placeholder="Email" required="true">
                     </td>
                     <td style="border: hidden;">
                         <div *ngIf="email.invalid && (email.dirty || email.touched || submitted)" class="errorText">
@@ -66,7 +66,7 @@
 
                 <tr style="border: hidden;">
                     <td style="border: hidden;">
-                        <input type="text" name="phoneNo" #phoneNo="ngModel" [(ngModel)]="newCustomer.phoneNo" placeholder="Contact number" required="true">
+                        <input class="input" type="text" name="phoneNo" #phoneNo="ngModel" [(ngModel)]="newCustomer.phoneNo" placeholder="Contact number" required="true">
                     </td>
                     <td style="border: hidden;">
                         <div *ngIf="phoneNo.invalid && (phoneNo.dirty || phoneNo.touched || submitted)" class="errorText">
@@ -79,7 +79,7 @@
 
                 <tr style="border: hidden;">
                     <td style="border: hidden;">
-                        <input type="text" name="creditCardNo" #creditCardNo="ngModel" [(ngModel)]="newCustomer.creditCardNo" placeholder="Credit card number" required="true">
+                        <input class="input" type="text" name="creditCardNo" #creditCardNo="ngModel" [(ngModel)]="newCustomer.creditCardNo" placeholder="Credit card number" required="true">
                     </td>
                     <td style="border: hidden;">
                         <div *ngIf="creditCardNo.invalid && (creditCardNo.dirty || creditCardNo.touched || submitted)" class="errorText">
@@ -92,7 +92,7 @@
 
                 <tr style="border: hidden;">
                     <td style="border: hidden;">
-                        <input type="date" name="birthday" #birthday="ngModel" onfocus="(this.type='date')" [(ngModel)]="newCustomer.birthday" placeholder="Date of birth" required="true">
+                        <input class="input" type="date" name="birthday" #birthday="ngModel" onfocus="(this.type='date')" [(ngModel)]="newCustomer.birthday" placeholder="Date of birth" required="true">
                     </td>
                     <td style="border: hidden;">
                         <div *ngIf="birthday.invalid && (birthday.dirty || birthday.touched || submitted)" class="errorText">
@@ -104,9 +104,9 @@
                 </tr>
 
                 <tr>
-                    <input type="button" (click)="create(createCustomerForm)" value="Sign Up"/>
+                    <input class="input" type="button" (click)="create(createCustomerForm)" value="Sign Up"/>
                 </tr>
-                
+
                 <tr>
                     <div *ngIf="infoMessage" style="color: blue;">
                         {{infoMessage}} Login to reserve a booking.

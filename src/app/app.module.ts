@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatMenuModule} from '@angular/material/menu';
 
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
@@ -20,6 +22,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
+import { UpdateCustomerComponent } from './customerOperation/update-customer/update-customer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { RegisterCustomerComponent } from './customerOperation/register-customer
     MainMenuComponent,
     SidebarComponent,
     AccessRightErrorComponent,
-    RegisterCustomerComponent
+    RegisterCustomerComponent,
+    UpdateCustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,9 @@ import { RegisterCustomerComponent } from './customerOperation/register-customer
     ButtonModule,
     DialogModule,
     InputTextModule,
-    MatFormFieldModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

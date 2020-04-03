@@ -3,9 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
@@ -49,7 +53,11 @@ import { UpdateCustomerComponent } from './customerOperation/update-customer/upd
     InputTextModule,
     MatIconModule,
     MatFormFieldModule,
-    MatMenuModule
+    MatMenuModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

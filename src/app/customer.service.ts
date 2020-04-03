@@ -33,7 +33,26 @@ export class CustomerService {
     return this.httpClient.put<any>(this.baseUrl + "/createNewCustomer", createCustomerReq, httpOptions).pipe (
         catchError(this.handleError)
     );
-}
+  }
+
+  updateCustomer(customerToUpdate: Customer): Observable<any> {
+    let updateCustomerReq = {
+      'username': this.sessionService.getUsername(),
+      'password': this.sessionService.getPassword(),
+      'customer': customerToUpdate
+    };
+
+    return this.httpClient.post<any>(this.baseUrl, updateCustomerReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+
+  }
+
+  deleteCustomer(customerId: number) {
+    return this.httpClient.delete<any>(this.baseUrl +"/" + customerId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = '';

@@ -5,6 +5,7 @@ import { SessionService } from '../session.service';
 import { CustomerService } from '../customer.service';
 
 import { Customer } from '../customer';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-index',

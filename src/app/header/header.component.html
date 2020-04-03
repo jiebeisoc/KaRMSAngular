@@ -1,14 +1,38 @@
 <header class="header">
 
     <h1 style="color: blue; font-weight: bold;">Sing-Ah Karaoke Reservation</h1>
-    <div class="topnav">
+    <div class="topnav" *ngIf="sessionService.getIsLogin() != true" >
         <a routerLink="/index">Home</a>
         <a>About</a>
         <a>Locate Us</a>
         <a>Promotions</a>
         <a>Contact Us</a>
-        <a *ngIf="sessionService.getIsLogin() != true" routerLink="/customerOperation/registerCustomer">Sign Up</a>
+        <a routerLink="/customerOperation/registerCustomer">Sign Up</a>
         <a *ngIf="sessionService.getIsLogin() == true" (click)="customerLogout()">Logout</a>
+    </div>
+
+    <div class="loginbox" *ngIf="sessionService.getIsLogin() == true">
+        Welcome, {{sessionService.getCurrentCustomer().name}}
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" style="border-radius: 3px;">
+            <mat-icon style="font-size: 20px;">settings</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/index">
+                <mat-icon>home</mat-icon>
+                <span>Home</span>
+            </button>
+            <button mat-menu-item routerLink="/customerOperation/updateCustomer">
+                <mat-icon>account_circle</mat-icon>
+                <span>Manage account</span>
+            </button>
+            <button mat-menu-item button (click)="customerLogout()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+
     </div>
 
 </header>

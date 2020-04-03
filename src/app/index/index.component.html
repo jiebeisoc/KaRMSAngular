@@ -6,20 +6,43 @@
 
         <div class="wrapper">
             <div class="container">
-                <h1>Welcome</h1>
 
                 <form class="form">
-                    <input type="text" [(ngModel)]="username" name="username" placeholder="username" />
-                    <input type="password" [(ngModel)]="password" name="password" placeholder="password" />
-                    <input type="button" (click)="customerLogin()" value="Login" />
+                    <tr style="border: hidden;">
+                        <td style="border: hidden;"><h1>Welcome</h1></td>
+                    </tr>
+
+                    <tr style="border: hidden;">
+                        <td style="border: hidden;">
+                            <input type="text" [(ngModel)]="username" name="username" placeholder="username" />
+                        </td>
+                    </tr>
+
+                    <tr style="border: hidden;">
+                        <td style="border: hidden;">
+                            <input type="password" [(ngModel)]="password" name="password" placeholder="Password" />
+                        </td>
+                    </tr>
+
+                    <tr style="border: hidden;">
+                        <td style="border: hidden;">
+                            <input type="button" (click)="customerLogin()" value="Login" />
+                        </td>
+                    </tr>
+
+                    <tr style="border: hidden;">
+                        <td style="border: hidden;">
+                            <div *ngIf="loginError == true" style="text-align: center; color: red;">
+                                {{errorMessage}}
+                            </div>
+                        </td>
+                    </tr>
+
                 </form>
+
             </div>
         </div>
 
-        <div *ngIf="loginError == true" style="text-align: right; color: red;">
-			{{errorMessage}}
-		</div>
-        
     </article>
 
     <article *ngIf="sessionService.getIsLogin() == true">

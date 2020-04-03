@@ -1,0 +1,124 @@
+<app-header></app-header>
+
+<section id="content" class="content">
+
+    <div class="wrapper">
+        <div class="container">
+            
+            <form class="form" #createCustomerForm="ngForm" (ngSubmit)="create(createCustomerForm)">
+                <tr style="border: hidden;">
+                    <td style="border: hidden;"><h1>Sign Up</h1></td>
+                </tr>
+                <tr style="border: hidden;">
+                    <td style="border: hidden;">
+                        <input type="text" name="username" #username="ngModel" [(ngModel)]="newCustomer.username" placeholder="Username" required="true">
+                    </td>
+                    <td style="border: hidden;">
+                        <div *ngIf="username.invalid && (username.dirty || username.touched || submitted)" class="errorText">
+                            <div *ngIf="username.errors.required">
+                                Username is required.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style="border: hidden;">
+                    <td style="border: hidden;">
+                        <input type="password" name="password" #password="ngModel" [(ngModel)]="newCustomer.password" placeholder="Password" required="true">
+                    </td>
+                    <td style="border: hidden;">
+                        <div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
+                            <div *ngIf="password.errors.required">
+                                Password is required.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style="border: hidden;">
+                    <td style="border: hidden;">
+                        <input type="text" name="name" #name="ngModel" [(ngModel)]="newCustomer.name" placeholder="Name" required="true">
+                    </td>
+                    <td style="border: hidden;">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched || submitted)" class="errorText">
+                            <div *ngIf="name.errors.required">
+                                Name is required.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style="border: hidden;">
+                    <td style="border: hidden;">
+                        <input type="email" name="email" #email="ngModel" [(ngModel)]="newCustomer.email" pattern="^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$" placeholder="Email" required="true">
+                    </td>
+                    <td style="border: hidden;">
+                        <div *ngIf="email.invalid && (email.dirty || email.touched || submitted)" class="errorText">
+                            <div *ngIf="email.errors.required">
+                                Email is required.
+                            </div>
+                            <div *ngIf="email.errors.pattern">
+                                Email format is wrong.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style="border: hidden;">
+                    <td style="border: hidden;">
+                        <input type="text" name="phoneNo" #phoneNo="ngModel" [(ngModel)]="newCustomer.phoneNo" placeholder="Contact number" required="true">
+                    </td>
+                    <td style="border: hidden;">
+                        <div *ngIf="phoneNo.invalid && (phoneNo.dirty || phoneNo.touched || submitted)" class="errorText">
+                            <div *ngIf="phoneNo.errors.required">
+                                Contact number is required.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style="border: hidden;">
+                    <td style="border: hidden;">
+                        <input type="text" name="creditCardNo" #creditCardNo="ngModel" [(ngModel)]="newCustomer.creditCardNo" placeholder="Credit card number" required="true">
+                    </td>
+                    <td style="border: hidden;">
+                        <div *ngIf="creditCardNo.invalid && (creditCardNo.dirty || creditCardNo.touched || submitted)" class="errorText">
+                            <div *ngIf="creditCardNo.errors.required">
+                                Credit card number is required.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style="border: hidden;">
+                    <td style="border: hidden;">
+                        <input type="date" name="birthday" #birthday="ngModel" onfocus="(this.type='date')" [(ngModel)]="newCustomer.birthday" placeholder="Date of birth" required="true">
+                    </td>
+                    <td style="border: hidden;">
+                        <div *ngIf="birthday.invalid && (birthday.dirty || birthday.touched || submitted)" class="errorText">
+                            <div *ngIf="birthday.errors.required">
+                                Date of birth is required.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <input type="button" (click)="create(createCustomerForm)" value="Sign Up"/>
+                </tr>
+                
+                <tr>
+                    <div *ngIf="infoMessage" style="color: blue;">
+                        {{infoMessage}} Login to reserve a booking.
+                    </div>
+                </tr>
+                
+            </form>
+        </div>
+    </div>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

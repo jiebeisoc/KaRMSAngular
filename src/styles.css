@@ -71,7 +71,7 @@ th, td {
 .container {
     max-width: 600px;
     margin: 0 auto;
-    left: 41.5%;
+    margin-left: 35%;
     padding: 80px;
     text-align: center;
 
@@ -83,11 +83,9 @@ form {
     position: relative;
     z-index: 2;
     text-align: center;
-
 }
 
 input{
-    display: block;
     appearance: none;
     outline: 0;
     border: 1px solid fade(white, 40%);
@@ -99,21 +97,13 @@ input{
     margin: 0 auto 10px auto;
     display: block;
     text-align: center;
-    font-size: 18px;
     
+    font-size: 18px;   
     color: black;
     
     transition-duration: 0.25s;
     font-weight: 300;
     
-}
-
-button {
-    width: 250px;
-    font-size: 18px; 
-    border-radius: 3px; 
-    padding: 10px 15px; 
-    cursor: pointer;
 }
 
 .loginbox {
@@ -155,6 +145,7 @@ button {
 }
 
 .errorText {
+    text-align: left;
     color: red;
 }
 

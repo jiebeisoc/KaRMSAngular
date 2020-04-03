@@ -30,6 +30,92 @@ th, td {
     background-color: whitesmoke;
 }
 
+.header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+    background-color: whitesmoke;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color:  whitesmoke;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    background-color: gray;
+    color: black;
+}
+
+.wrapper {
+    background-color: ivory;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    left: 41.5%;
+    padding: 80px;
+    text-align: center;
+
+}
+
+form {
+    padding: 200px 0;
+    margin-top: -200px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+
+}
+
+input{
+    display: block;
+    appearance: none;
+    outline: 0;
+    border: 1px solid fade(white, 40%);
+    background-color: fade(white, 20%);
+    width: 250px;
+    
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    
+    color: black;
+    
+    transition-duration: 0.25s;
+    font-weight: 300;
+    
+}
+
+button {
+    width: 250px;
+    font-size: 18px; 
+    border-radius: 3px; 
+    padding: 10px 15px; 
+    cursor: pointer;
+}
+
 .loginbox {
     display: block;
     text-align: right;
@@ -39,7 +125,7 @@ th, td {
 .content {
     display: block;
     padding: 3px 3px 3px 3px;
-    width: 83%;
+    width: 82.5%;
     margin: 0.5% 0.5% 0.5% 0.5%;
     float: left;
 }

@@ -1,12 +1,14 @@
 <header class="header">
 
-    <h1>Sing-Ah Reservation System</h1>
-    <aside id="loginbox" class="loginbox">
+    <h1 style="color: blue; font-weight: bold;">Sing-Ah Karaoke Reservation</h1>
+    <div class="topnav">
+        <a routerLink="/index">Home</a>
+        <a>About</a>
+        <a>Locate Us</a>
+        <a>Promotions</a>
+        <a>Contact Us</a>
+        <a *ngIf="sessionService.getIsLogin() != true" routerLink="/customerOperation/registerCustomer">Sign Up</a>
+        <a *ngIf="sessionService.getIsLogin() == true" (click)="customerLogout()">Logout</a>
+    </div>
 
-        <div *ngIf="sessionService.getIsLogin() == true">
-            Welcome, {{sessionService.getCurrentCustomer().name}}
-            <input type="button" (click)="customerLogout()" value="Logout" />
-        </div>
-
-    </aside>
 </header>

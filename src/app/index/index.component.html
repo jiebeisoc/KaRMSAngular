@@ -6,39 +6,18 @@
 
         <div class="wrapper">
             <div class="container">
-
-                <form class="form">
-                    <tr style="border: hidden;">
-                        <td style="border: hidden;"><h1>Welcome</h1></td>
-                    </tr>
-
-                    <tr style="border: hidden;">
-                        <td style="border: hidden;">
-                            <input class="input" type="text" [(ngModel)]="username" name="username" placeholder="username" />
-                        </td>
-                    </tr>
-
-                    <tr style="border: hidden;">
-                        <td style="border: hidden;">
-                            <input class="input" type="password" [(ngModel)]="password" name="password" placeholder="Password" />
-                        </td>
-                    </tr>
-
-                    <tr style="border: hidden;">
-                        <td style="border: hidden;">
-                            <input class="input" type="button" (click)="customerLogin()" value="Login" />
-                        </td>
-                    </tr>
-
-                    <tr style="border: hidden;">
-                        <td style="border: hidden;">
-                            <div *ngIf="loginError == true" style="text-align: center; color: red;">
-                                {{errorMessage}}
-                            </div>
-                        </td>
-                    </tr>
-
-                </form>
+                <h1>Welcome</h1>
+                <mat-form-field appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input class="input" matInput [(ngModel)]="username" />
+                </mat-form-field>
+                <br/>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input class="input" type="password" matInput [(ngModel)]="password" />
+                </mat-form-field>
+                <br/>
+                <button mat-raised-button color="primary" (click)="customerLogin()">Login</button>
 
             </div>
         </div>

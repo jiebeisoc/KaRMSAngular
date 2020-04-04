@@ -5,7 +5,7 @@
     <div class="wrapper">
         <div class="container">
             
-            <form class="form" #createCustomerForm="ngForm" (ngSubmit)="create(createCustomerForm)">
+            <form class="form" #createCustomerForm="ngForm" (ngSumit)="create(createCustomerForm)">
                 <h1>Register</h1>
                 <mat-form-field appearance="fill">
                     <mat-label>Username</mat-label>
@@ -44,9 +44,12 @@
                 <br/>
                 <mat-form-field appearance="fill">
                     <mat-label>Contact number</mat-label>
-                    <input class="input" matInput [(ngModel)]="newCustomer.phoneNo" [formControl]="contactNoFormControl"/>
+                    <input class="input" type="tel" matInput [(ngModel)]="newCustomer.phoneNo" [formControl]="contactNoFormControl"/>
                     <mat-error *ngIf="contactNoFormControl.hasError('required')">
                         Contact number is required.
+                    </mat-error>
+                    <mat-error *ngIf="contactNoFormControl.hasError('pattern')">
+                        Please enter a valid contact number.
                     </mat-error>
                 </mat-form-field>
                 <br/>
@@ -60,15 +63,15 @@
                 <br>
                 <mat-form-field appearance="fill">
                     <mat-label>Date of birth</mat-label>
-                    <input class="input" type="date" matInput [(ngModel)]="newCustomer.birthday" [formControl]="dateFormControl" >
+                    <input class="input" matInput type="date" [(ngModel)]="newCustomer.birthday" [formControl]="dateFormControl" >
                     <mat-error *ngIf="dateFormControl.hasError('required')">
                         Date of birth is required.
                     </mat-error>
                 </mat-form-field>
                 <br/>
-                <button mat-raised-button color="primary" (click)="create(createCustomerForm)" >Register</button>
+                <button mat-raised-button color="primary" type="submit" >Register</button>
 
-                <div *ngIf="infoMessage" style="color: blue;">
+                <div *ngIf="infoMessage" style="color: white;">
                     {{infoMessage}} Login to reserve a booking.
                 </div>
                 

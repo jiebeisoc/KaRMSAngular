@@ -7,18 +7,19 @@
         <div class="wrapper">
             <div class="container">
                 <h1>Welcome</h1>
-                <mat-form-field appearance="fill">
-                    <mat-label>Username</mat-label>
-                    <input class="input" matInput [(ngModel)]="username" />
-                </mat-form-field>
-                <br/>
-                <mat-form-field appearance="fill">
-                    <mat-label>Password</mat-label>
-                    <input class="input" type="password" matInput [(ngModel)]="password" />
-                </mat-form-field>
-                <br/>
-                <button mat-raised-button color="primary" (click)="customerLogin()">Login</button>
-
+                <form class="form" #loginForm="ngForm" (ngSubmit)="customerLogin(loginForm)">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Username</mat-label>
+                        <input class="input" matInput [(ngModel)]="username" name="username"/>
+                    </mat-form-field>
+                    <br/>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Password</mat-label>
+                        <input class="input" type="password" matInput [(ngModel)]="password" name="password"/>
+                    </mat-form-field>
+                    <br/>
+                    <button mat-raised-button color="primary" type="submit">Login</button>
+                </form>
             </div>
         </div>
 

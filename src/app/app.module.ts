@@ -27,10 +27,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 import { UpdateCustomerComponent } from './customerOperation/update-customer/update-customer.component';
-import { CreateFoodOrderComponent } from './foodOperation/create-food-order/create-food-order.component';
-import { UpdateFoodOrderComponent } from './foodOperation/update-food-order/update-food-order.component';
-import { ViewFoodOrderComponent } from './foodOperation/view-food-order/view-food-order.component';
-import { DeleteFoodOrderComponent } from './foodOperation/delete-food-order/delete-food-order.component';
+import { CreateFoodOrderComponent } from './foodOrderOperation/create-food-order/create-food-order.component';
+import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
+import { UpdateFoodOrderComponent } from './foodOrderOperation/update-food-order/update-food-order.component';
+import { ViewFoodOrderComponent } from './foodOrderOperation/view-food-order/view-food-order.component';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { DeleteFoodOrderComponent } from './foodOperation/delete-food-order/dele
     CreateFoodOrderComponent,
     UpdateFoodOrderComponent,
     ViewFoodOrderComponent,
-    DeleteFoodOrderComponent
+    DeleteFoodOrderComponent,
   ],
   imports: [
     BrowserModule,

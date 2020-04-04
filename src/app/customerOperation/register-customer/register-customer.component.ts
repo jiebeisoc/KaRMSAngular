@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { NgForm, FormControl, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Customer } from '../../customer';
 import { CustomerService } from '../../customer.service';
@@ -17,10 +17,11 @@ export class RegisterCustomerComponent implements OnInit {
   newCustomer: Customer;
   infoMessage: string;
   errorMessage: string;
+
   usernameFormControl = new FormControl('', [Validators.required]);
   passwordFormControl = new FormControl('', [Validators.required]);
   nameFormControl = new FormControl('', [Validators.required]);
-  contactNoFormControl = new FormControl('', [Validators.required]);
+  contactNoFormControl = new FormControl('', [Validators.required, Validators.pattern("[0-9]{8}")]);
   creditCardNoFormControl = new FormControl('', [Validators.required]);
   dateFormControl = new FormControl('', [Validators.required]);
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
@@ -40,6 +41,7 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   create(createCustomerForm: NgForm) {
+
     this.submitted = true;
     this.newCustomer.birthday = new Date(this.newCustomer.birthday);
     console.log(this.newCustomer.birthday);

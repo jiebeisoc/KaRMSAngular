@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { SessionService } from '../../session.service';
 import { CustomerService } from '../../customer.service';
@@ -21,6 +21,11 @@ export class UpdateCustomerComponent implements OnInit {
   resultError: boolean;
   message: string;
 
+  nameFormControl = new FormControl('', [Validators.required]);
+  contactNoFormControl = new FormControl('', [Validators.required, Validators.pattern("[0-9]{8}")]);
+  dateFormControl = new FormControl('', [Validators.required]);
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+
   constructor(private router: Router,
     public sessionService: SessionService,
     private customerService: CustomerService) {
@@ -31,6 +36,8 @@ export class UpdateCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkAccessRight();
+
+    this.customerToUpdate = this.sessionService.getCurrentCustomer();
   }
 
   update(updateCustomerForm: NgForm) {

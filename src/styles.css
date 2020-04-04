@@ -22,6 +22,10 @@ th, td {
 	padding: 3px;
 }
 
+div {
+    color: white;
+}
+
 .header {
     display: block;
     clear: both;
@@ -38,6 +42,14 @@ th, td {
     line-height: 25px;
     border-radius: 4px;
     background-color: transparent;
+}
+
+.menu {
+    display: block;
+    width: 15%;
+    float: left;
+    padding: 10px;
+    background-color: grey;
 }
 
 .footer {
@@ -96,27 +108,6 @@ form {
     position: relative;
     z-index: 2;
     text-align: center;
-}
-
-.input{
-    appearance: none;
-    outline: 0;
-    border: 1px solid fade(white, 40%);
-    background-color: fade(white, 20%);
-    width: 250px;
-    
-    border-radius: 3px;
-    padding: 10px 15px;
-    margin: 0 auto 10px auto;
-    display: block;
-    text-align: center;
-    
-    font-size: 18px;   
-    color: white;
-    
-    transition-duration: 0.25s;
-    font-weight: 300;
-    
 }
 
 .loginbox {

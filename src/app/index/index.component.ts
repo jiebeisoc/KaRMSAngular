@@ -5,7 +5,7 @@ import { SessionService } from '../session.service';
 import { CustomerService } from '../customer.service';
 
 import { Customer } from '../customer';
-import { FormControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-index',
@@ -29,32 +29,35 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  customerLogin(): void {
-    this.sessionService.setUsername(this.username);
-    this.sessionService.setPassword(this.password);
-    
-    this.customerService.customerLogin(this.username, this.password).subscribe(
+  customerLogin(loginForm: NgForm): void {
 
-      response => {
-        let customer: Customer = response.customer;
+    if (loginForm.valid) {
+      this.sessionService.setUsername(this.username);
+      this.sessionService.setPassword(this.password);
+      
+      this.customerService.customerLogin(this.username, this.password).subscribe(
 
-        if (customer != null) {
-          this.sessionService.setIsLogin(true);
-          this.sessionService.setCurrentCustomer(customer);
+        response => {
+          let customer: Customer = response.customer;
 
-          this.loginError = false;
+          if (customer != null) {
+            this.sessionService.setIsLogin(true);
+            this.sessionService.setCurrentCustomer(customer);
 
-          this.router.navigate(["/index"]);
-        } else {
+            this.loginError = false;
+
+            this.router.navigate(["/index"]);
+          } else {
+            this.loginError = true;
+          }
+        },
+        error => {
           this.loginError = true;
+          this.errorMessage = error;
         }
-      },
-      error => {
-        this.loginError = true;
-        this.errorMessage = error;
-      }
 
-    )
+      )
+    }
   }
 
 }

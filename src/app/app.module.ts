@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
@@ -58,6 +59,7 @@ import { UpdateCustomerComponent } from './customerOperation/update-customer/upd
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

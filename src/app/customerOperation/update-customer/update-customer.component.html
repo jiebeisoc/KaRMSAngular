@@ -2,7 +2,59 @@
 
 <section id="content" class="content">
 
-    <div>Update account page</div>
+    <div>
+        <h1 style="padding: 5px;">My Account</h1>
+        <div style="padding-left: 50px;">
+            <form class="form" #updateCustomerForm="ngForm" (ngSubmit)="update(updateCustomerForm)">
+                <tr>
+                    <td style="border: hidden; text-align: right;">Name: </td>
+                    <td style="border: hidden;">
+                        <mat-form-field appearance="outline">
+                            <input class="input" matInput [(ngModel)]="customerToUpdate.name" [formControl]="nameFormControl">
+                            <mat-error *ngIf="nameFormControl.hasError('required')">
+                                Name is required.
+                            </mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: hidden; text-align: right;">Email: </td>
+                    <td style="border: hidden;">
+                        <mat-form-field appearance="outline">
+                            <input class="input" matInput [(ngModel)]="customerToUpdate.email" [formControl]="emailFormControl">
+                            <mat-error *ngIf="emailFormControl.hasError('required')">
+                                Email is required.
+                            </mat-error>
+                            <mat-error *ngIf="emailFormControl.hasError('email')">
+                                Please enter a valid email address.
+                            </mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: hidden; text-align: right;">Contact number: </td>
+                    <td style="border: hidden;">
+                        <mat-form-field appearance="outline">
+                            <input class="input" type="tel" matInput [(ngModel)]="customerToUpdate.phoneNo" [formControl]="contactNoFormControl">
+                            <mat-error *ngIf="contactNoFormControl.hasError('required')">
+                                Contact number is required.
+                            </mat-error>
+                            <mat-error *ngIf="contactNoFormControl.hasError('pattern')">
+                                Please enter a valid contact number.
+                            </mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border: hidden; text-align: center;">
+                        <button mat-raised-button color="primary" type="submit" >Save</button>
+                    </td>
+                </tr>
+            </form>
+        </div>
+    </div>
+
+
 
 </section>
 

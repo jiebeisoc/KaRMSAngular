@@ -47,12 +47,8 @@ export class UpdateCustomerComponent implements OnInit {
   deleteAccountPassword: string;
 
   passwordForm: FormGroup;
-
-  nameFormControl = new FormControl('', [Validators.required]);
   passwordFormControl = new FormControl('', [Validators.required]);
-  contactNoFormControl = new FormControl('', [Validators.required, Validators.pattern("[0-9]{8}")]);
-  dateFormControl = new FormControl('', [Validators.required]);
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+
 
   constructor(private router: Router,
     public sessionService: SessionService,

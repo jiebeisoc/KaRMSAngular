@@ -22,7 +22,7 @@ export class RegisterCustomerComponent implements OnInit {
   passwordFormControl = new FormControl('', [Validators.required]);
   nameFormControl = new FormControl('', [Validators.required]);
   contactNoFormControl = new FormControl('', [Validators.required, Validators.pattern("[0-9]{8}")]);
-  creditCardNoFormControl = new FormControl('', [Validators.required]);
+  creditCardNoFormControl = new FormControl('', [Validators.required, Validators.pattern("[0-9]{16}")]);
   dateFormControl = new FormControl('', [Validators.required]);
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
@@ -46,17 +46,17 @@ export class RegisterCustomerComponent implements OnInit {
     this.newCustomer.birthday = new Date(this.newCustomer.birthday);
     console.log(this.newCustomer.birthday);
     if (createCustomerForm.valid) {
-        this.customerService.createNewCustomer(this.newCustomer).subscribe(
-            response => {
-                this.infoMessage = 'Customer registered successfully.';
-                this.errorMessage = null;
-            },
-            error => {
-                this.infoMessage = null;
-                this.errorMessage = error;
-            }
-        );
+      this.customerService.createNewCustomer(this.newCustomer).subscribe(
+          response => {
+              this.infoMessage = 'Customer registered successfully.';
+              this.errorMessage = null;
+          },
+          error => {
+              this.infoMessage = null;
+              this.errorMessage = error;
+          }
+      );
     }
-}
+  }
 
 }

@@ -3,57 +3,131 @@
 <section id="content" class="content">
 
     <div>
-        <h1 style="padding: 5px;">My Account</h1>
-        <div style="padding-left: 50px;">
-            <form class="form" #updateCustomerForm="ngForm" (ngSubmit)="update(updateCustomerForm)">
-                <tr>
-                    <td style="border: hidden; text-align: right;">Name: </td>
-                    <td style="border: hidden;">
-                        <mat-form-field appearance="outline">
-                            <input class="input" matInput [(ngModel)]="customerToUpdate.name" [formControl]="nameFormControl">
-                            <mat-error *ngIf="nameFormControl.hasError('required')">
-                                Name is required.
-                            </mat-error>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border: hidden; text-align: right;">Email: </td>
-                    <td style="border: hidden;">
-                        <mat-form-field appearance="outline">
-                            <input class="input" matInput [(ngModel)]="customerToUpdate.email" [formControl]="emailFormControl">
-                            <mat-error *ngIf="emailFormControl.hasError('required')">
-                                Email is required.
-                            </mat-error>
-                            <mat-error *ngIf="emailFormControl.hasError('email')">
-                                Please enter a valid email address.
-                            </mat-error>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border: hidden; text-align: right;">Contact number: </td>
-                    <td style="border: hidden;">
-                        <mat-form-field appearance="outline">
-                            <input class="input" type="tel" matInput [(ngModel)]="customerToUpdate.phoneNo" [formControl]="contactNoFormControl">
-                            <mat-error *ngIf="contactNoFormControl.hasError('required')">
-                                Contact number is required.
-                            </mat-error>
-                            <mat-error *ngIf="contactNoFormControl.hasError('pattern')">
-                                Please enter a valid contact number.
-                            </mat-error>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="border: hidden; text-align: center;">
-                        <button mat-raised-button color="primary" type="submit" >Save</button>
-                    </td>
-                </tr>
-            </form>
-        </div>
-    </div>
+        <h1 style="padding: 20px;">My Account</h1>
+        <mat-tab-group>
+            <mat-tab label="Details">
+                <div style="padding-left: 50px;">
+                    <form class="form" #updateCustomerForm="ngForm" (ngSubmit)="update(updateCustomerForm)">
+                        <tr>
+                            <td style="border: hidden; text-align: right;">Name: </td>
+                            <td style="border: hidden;">
+                                <mat-form-field appearance="outline">
+                                    <input class="input" matInput [(ngModel)]="customerToUpdate.name" [formControl]="nameFormControl">
+                                    <mat-error *ngIf="nameFormControl.hasError('required')">
+                                        Name is required.
+                                    </mat-error>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: hidden; text-align: right;">Email: </td>
+                            <td style="border: hidden;">
+                                <mat-form-field appearance="outline">
+                                    <input class="input" matInput [(ngModel)]="customerToUpdate.email" [formControl]="emailFormControl">
+                                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                                        Email is required.
+                                    </mat-error>
+                                    <mat-error *ngIf="emailFormControl.hasError('email')">
+                                        Please enter a valid email address.
+                                    </mat-error>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: hidden; text-align: right;">Contact number: </td>
+                            <td style="border: hidden;">
+                                <mat-form-field appearance="outline">
+                                    <input class="input" type="tel" matInput [(ngModel)]="customerToUpdate.phoneNo" [formControl]="contactNoFormControl">
+                                    <mat-error *ngIf="contactNoFormControl.hasError('required')">
+                                        Contact number is required.
+                                    </mat-error>
+                                    <mat-error *ngIf="contactNoFormControl.hasError('pattern')">
+                                        Please enter a valid contact number.
+                                    </mat-error>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: hidden; text-align: center;">
+                                <button mat-stroked-button color="white" type="submit" >Save</button>
+                            </td>
+                        </tr>
 
+                    </form>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Change password">
+                <div style="padding-left: 50px;">
+                    <form class="form" [formGroup]="passwordForm">
+                        <tr>
+                            <td style="border: hidden; text-align: right;">Current password: </td>
+                            <td style="border: hidden;">
+                                <mat-form-field appearance="outline">
+                                    <input class="input" type="password" matInput [(ngModel)]="oldPassword" [formControl]="passwordFormControl">
+                                    <mat-error *ngIf="passwordFormControl.hasError('required')">
+                                        Current password is required.
+                                    </mat-error>
+                                </mat-form-field>                             
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: hidden; text-align: right;">New password: </td>
+                            <td style="border: hidden;">
+                                <mat-form-field appearance="outline">
+                                    <input class="input" type="password" matInput [(ngModel)]="newPassword" formControlName="password" required>
+                                    <mat-error *ngIf="passwordForm.hasError('required', 'password')">
+                                        Please enter your new password
+                                    </mat-error>
+                                </mat-form-field>                             
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: hidden; text-align: right;">Confirm new password: </td>
+                            <td style="border: hidden;">
+                                <mat-form-field appearance="outline">
+                                    <input class="input" type="password" matInput formControlName="confirmPassword" [errorStateMatcher]="matcher">
+                                    <mat-error *ngIf="passwordForm.hasError('notSame')">
+                                        Password do not match
+                                    </mat-error>
+                                </mat-form-field>                             
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: hidden; text-align: center;">
+                                <button mat-stroked-button color="white" (click)=changePassword() >Change password</button>
+                            </td>
+                        </tr>
+                    </form>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Delete account">
+                <div style="padding: 10px 50px; color: red; font-size: medium; font-weight: bolder;">
+                    Once you delete your account, there's no getting it back.
+                    Make sure you want to do this.  
+                </div>
+                <form class="form" style="color: white; padding-left: 50px;">
+                    <tr>
+                        <td style="border: hidden; text-align: right;">Enter password to delete: </td>
+                        <td style="border: hidden;">
+                            <mat-form-field appearance="outline">
+                                <input class="input" type="password" matInput [(ngModel)]="deleteAccountPassword" [formControl]="passwordFormControl">
+                                <mat-error *ngIf="passwordFormControl.hasError('required')">
+                                    Password is required.
+                                </mat-error>
+                            </mat-form-field>                             
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border: hidden; text-align: center;">
+                            <button mat-stroked-button color="white" (click)="openDialog()" >Delete account</button>
+                        </td>
+                    </tr>
+                </form>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
 
 
 </section>

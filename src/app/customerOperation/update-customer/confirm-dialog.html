@@ -1,0 +1,9 @@
+<h1>Delete Account</h1>
+<div mat-dialog-content>
+    <p>Are you sure you want to delete your account?</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    &nbsp;
+    <button mat-button (click)="dialogRef.close(true)">Yes</button>
+</div>

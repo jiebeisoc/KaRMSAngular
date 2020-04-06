@@ -12,9 +12,11 @@
                             <td style="border: hidden; text-align: right;">Name: </td>
                             <td style="border: hidden;">
                                 <mat-form-field appearance="outline">
-                                    <input class="input" matInput [(ngModel)]="customerToUpdate.name" [formControl]="nameFormControl">
-                                    <mat-error *ngIf="nameFormControl.hasError('required')">
-                                        Name is required.
+                                    <input class="input" id="name" matInput name="name" #name="ngModel" [(ngModel)]="customerToUpdate.name" required="true"/>
+                                    <mat-error *ngIf="name.invalid && (name.dirty || name.touched || submitted)" class="errorText">
+                                        <div *ngIf="name.errors.required">
+                                            Name is required.
+                                        </div>
                                     </mat-error>
                                 </mat-form-field>
                             </td>
@@ -23,12 +25,14 @@
                             <td style="border: hidden; text-align: right;">Email: </td>
                             <td style="border: hidden;">
                                 <mat-form-field appearance="outline">
-                                    <input class="input" matInput [(ngModel)]="customerToUpdate.email" [formControl]="emailFormControl">
-                                    <mat-error *ngIf="emailFormControl.hasError('required')">
-                                        Email is required.
-                                    </mat-error>
-                                    <mat-error *ngIf="emailFormControl.hasError('email')">
-                                        Please enter a valid email address.
+                                    <input class="input" id="email" matInput name="email" #email="ngModel" [(ngModel)]="customerToUpdate.email" required="true" pattern="^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$" />
+                                    <mat-error *ngIf="email.invalid && (email.dirty || email.touched || submitted)" class="errorText">
+                                        <div *ngIf="email.errors.required">
+                                            Email is required.
+                                        </div>
+                                        <div *ngIf="email.errors.pattern">
+                                            Please enter a valid email address.
+                                        </div>
                                     </mat-error>
                                 </mat-form-field>
                             </td>
@@ -37,12 +41,14 @@
                             <td style="border: hidden; text-align: right;">Contact number: </td>
                             <td style="border: hidden;">
                                 <mat-form-field appearance="outline">
-                                    <input class="input" type="tel" matInput [(ngModel)]="customerToUpdate.phoneNo" [formControl]="contactNoFormControl">
-                                    <mat-error *ngIf="contactNoFormControl.hasError('required')">
-                                        Contact number is required.
-                                    </mat-error>
-                                    <mat-error *ngIf="contactNoFormControl.hasError('pattern')">
-                                        Please enter a valid contact number.
+                                    <input class="input" id="phoneNo" type="tel" matInput name="phoneNo" #phoneNo="ngModel" [(ngModel)]="customerToUpdate.phoneNo" required="true" maxlength="8" pattern="[0-9]{8}"/>
+                                    <mat-error *ngIf="phoneNo.invalid && (phoneNo.dirty || phoneNo.touched || submitted)" class="errorText">
+                                        <div *ngIf="phoneNo.errors.required">
+                                            Contact number is required.
+                                        </div>
+                                        <div *ngIf="phoneNo.errors.pattern">
+                                            Please enter a valid contact number.
+                                        </div>
                                     </mat-error>
                                 </mat-form-field>
                             </td>

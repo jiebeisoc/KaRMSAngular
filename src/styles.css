@@ -150,5 +150,11 @@ form {
     border-style: bold;
     border-width: thin;
 }
+
+.snackbar {
+  background: #950740;
+  color: white;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

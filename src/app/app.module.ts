@@ -28,10 +28,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 import { UpdateCustomerComponent } from './customerOperation/update-customer/update-customer.component';
-import { CreateFoodOrderComponent } from './foodOrderOperation/create-food-order/create-food-order.component';
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
-import { UpdateFoodOrderComponent } from './foodOrderOperation/update-food-order/update-food-order.component';
-import { ViewFoodOrderComponent } from './foodOrderOperation/view-food-order/view-food-order.component';
+import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
+import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
+import { UpdateShoppingCartComponent } from './foodOrderOperation/update-shopping-cart/update-shopping-cart.component';
+import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
 
 
 @NgModule({
@@ -45,10 +46,11 @@ import { ViewFoodOrderComponent } from './foodOrderOperation/view-food-order/vie
     AccessRightErrorComponent,
     RegisterCustomerComponent,
     UpdateCustomerComponent,
-    CreateFoodOrderComponent,
-    UpdateFoodOrderComponent,
-    ViewFoodOrderComponent,
     DeleteFoodOrderComponent,
+    ShoppingCartComponent,
+    ViewPastFoodOrdersComponent,
+    UpdateShoppingCartComponent,
+    FoodItemMenuComponent,
   ],
   imports: [
     BrowserModule,

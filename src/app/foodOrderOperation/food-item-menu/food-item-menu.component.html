@@ -1,0 +1,45 @@
+
+<app-header></app-header>
+
+<app-main-menu></app-main-menu>	
+
+<section id="content" class="content">
+
+    <br/>
+
+    <p-panel header="All Food Items">
+
+        <p-table [value]='foodItems'>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>SKU Code</th>
+                    <th>Name</th>
+                    <th>Unit Price</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-foodItem>
+                <tr>
+                    <td>{{foodItem.skuCode}}</td>
+                    <td>{{foodItem.name}}</td>
+                    <td>{{foodItem.unitPrice}}</td>
+                    <td>{{foodItem.description}}</td>
+                    <td>{{foodItem.categoryEntity.name}}</td>
+                    
+                    <td>
+                        
+                   <!--  <p-button label="Add to cart" ((click)="addToCart(foodItem,quantity)"></p-button> --> 
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </p-panel>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

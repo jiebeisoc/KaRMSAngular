@@ -5,10 +5,10 @@ import { IndexComponent } from './index/index.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 import { UpdateCustomerComponent } from './customerOperation/update-customer/update-customer.component';
-import { CreateFoodOrderComponent } from './foodOrderOperation/create-food-order/create-food-order.component';
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
-import { UpdateFoodOrderComponent } from './foodOrderOperation/update-food-order/update-food-order.component';
-import { ViewFoodOrderComponent } from './foodOrderOperation/view-food-order/view-food-order.component';
+import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
+import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
+import { UpdateShoppingCartComponent } from './foodOrderOperation/update-shopping-cart/update-shopping-cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "/index", pathMatch: "full" },
@@ -16,10 +16,10 @@ const routes: Routes = [
   { path:'accessRightError', component: AccessRightErrorComponent },
   { path:'customerOperation/registerCustomer', component: RegisterCustomerComponent },
   { path:'customerOperation/updateCustomer', component: UpdateCustomerComponent },
-  { path:'foodOrderOperation/createFoodOrder', component: CreateFoodOrderComponent},
   { path:'foodOrderOperation/deleteFoodOrder', component: DeleteFoodOrderComponent},
-  { path:'foodOrderOperation/updateFoodOrder', component: UpdateFoodOrderComponent},
-  { path:'foodOrderOperation/viewFoodOrder', component: ViewFoodOrderComponent}
+  { path:'foodOrderOperation/updateShoppingCart', component: UpdateShoppingCartComponent},
+  { path:'foodOrderOperation/viewPastFoodOrders', component: ViewPastFoodOrdersComponent},
+  { path:'foodOrderOperation/shoppingCart', component: ShoppingCartComponent}
 
 ];
 

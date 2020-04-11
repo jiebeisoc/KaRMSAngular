@@ -5,6 +5,7 @@ import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Customer } from '../../customer';
 import { CustomerService } from '../../customer.service';
+import { SessionService } from '../../session.service';
 
 @Component({
   selector: 'app-register-customer',
@@ -17,11 +18,14 @@ export class RegisterCustomerComponent implements OnInit {
   newCustomer: Customer;
   infoMessage: string;
   errorMessage: string;
+  maxDate: Date;
 
   constructor(private router: Router,
+    public sessionService: SessionService,
     private customerService: CustomerService) { 
       this.submitted = false;
       this.newCustomer = new Customer();
+      this.maxDate = new Date();
     }
 
   ngOnInit(): void {

@@ -3,9 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { SessionService } from '../session.service';
 import { CustomerService } from '../customer.service';
+import { OutletService } from '../outlet.service';
 
 import { Customer } from '../customer';
 import { NgForm } from '@angular/forms';
+import { Outlet } from '../outlet';
 
 @Component({
   selector: 'app-index',
@@ -18,15 +20,27 @@ export class IndexComponent implements OnInit {
   password: string;
   loginError: boolean;
   errorMessage: string;
+  outlets: Outlet[];
+  selectedOutlet: Outlet;
+  selectedDate: Date;
+  minDate: Date;
+  data: boolean[];
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     public sessionService: SessionService,
-    public customerService: CustomerService) {
+    public customerService: CustomerService,
+    public outletService: OutletService) {
       this.loginError = false;
+      this.minDate = new Date();
      }
 
   ngOnInit(): void {
+    this.outletService.retrieveAllOutlets().subscribe(
+      response => {
+        this.outlets = response.outlets;
+      }
+    )
   }
 
   customerLogin(loginForm: NgForm): void {

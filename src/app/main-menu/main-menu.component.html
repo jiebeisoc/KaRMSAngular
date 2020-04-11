@@ -1,26 +1,19 @@
 <section id="mainmenu" class="mainmenu">
-<h3>Main Menu</h3>
-<nav>
-	<br/>
-	<a routerLink="/index">Home</a>
-	
-	<ng-template [ngIf]="sessionService.getIsLogin() == true">
-		<br/><br/>
-		<a class="logoutlink" (click)="customerLogout()">Logout</a>
-		<br/><br/>
-		<h4 class="menuHeader1">Reservation</h4>				
-		<ul class="secondaryMenu">
-			<li><a routerLink="/index">Create Reservation</a></li>
-			<li><a routerLink="/index">View Past Reservation</a></li>
-		</ul>
-		<br/>
-		<h4 class="menuHeader1">Food Ordering</h4>
-		<ul class="secondaryMenu">
-			<li><a routerLink="/systemAdministration/createNewStaff">Create New Staff</a></li>			
-			<li><a routerLink="/systemAdministration/viewAllStaffs">View All Staffs</a></li>
-		</ul>
-		
-		
-	</ng-template>
-</nav>
+
+	<mat-drawer-container>
+
+		<mat-drawer-content>
+
+			<mat-nav-list>
+				<a mat-list-item routerLink='/index'>Create Reservation</a>
+				<a mat-list-item routerLink='/index'>View Past Reservation</a>
+
+			</mat-nav-list>
+
+			
+
+		</mat-drawer-content>
+
+	</mat-drawer-container>
+
 </section>

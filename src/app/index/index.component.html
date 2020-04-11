@@ -30,7 +30,30 @@
 
     <article *ngIf="sessionService.getIsLogin() == true">
 
-        <h3 style="color: white;">Login successfully</h3>
+        <app-main-menu></app-main-menu>
+
+        <div class="login-content">
+            <div style="text-align: center;">
+                <mat-form-field  appearance="outline">
+                    <mat-label>Outlet</mat-label>
+                    <mat-select [(ngModel)]="selectedOutlet">
+                        <mat-option>---</mat-option>
+                        <mat-option *ngFor="let outlet of outlets" [value]="outlet">
+                            {{outlet.outletName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field appearance="outline">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="picker" [min]="minDate" [(ngModel)]="selectedDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                &nbsp;
+                <button style="height: 50px; width: 80px;" mat-raised-button color="primary">Search</button>
+            </div>
+        </div>
 
     </article>
 

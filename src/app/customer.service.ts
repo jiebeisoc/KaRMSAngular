@@ -42,10 +42,23 @@ export class CustomerService {
       'customer': customerToUpdate
     };
 
-    return this.httpClient.post<any>(this.baseUrl, updateCustomerReq, httpOptions).pipe(
+    return this.httpClient.post<any>(this.baseUrl + "/updateDetails", updateCustomerReq, httpOptions).pipe(
       catchError(this.handleError)
     );
 
+  }
+
+  changePassword(oldPassword: string, newPassword: string): Observable<any> {
+    let changePasswordReq = {
+      'username': this.sessionService.getUsername(),
+      'password': this.sessionService.getPassword(),
+      'oldPassword': oldPassword,
+      'newPassword': newPassword
+    };
+
+    return this.httpClient.post<any>(this.baseUrl + "/changePassword", changePasswordReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
 
   deleteCustomer(customerId: number) {

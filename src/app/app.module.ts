@@ -11,6 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
@@ -27,13 +30,15 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
-import { UpdateCustomerComponent } from './customerOperation/update-customer/update-customer.component';
+
+import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOperation/update-customer/update-customer.component';
+import { CreateFoodOrderComponent } from './foodOrderOperation/create-food-order/create-food-order.component';
+
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
 import { UpdateShoppingCartComponent } from './foodOrderOperation/update-shopping-cart/update-shopping-cart.component';
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
-
 
 @NgModule({
   declarations: [
@@ -47,10 +52,14 @@ import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-
     RegisterCustomerComponent,
     UpdateCustomerComponent,
     DeleteFoodOrderComponent,
+
     ShoppingCartComponent,
     ViewPastFoodOrdersComponent,
     UpdateShoppingCartComponent,
     FoodItemMenuComponent,
+
+    ConfirmDialogComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -66,11 +75,14 @@ import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-
     MatIconModule,
     MatFormFieldModule,
     MatMenuModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

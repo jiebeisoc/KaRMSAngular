@@ -19,6 +19,9 @@
                     </mat-form-field>
                     <br/>
                     <button mat-raised-button color="primary" type="submit">Login</button>
+                    <div *ngIf="errorMessage" style="color: red;">
+                        Username or password is incorrect.
+                    </div>
                 </form>
             </div>
         </div>
@@ -27,7 +30,7 @@
 
     <article *ngIf="sessionService.getIsLogin() == true">
 
-        <h3>Login successfully</h3>
+        <h3 style="color: white;">Login successfully</h3>
 
     </article>
 

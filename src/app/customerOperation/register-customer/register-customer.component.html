@@ -5,67 +5,84 @@
     <div class="wrapper">
         <div class="container">
             
-            <form class="form" #createCustomerForm="ngForm" (ngSumit)="create(createCustomerForm)">
+            <form class="form" #createCustomerForm="ngForm" (ngSubmit)="create(createCustomerForm)">
                 <h1>Register</h1>
                 <mat-form-field appearance="fill">
                     <mat-label>Username</mat-label>
-                    <input class="input" matInput [(ngModel)]="newCustomer.username" [formControl]="usernameFormControl"/>
-                    <mat-error *ngIf="usernameFormControl.hasError('required')">
-                        Username is required.
-                    </mat-error>
+                    <input class="input" matInput id="username" name="username" #username="ngModel" [(ngModel)]="newCustomer.username" required="true"/>
+                    <mat-error *ngIf="username.invalid && (username.dirty || username.touched || submitted)" class="errorText">
+						<div *ngIf="username.errors.required">
+							Username is required.
+						</div>
+					</mat-error>
                 </mat-form-field>
                 <br/>
                 <mat-form-field appearance="fill">
                     <mat-label>Password</mat-label>
-                    <input class="input" type="password" matInput [(ngModel)]="newCustomer.password" [formControl]="passwordFormControl"/>
-                    <mat-error *ngIf="passwordFormControl.hasError('required')">
-                       Password is required.
-                    </mat-error>
+                    <input class="input" id="password" name="password" #password="ngModel" type="password" matInput password="username" #password="ngModel" [(ngModel)]="newCustomer.password" required="true"/>
+                    <mat-error *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
+						<div *ngIf="password.errors.required">
+							Password is required.
+						</div>
+					</mat-error>
                 </mat-form-field>
                 <br/>
                 <mat-form-field appearance="fill">
                     <mat-label>Name</mat-label>
-                    <input class="input" matInput [(ngModel)]="newCustomer.name" [formControl]="nameFormControl"/>
-                    <mat-error *ngIf="nameFormControl.hasError('required')">
-                        Name is required.
+                    <input class="input" id="name" matInput name="name" #name="ngModel" [(ngModel)]="newCustomer.name" required="true"/>
+                    <mat-error *ngIf="name.invalid && (name.dirty || name.touched || submitted)" class="errorText">
+                        <div *ngIf="name.errors.required">
+							Name is required.
+						</div>
                     </mat-error>
                 </mat-form-field>
                 <br/>
                 <mat-form-field appearance="fill">
                     <mat-label>Email</mat-label>
-                    <input class="input" matInput [(ngModel)]="newCustomer.email" [formControl]="emailFormControl"/>
-                    <mat-error *ngIf="emailFormControl.hasError('required')">
-                        Email is required.
-                    </mat-error>
-                    <mat-error *ngIf="emailFormControl.hasError('email')">
-                        Please enter a valid email address.
+                    <input class="input" id="email" matInput name="email" #email="ngModel" [(ngModel)]="newCustomer.email" required="true" pattern="^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$" />
+                    <mat-error *ngIf="email.invalid && (email.dirty || email.touched || submitted)" class="errorText">
+                        <div *ngIf="email.errors.required">
+							Email is required.
+                        </div>
+                        <div *ngIf="email.errors.pattern">
+							Please enter a valid email address.
+						</div>
                     </mat-error>
                 </mat-form-field>
                 <br/>
                 <mat-form-field appearance="fill">
                     <mat-label>Contact number</mat-label>
-                    <input class="input" type="tel" matInput [(ngModel)]="newCustomer.phoneNo" [formControl]="contactNoFormControl"/>
-                    <mat-error *ngIf="contactNoFormControl.hasError('required')">
-                        Contact number is required.
-                    </mat-error>
-                    <mat-error *ngIf="contactNoFormControl.hasError('pattern')">
-                        Please enter a valid contact number.
+                    <input class="input" id="phoneNo" type="tel" matInput name="phoneNo" #phoneNo="ngModel" [(ngModel)]="newCustomer.phoneNo" required="true" maxlength="8" pattern="[0-9]{8}"/>
+                    <mat-error *ngIf="phoneNo.invalid && (phoneNo.dirty || phoneNo.touched || submitted)" class="errorText">
+                        <div *ngIf="phoneNo.errors.required">
+							Contact number is required.
+                        </div>
+                        <div *ngIf="phoneNo.errors.pattern">
+							Please enter a valid contact number.
+						</div>
                     </mat-error>
                 </mat-form-field>
                 <br/>
                 <mat-form-field appearance="fill">
                     <mat-label>Credit Card number</mat-label>
-                    <input class="input" matInput [(ngModel)]="newCustomer.creditCardNo" [formControl]="creditCardNoFormControl"/>
-                    <mat-error *ngIf="creditCardNoFormControl.hasError('required')">
-                        Credit Card number is required.
+                    <input class="input" id="creditCardNo" matInput name="creditCardNo" #creditCardNo="ngModel" [(ngModel)]="newCustomer.creditCardNo" required="true" maxlength="16" pattern="[0-9]{16}"/>
+                    <mat-error *ngIf="creditCardNo.invalid && (creditCardNo.dirty || creditCardNo.touched || submitted)" class="errorText">
+                        <div *ngIf="creditCardNo.errors.required">
+							Credit card number is required.
+                        </div>
+                        <div *ngIf="creditCardNo.errors.pattern">
+							Please enter a valid credit card number.
+						</div>
                     </mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field appearance="fill">
                     <mat-label>Date of birth</mat-label>
-                    <input class="input" matInput type="date" [(ngModel)]="newCustomer.birthday" [formControl]="dateFormControl" >
-                    <mat-error *ngIf="dateFormControl.hasError('required')">
-                        Date of birth is required.
+                    <input class="input" id="birthday" matInput name="birthday" #birthday="ngModel" type="date" [(ngModel)]="newCustomer.birthday" required="true"/>
+                    <mat-error *ngIf="birthday.invalid && (birthday.dirty || birthday.touched || submitted)" class="errorText">
+                        <div *ngIf="birthday.errors.required">
+							Date of birth is required.
+						</div>
                     </mat-error>
                 </mat-form-field>
                 <br/>
@@ -73,6 +90,9 @@
 
                 <div *ngIf="infoMessage" style="color: white;">
                     {{infoMessage}} Login to reserve a booking.
+                </div>
+                <div *ngIf="errorMessage" style="color: red;">
+                    {{errorMessage}}
                 </div>
                 
             </form>

@@ -46,7 +46,7 @@ export class SessionService {
   }
 
   checkAccessRight(path): boolean {
-    if(this.getIsLogin) {
+    if(this.getIsLogin()) {
       return true;
     } else {
       return false;

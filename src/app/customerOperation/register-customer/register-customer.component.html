@@ -2,7 +2,7 @@
 
 <section id="content" class="content">
 
-    <div class="wrapper">
+    <div class="wrapper" *ngIf="sessionService.getIsLogin() != true">
         <div class="container">
             
             <form class="form" #createCustomerForm="ngForm" (ngSubmit)="create(createCustomerForm)">
@@ -78,7 +78,9 @@
                 <br>
                 <mat-form-field appearance="fill">
                     <mat-label>Date of birth</mat-label>
-                    <input class="input" id="birthday" matInput name="birthday" #birthday="ngModel" type="date" [(ngModel)]="newCustomer.birthday" required="true"/>
+                    <input class="input" id="birthday" matInput name="birthday" [matDatepicker]="picker" [max]="maxDate" #birthday="ngModel" [(ngModel)]="newCustomer.birthday" required="true"/>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
                     <mat-error *ngIf="birthday.invalid && (birthday.dirty || birthday.touched || submitted)" class="errorText">
                         <div *ngIf="birthday.errors.required">
 							Date of birth is required.
@@ -97,6 +99,12 @@
                 
             </form>
         </div>
+    </div>
+
+    <div *ngIf="sessionService.getIsLogin() == true">
+        <p style="padding: 20px; color: red;">
+            Please log out to sign up an account.
+        </p>
     </div>
 
 </section>

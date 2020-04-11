@@ -32,7 +32,7 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 
 import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOperation/update-customer/update-customer.component';
-import { CreateFoodOrderComponent } from './foodOrderOperation/create-food-order/create-food-order.component';
+
 
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';

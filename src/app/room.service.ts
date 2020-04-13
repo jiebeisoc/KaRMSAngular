@@ -4,10 +4,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Outlet } from './outlet';
-import { RoomType } from './room-type';
-import { Room } from './room';
-
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -15,21 +11,14 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class ReservationService {
+export class RoomService {
 
-  baseUrl: string = '/api/Reservation';
+  baseUrl: string = '/api/Room';
 
   constructor(private httpClient: HttpClient) { }
 
-  retrieveReservationByDate(date: string, outlet: Outlet, roomType: RoomType): Observable<any> {
-
-    return this.httpClient.get<any>(this.baseUrl+"/retrieveReservationByDate?date=" + date + "&outletId=" + outlet.outletId + "&roomTypeName=" + roomType.roomTypeId).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  retrieveReservationByRoomAndDate(date: string, room: Room): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl+'/retrieveReservationByRoomAndDate?date=' + date + "&roomId=" + room.roomId).pipe(
+  retrieveRoomByOutletAndRoomType(outletId: number, roomTypeId: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl+"/retrieveRoomByOutletAndRoomType?outletId=" + outletId + "&roomTypeId=" + roomTypeId).pipe(
       catchError(this.handleError)
     );
   }

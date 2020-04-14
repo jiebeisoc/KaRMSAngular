@@ -54,6 +54,22 @@
                             </td>
                         </tr>
                         <tr>
+                            <td style="border: hidden; text-align: right;">Credit card number: </td>
+                            <td style="border: hidden;">
+                                <mat-form-field appearance="outline">
+                                    <input class="input" id="creditCardNo" matInput name="creditCardNo" #creditCardNo="ngModel" [(ngModel)]="customerToUpdate.creditCardNo" required="true" maxlength="16" pattern="[0-9]{16}"/>
+                                    <mat-error *ngIf="creditCardNo.invalid && (creditCardNo.dirty || creditCardNo.touched || submitted)" class="errorText">
+                                        <div *ngIf="creditCardNo.errors.required">
+                                            Credit card number is required.
+                                        </div>
+                                        <div *ngIf="creditCardNo.errors.pattern">
+                                            Please enter a valid credit card number.
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
                             <td colspan="2" style="border: hidden; text-align: center;">
                                 <button mat-stroked-button color="white" type="submit" >Save</button>
                             </td>

@@ -76,6 +76,6 @@ export class CustomerService {
         errorMessage = 'An HTTP has occurred: ' + `HTTP ${error.status}: ${error.error.message}`;
     }
     return throwError(errorMessage)
-}
+  }
   
 }

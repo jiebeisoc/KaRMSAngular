@@ -10,14 +10,14 @@
                 <form class="form" #loginForm="ngForm" (ngSubmit)="customerLogin(loginForm)">
                     <mat-form-field appearance="fill">
                         <mat-label>Username</mat-label>
-                        <input class="input" matInput [(ngModel)]="username" name="username"/>
+                        <input class="input" matInput [(ngModel)]="username" name="username" />
                     </mat-form-field>
-                    <br/>
+                    <br />
                     <mat-form-field appearance="fill">
                         <mat-label>Password</mat-label>
-                        <input class="input" type="password" matInput [(ngModel)]="password" name="password"/>
+                        <input class="input" type="password" matInput [(ngModel)]="password" name="password" />
                     </mat-form-field>
-                    <br/>
+                    <br />
                     <button mat-raised-button color="primary" type="submit">Login</button>
                     <div *ngIf="errorMessage" style="color: red;">
                         Username or password is incorrect.
@@ -30,7 +30,87 @@
 
     <article *ngIf="sessionService.getIsLogin() == true">
 
-        <h3 style="color: white;">Login successfully</h3>
+        <app-main-menu></app-main-menu>
+
+        <div class="login-content">
+            <div style="text-align: center;">
+                <mat-form-field appearance="outline">
+                    <mat-label>Outlet</mat-label>
+                    <mat-select [(ngModel)]="selectedOutlet">
+                        <mat-option>---</mat-option>
+                        <mat-option *ngFor="let outlet of outlets" [value]="outlet">
+                            {{outlet.outletName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field appearance="outline">
+                    <mat-label>Room Type</mat-label>
+                    <mat-select [(ngModel)]="selectedRoomType">
+                        <mat-option>---</mat-option>
+                        <mat-option *ngFor="let roomType of roomTypes" [value]="roomType">
+                            {{roomType.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field appearance="outline">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="picker" [min]="minDate" [(ngModel)]="selectedDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                &nbsp;
+                <button style="height: 50px; width: 80px;" mat-raised-button color="primary"
+                    (click)="viewAvailable()">Search</button>
+
+                
+            </div>
+
+            <div id="table" style="text-align: center; position: fixed; left: 50%; transform: translate(-50%, 0%); width: 70%;">
+
+                <p-table [value]="roomsAvailable" *ngIf="roomsAvailable.length != 0">
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Room</th>
+                            <th>12:00</th>
+                            <th>13:00</th>
+                            <th>14:00</th>
+                            <th>15:00</th>
+                            <th>16:00</th>
+                            <th>17:00</th>
+                            <th>18:00</th>
+                            <th>19:00</th>
+                            <th>20:00</th>
+                            <th>21:00</th>
+                            <th>22:00</th>
+                            <th>23:00</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-room>
+                        <tr>
+                            <td>{{room.roomNum}}</td>
+                            <td>{{room.hour12 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour13 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour14 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour15 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour16 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour17 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour18 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour19 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour20 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour21 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour22 ? '' : 'Not Available'}}</td>
+                            <td>{{room.hour23 ? '' : 'Not Available'}}</td>
+                        </tr>
+                    </ng-template>
+
+                </p-table>
+
+            </div>
+
+        </div>
 
     </article>
 
@@ -39,4 +119,3 @@
 <app-sidebar></app-sidebar>
 
 <app-footer></app-footer>
-

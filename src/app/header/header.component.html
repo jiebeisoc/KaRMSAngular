@@ -8,31 +8,32 @@
         <a>Promotions</a>
         <a>Contact Us</a>
         <a routerLink="/customerOperation/registerCustomer">Sign Up</a>
-        <a *ngIf="sessionService.getIsLogin() == true" (click)="customerLogout()">Logout</a>
     </div>
 
-    <div class="loginbox" *ngIf="sessionService.getIsLogin() == true" style="color: honeydew;">
-        Welcome, {{sessionService.getCurrentCustomer().name}}
+    <div *ngIf="sessionService.getIsLogin() == true">
 
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon style="font-size: 20px;">more_vert</mat-icon>
-        </button>
+        <div class="loginbox" style="color: honeydew;">
+            Welcome, {{sessionService.getCurrentCustomer().name}}
 
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/index">
-                <mat-icon>home</mat-icon>
-                <span>Home</span>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon style="font-size: 20px;">more_vert</mat-icon>
             </button>
-            <button mat-menu-item routerLink="/customerOperation/updateCustomer">
-                <mat-icon>account_circle</mat-icon>
-                <span>Manage account</span>
-            </button>
-            <button mat-menu-item button (click)="customerLogout()">
-                <mat-icon>exit_to_app</mat-icon>
-                <span>Logout</span>
-            </button>
-        </mat-menu>
 
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/index">
+                    <mat-icon>home</mat-icon>
+                    <span>Home</span>
+                </button>
+                <button mat-menu-item routerLink="/customerOperation/updateCustomer">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>Manage account</span>
+                </button>
+                <button mat-menu-item button (click)="customerLogout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Logout</span>
+                </button>
+            </mat-menu>
+        </div>   
     </div>
 
 </header>

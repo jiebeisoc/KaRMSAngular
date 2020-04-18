@@ -110,8 +110,8 @@ div {
 }
 
 form {
-    padding: 200px 0;
-    margin-top: -200px;
+    padding: 20px 0;
+    margin-top: 0px;
     position: relative;
     z-index: 2;
     text-align: center;
@@ -169,3 +169,5 @@ mat-form-field {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

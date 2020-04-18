@@ -8,7 +8,7 @@ import * as moment from 'moment';
 import { SessionService } from '../session.service';
 import { CustomerService } from '../customer.service';
 import { OutletService } from '../outlet.service';
-import { ReservationService } from '../reservation.service'; 
+import { ReservationService } from '../reservation.service';
 import { RoomTypeService } from '../room-type.service';
 import { RoomService } from '../room.service';
 
@@ -61,24 +61,24 @@ export class IndexComponent implements OnInit {
   roomsAvailable: RoomAvailable[] = [];
   rooms: Room[];
 
-  displayedColumns: string[] = ['roomNum','hour12', 'hour13', 'hour14', 'hour15', 'hour16', 'hour17', 'hour18', 'hour19', 'hour20', 'hour21', 'hour22', 'hour23'];
+  displayedColumns: string[] = ['roomNum', 'hour12', 'hour13', 'hour14', 'hour15', 'hour16', 'hour17', 'hour18', 'hour19', 'hour20', 'hour21', 'hour22', 'hour23'];
 
   constructor(private router: Router,
     public datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
     public sessionService: SessionService,
     public customerService: CustomerService,
-    public outletService: OutletService, 
+    public outletService: OutletService,
     public reservationService: ReservationService,
     public roomTypeService: RoomTypeService,
     public roomService: RoomService) {
-      this.loginError = false;
-      this.minDate = new Date();
-      this.outlets = new Array();
-     }
+    this.loginError = false;
+    this.minDate = new Date();
+    this.outlets = new Array();
+  }
 
   ngOnInit(): void {
-    
+
     this.outletService.retrieveAllOutlets().subscribe(
       response => {
         this.outlets = response.outlets;
@@ -96,7 +96,12 @@ export class IndexComponent implements OnInit {
     if (loginForm.valid) {
       this.sessionService.setUsername(this.username);
       this.sessionService.setPassword(this.password);
-      
+      this.sessionService.setTotalAmount(0);
+      this.sessionService.setTotalLineItem(0);
+      this.sessionService.setTotalQuantity(0);
+      this.sessionService.setShoppingCart(new Array());
+
+
       this.customerService.customerLogin(this.username, this.password).subscribe(
 
         response => {
@@ -143,7 +148,7 @@ export class IndexComponent implements OnInit {
                   console.log(reservation.date);
                   let date: string = reservation.date.toString();
                   console.log(date);
-                  let hour: number = Number(date.substring(11,13));
+                  let hour: number = Number(date.substring(11, 13));
                   console.log(hour);
                   for (let i = 0; i < duration; i++) {
                     if (hour == 4) {
@@ -157,7 +162,7 @@ export class IndexComponent implements OnInit {
                     } else if (hour == 8) {
                       roomAvailable.hour16 = false;
                     } else if (hour == 9) {
-                      roomAvailable.hour17= false;
+                      roomAvailable.hour17 = false;
                     } else if (hour == 10) {
                       roomAvailable.hour18 = false;
                     } else if (hour == 11) {
@@ -181,7 +186,7 @@ export class IndexComponent implements OnInit {
         }
         console.log(this.roomsAvailable);
       }
-     
+
     );
   }
 

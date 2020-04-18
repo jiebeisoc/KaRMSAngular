@@ -43,8 +43,10 @@ import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOpera
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
-import { UpdateShoppingCartComponent } from './foodOrderOperation/update-shopping-cart/update-shopping-cart.component';
+
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
+import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
+import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -58,13 +60,15 @@ import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-
     RegisterCustomerComponent,
     UpdateCustomerComponent,
     DeleteFoodOrderComponent,
-
     ShoppingCartComponent,
     ViewPastFoodOrdersComponent,
-    UpdateShoppingCartComponent,
     FoodItemMenuComponent,
 
     ConfirmDialogComponent,
+
+    ViewFoodItemDetailComponent,
+
+    CheckoutComponent,
 
   ],
   imports: [

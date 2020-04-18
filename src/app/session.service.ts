@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Customer } from './customer';
+import { FoodOrderTransactionLineItem } from './food-order-transaction-line-item';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class SessionService {
   constructor() { }
 
   getIsLogin(): boolean {
-    if(sessionStorage.isLogin == "true") {
+    if (sessionStorage.isLogin == "true") {
       return true;
     } else {
       return false;
@@ -46,11 +47,50 @@ export class SessionService {
   }
 
   checkAccessRight(path): boolean {
-    if(this.getIsLogin()) {
+    if (this.getIsLogin) {
       return true;
     } else {
       return false;
     }
+  }
+  setShoppingCart(shoppingCart: FoodOrderTransactionLineItem[]): void {
+    sessionStorage.currentShoppingCart = JSON.stringify(shoppingCart);
+
+  }
+
+  getShoppingCart(): FoodOrderTransactionLineItem[] {
+    try{
+      return JSON.parse(sessionStorage.currentShoppingCart);
+    } catch {
+      alert("Error");
+      let a:FoodOrderTransactionLineItem[] = new Array();
+      return a;
+    }
+   
+  }
+
+  getTotalLineItem(): number {
+    return sessionStorage.totalLineItem;
+  }
+
+  setTotalLineItem(totalLineItem: number) {
+    sessionStorage.totalLineItem = totalLineItem;
+  }
+
+  getTotalQuantity(): number {
+    return sessionStorage.totalQuantity;
+  }
+
+  setTotalQuantity(totalQuantity: number) {
+    sessionStorage.totalQuantity = totalQuantity;
+  }
+
+  getTotalAmount(): number {
+    return sessionStorage.totalAmount;
+  }
+
+  setTotalAmount(totalAmount: number) {
+    sessionStorage.totalAmount = totalAmount;
   }
 
 }

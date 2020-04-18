@@ -22,6 +22,11 @@ export class HeaderComponent implements OnInit {
     this.sessionService.setCurrentCustomer(null);
     this.sessionService.setUsername(null);
     this.sessionService.setPassword(null);
+    this.sessionService.setTotalAmount(0);
+    this.sessionService.setTotalLineItem(0);
+    this.sessionService.setTotalQuantity(0);
+    this.sessionService.setShoppingCart(new Array());
+    
 
     this.router.navigate(["/index"]);
   }

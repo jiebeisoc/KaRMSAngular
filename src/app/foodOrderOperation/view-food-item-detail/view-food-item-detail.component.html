@@ -1,0 +1,76 @@
+<app-header></app-header>
+
+
+
+<section id="content" class="content" >
+    <app-main-menu ></app-main-menu>
+    <br />
+
+    <p-panel  style="text-align: center; position:relative; left: 20%; transform: translate(-50%, -50%);"> 
+
+        <h2 style="color: ivory; transform: translate(-22%, -50%);">View Food Item {{foodItemToView.foodItemId}} </h2>
+        
+    <span *ngIf="retrieveFoodItemError == true" style="color: red;">Food Item ID {{foodItemId}} does not exist!</span>
+
+    <a  style="color: ivory; width: 20px;" routerLink="/foodOrderOperation/foodItemMenu">Back</a>
+    
+   
+     <table *ngIf="retrieveFoodItemError == false" width="40%" style="color:ivory;">
+
+        <tr>
+            <td width="50%" style="font-weight: bold;">SKU Code</td>
+            <td>{{foodItemToView.skuCode}}</td>
+        </tr>
+        <tr>
+            <td width="50%" style="font-weight: bold;">Name</td>
+            <td>{{foodItemToView.name}}</td>
+        </tr>
+        <tr>
+            <td width="50%" style="font-weight: bold;">Description</td>
+            <td>{{foodItemToView.description}}</td>
+        </tr>
+        <tr>
+            <td width="50%" style="font-weight: bold;">Quantity On Hand</td>
+            <td>{{foodItemToView.quantityOnHand}}</td>
+        </tr>
+        <tr>
+            <td width="50%" style="font-weight: bold;">Unit Price</td>
+            <td>{{foodItemToView.unitPrice | currency}}</td>
+        </tr>
+        <tr>
+            <td width="50%" style="font-weight: bold;">Food Item Rating</td>
+            <td>{{foodItemToView.foodItemRating}}</td>
+        </tr>
+        <tr>
+            <td width="50%" style="font-weight: bold;">Category</td>
+            <td>{{foodItemToView.categoryEntity.name}}
+            </td>
+        </tr>
+
+        <tr *ngIf="checkAccessRight() == true">
+            <td colspan="2" >
+                <form #addToCartForm="ngForm" (ngSubmit)="addToCart(addToCartForm)" style="height: -100%; border: 2px solid red;">
+                    <input id="qty" name="qty" #qty="ngModel" type="number" min="0"
+                        max="{{foodItemToView.quantityOnHand}}" [(ngModel)]="quantity" style="size: 20px;"/>
+                    &nbsp;
+                    <input type="submit" value="Add to cart" onclick="return alert('Added to cart!');" />
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <section id="addToCart" style="top: 10px;">
+
+  
+
+</section>
+     <a routerLink="/foodOrderOperation/shoppingCart" class="button fancy-button" style="color: ivory;">
+        <i class="material-icons" style="color: ivory;">shopping_cart</i>Checkout
+      </a>
+    </p-panel>
+      
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

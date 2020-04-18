@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
 import { FoodOrderTransactionLineItem } from './food-order-transaction-line-item';
+import { FoodOrderTransaction } from './food-order-transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ShoppingCartService {
   foodOrderTransactionToView: FoodOrderTransactionLineItem;
   totalLineItem: number = 0;
   totalQuantity: number = 0;
-  totalAmount: number = 0;
+  totalAmount: number = 0;      
 
 
   constructor(private sessionService: SessionService) {
@@ -20,81 +21,70 @@ export class ShoppingCartService {
 
 
   setFoodOrderTransactionLineItems(foodOderTransactionLineItem: FoodOrderTransactionLineItem[]) {
-    this.sessionService.setShoppingCart(foodOderTransactionLineItem);
+    this.foodOrderTrancationLineItems = foodOderTransactionLineItem;
   }
   getFoodOrderTransactionLineItems() {
-    this.sessionService.getShoppingCart();
+    return this.foodOrderTrancationLineItems;
   }
 
   createNewFoodOrderTransactionLineItem(newFoodOrderTransactionLineItem: FoodOrderTransactionLineItem){
-    //retrieve data from local storage 
-    this.foodOrderTrancationLineItems=this.sessionService.getShoppingCart();
-    this.totalAmount=this.sessionService.getTotalAmount();
-    this.totalLineItem = this.sessionService.getTotalLineItem();
-    this.totalQuantity=this.sessionService.getTotalQuantity();
+   
+    this.totalAmount+=newFoodOrderTransactionLineItem.subTotal;
+    this.totalLineItem++;
+    this.totalQuantity+=newFoodOrderTransactionLineItem.quantity;
 
-  
     let foodOderTransactionLineItem: FoodOrderTransactionLineItem=new FoodOrderTransactionLineItem();
     foodOderTransactionLineItem.foodItem=newFoodOrderTransactionLineItem.foodItem;
     foodOderTransactionLineItem.quantity=newFoodOrderTransactionLineItem.quantity;
     foodOderTransactionLineItem.unitPrice=newFoodOrderTransactionLineItem.unitPrice;
-
-    //update Shopping cart
-    ++this.totalLineItem;
-    let subTotal:number = newFoodOrderTransactionLineItem.quantity*newFoodOrderTransactionLineItem.unitPrice;
-    foodOderTransactionLineItem.subTotal=subTotal;
-    this.totalQuantity=this.totalQuantity+newFoodOrderTransactionLineItem.quantity;
-    this.totalAmount=subTotal+this.totalAmount;
+    foodOderTransactionLineItem.subTotal=newFoodOrderTransactionLineItem.subTotal;
     this.foodOrderTrancationLineItems.push(foodOderTransactionLineItem);
-
-    //Store back to local storage
-    
-    this.sessionService.setShoppingCart(this.foodOrderTrancationLineItems);
-    this.sessionService.setTotalAmount(this.totalAmount);
-    this.sessionService.setTotalLineItem(this.totalLineItem);
-    this.sessionService.setTotalQuantity(this.totalQuantity);
   }
 
   editLineItem(lineItem:FoodOrderTransactionLineItem){
-    this.foodOrderTrancationLineItems=this.sessionService.getShoppingCart();
-    this.totalAmount=this.sessionService.getTotalAmount();
-    this.totalQuantity=this.sessionService.getTotalQuantity();
-
-
-    for(var i: number = 0; i < this.foodOrderTrancationLineItems.length; i++){
-      if(this.foodOrderTrancationLineItems[i].foodItem.foodItemId==lineItem.foodItem.foodItemId){
-        this.totalQuantity=this.totalQuantity-this.foodOrderTrancationLineItems[i].quantity+lineItem.quantity;
-        this.totalAmount=this.totalAmount-this.foodOrderTrancationLineItems[i].subTotal=lineItem.subTotal;
-        
-        this.foodOrderTrancationLineItems[i].subTotal=lineItem.subTotal;
-        this.foodOrderTrancationLineItems[i].quantity=lineItem.quantity;
-      }
+    this.totalQuantity = 0;
+    this.totalAmount=0;
+  
+ 
+    for(var i: number = 0; i < this.foodOrderTrancationLineItems.length; i++)
+    {
+        this.totalQuantity=this.totalQuantity+this.foodOrderTrancationLineItems[i].quantity;
+        this.totalAmount=this.totalAmount+this.foodOrderTrancationLineItems[i].subTotal;
     }
 
-    this.sessionService.setShoppingCart(this.foodOrderTrancationLineItems);
-    this.sessionService.setTotalQuantity(this.totalQuantity);
-    this.sessionService.setTotalAmount(this.totalAmount);  
+  
   }
 
   deleteLineItem(lineItem:FoodOrderTransactionLineItem){
-    this.foodOrderTrancationLineItems=this.sessionService.getShoppingCart();
-    this.totalAmount=this.sessionService.getTotalAmount();
-    this.totalQuantity=this.sessionService.getTotalQuantity();
-
-   
 
     for(var i: number = 0; i < this.foodOrderTrancationLineItems.length; i++){
       if(this.foodOrderTrancationLineItems[i].foodItem.foodItemId==lineItem.foodItem.foodItemId){
         this.totalQuantity=this.totalQuantity-this.foodOrderTrancationLineItems[i].quantity;
         this.totalAmount=this.totalAmount-this.foodOrderTrancationLineItems[i].subTotal;
-    
+        this.totalLineItem--;
         this.foodOrderTrancationLineItems.splice(i,1);
       }
     }
 
-    this.sessionService.setShoppingCart(this.foodOrderTrancationLineItems);
-    this.sessionService.setTotalQuantity(this.totalQuantity);
-    this.sessionService.setTotalAmount(this.totalAmount);  
+
+  }
+
+  clearCart(){
+  this.foodOrderTrancationLineItems = new Array();
+  this.totalLineItem = 0;
+  this.totalQuantity = 0;
+  this.totalAmount = 0;
+  }
+
+  checkOut(newTransaction:FoodOrderTransaction){
+    newTransaction.foodOrderTransactionLineItemEntities=this.foodOrderTrancationLineItems;
+    newTransaction.totalAmount=this.totalAmount;
+    newTransaction.totalLineItem=this.totalLineItem;
+    newTransaction.totalQuantity = this.totalQuantity;
+    newTransaction.customerEntity=this.sessionService.getCurrentCustomer();
+    newTransaction.transactionDateTime= new Date();
+
+    
   }
 
 
@@ -102,5 +92,7 @@ export class ShoppingCartService {
 
 
 
-  }
+
+
 }
+

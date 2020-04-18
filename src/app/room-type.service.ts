@@ -29,7 +29,7 @@ export class RoomTypeService {
     if (error.error instanceof ErrorEvent) {
         errorMessage = 'An unknown error has occurred: ' + error.error.message;
     } else {
-        errorMessage = 'An HTTP has occurred: ' + `HTTP ${error.status}: ${error.error.message}`;
+        errorMessage = 'An HTTP error has occurred: ' + `HTTP ${error.status}: ${error.error.message}`;
     }
     return throwError(errorMessage)
   }

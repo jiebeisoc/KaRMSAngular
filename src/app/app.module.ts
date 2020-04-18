@@ -45,6 +45,7 @@ import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shoppi
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
 import { UpdateShoppingCartComponent } from './foodOrderOperation/update-shopping-cart/update-shopping-cart.component';
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
+import { ViewReservationsComponent } from './reservationOperation/view-reservations/view-reservations.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,8 @@ import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-
     FoodItemMenuComponent,
 
     ConfirmDialogComponent,
+
+    ViewReservationsComponent,
 
   ],
   imports: [

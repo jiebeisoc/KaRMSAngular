@@ -9,6 +9,7 @@ import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
 import { UpdateShoppingCartComponent } from './foodOrderOperation/update-shopping-cart/update-shopping-cart.component';
+import { SongListComponent } from './songOperation/song-list/song-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "/index", pathMatch: "full" },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path:'foodOrderOperation/deleteFoodOrder', component: DeleteFoodOrderComponent},
   { path:'foodOrderOperation/updateShoppingCart', component: UpdateShoppingCartComponent},
   { path:'foodOrderOperation/viewPastFoodOrders', component: ViewPastFoodOrdersComponent},
-  { path:'foodOrderOperation/shoppingCart', component: ShoppingCartComponent}
+  { path:'foodOrderOperation/shoppingCart', component: ShoppingCartComponent},
+  { path:'songOperation/songList', component: SongListComponent}
 
 ];
 

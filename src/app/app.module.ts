@@ -20,6 +20,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
@@ -45,6 +46,7 @@ import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shoppi
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
 import { UpdateShoppingCartComponent } from './foodOrderOperation/update-shopping-cart/update-shopping-cart.component';
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
+import { SongListComponent } from './songOperation/song-list/song-list.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-
     FoodItemMenuComponent,
 
     ConfirmDialogComponent,
+
+    SongListComponent,
 
   ],
   imports: [
@@ -94,7 +98,8 @@ import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-
     MatTreeModule,
     MatSelectModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

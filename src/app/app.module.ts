@@ -50,6 +50,7 @@ import { SongListComponent } from './songOperation/song-list/song-list.component
 
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
+import { CompanyInfoComponent } from './company-info/company-info.component';
 
 
 @NgModule({
@@ -74,6 +75,8 @@ import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.compon
     ViewFoodItemDetailComponent,
 
     CheckoutComponent,
+
+    CompanyInfoComponent,
 
   ],
   imports: [

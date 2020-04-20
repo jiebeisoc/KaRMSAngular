@@ -62,6 +62,7 @@ import { ViewReservationsComponent } from './reservationOperation/view-reservati
 import { SongListComponent } from './songOperation/song-list/song-list.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CreateNewReservationComponent } from './reservationOperation/create-new-reservation/create-new-reservation.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CompanyInfoComponent,
 
     ViewReservationsComponent,
+
+    CreateNewReservationComponent,
 
   ],
   imports: [

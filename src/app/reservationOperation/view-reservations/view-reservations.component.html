@@ -2,7 +2,9 @@
 
 <section id="content" class="content">
     
-    <div id="reservationContent">
+    <app-main-menu></app-main-menu>
+
+    <div id="reservationContent" style="text-align: center">
         <h1>My Reservations</h1>
         
         <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="isUpcoming" value="true" (change)="onChange()">
@@ -34,6 +36,7 @@
             </ng-template>
         </p-dataView>
     </div>
+
 
 </section>
 

@@ -1,6 +1,5 @@
 #reservationContent {
-    padding-left: 40px;
-    padding-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 h1 {
@@ -8,7 +7,11 @@ h1 {
 }
 
 mat-button-toggle-group {
-    height: 30px;
+    height: 30px;  
+}
+
+mat-button-toggle {
+    width: 100px;
 }
 
 :host ::ng-deep .mat-button-toggle-label-content{

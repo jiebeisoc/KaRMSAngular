@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { SelectItem, MenuItem, MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 
 import { Reservation } from '../../reservation';
 import { ReservationService } from '../../reservation.service';
@@ -19,7 +19,6 @@ export class ViewReservationsComponent implements OnInit {
   infoMessage: string;
   errorMessage: string;
 
-  reservationTypes: SelectItem[];
   isUpcoming: string;
   detailsItems: MenuItem[];
 
@@ -32,10 +31,6 @@ export class ViewReservationsComponent implements OnInit {
     public sessionService: SessionService,
     private reservationService: ReservationService) {
       
-      this.reservationTypes = [
-        {label: 'Upcoming', value: true},
-        {label: 'Past', value: false}
-      ];
       this.isUpcoming = "true";
 
       this.detailsItems = [

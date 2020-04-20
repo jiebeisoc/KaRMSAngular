@@ -18,7 +18,7 @@
 
    <form #checkOutForm="ngForm" (ngSubmit)="checkOut(checkOutForm)">
     <label for="CreditCardNo">Credit Card Number: </label>
-    <input id="CreditCardNo" name="CreditCardNo" #creditCardNo="ngModel" type="text" [(ngModel)]="creditCartNo" required="true" pattern="[0-9]{16}" >
+    <input id="CreditCardNo" name="CreditCardNo" #creditCardNo="ngModel" type="text" [(ngModel)]="selectedCreditCardNo" required="true" pattern="[0-9]{16}" >
     <div *ngIf="creditCardNo.invalid && (creditCardNo.dirty || creditCardNo.touched || submitted)" class="errorText">
         <div *ngIf="creditCardNo.errors.required">
             Credit Card Number is required.
@@ -29,15 +29,15 @@
     </div>
 
    
-
-
-
     <br>
     <br>
     <label for="outlet">Choose Outlet: </label>
-    <select id="outlet" name="outlet" #outlet="ngModel" [(ngModel)]="newTransaction.outlet" required="true">
-        <option *ngFor="let outlet of outletList" value="{{outlet}}">{{outlet.outletName}}</option>
+    <select id="outlet" name="outlet" #outlet="ngModel" [(ngModel)]="selectedOutletId" required="true">
+        <option *ngFor="let outlet of outletList" value="{{outlet.outletId}}">{{outlet.outletName}}</option>
     </select>
+
+  
+
 
     <div *ngIf="outlet.invalid && (outlet.dirty || outlet.touched || submitted)" class="errorText">
         <div *ngIf="outlet.errors.required">
@@ -47,7 +47,9 @@
     <br>
     <input type="submit" value="Submit Payment" />
 
-
+    <div *ngIf="infoMessage">
+        {{infoMessage}}
+    </div>
 
 </form>
  </div>

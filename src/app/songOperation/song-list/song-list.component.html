@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<section id="content" class="content">
+
+    <app-main-menu></app-main-menu>
+    <div style="margin-left: 16%;">
+
+        <mat-form-field style="width: 70%;">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)">
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select [(ngModel)]="selectedSongCategory" (selectionChange)="filterCategory($event.value)">
+              <mat-option value="0">---</mat-option>
+              <mat-option *ngFor="let songCategory of songCategories" [value]="songCategory.songCategoryId">
+                {{songCategory.name}}
+            </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <div style="overflow: auto; height: 500px;">
+
+            <table mat-table [dataSource]="data" style="width: 100%; border: hidden; background-color: transparent;">
+
+                <ng-container matColumnDef="songId">
+                    <th mat-header-cell style="border: hidden; width: 20%;" *matHeaderCellDef> Song Id </th>
+                    <td mat-cell style="border: hidden; width: 20%;" *matCellDef="let song"> {{song.songId}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="songTitle">
+                    <th mat-header-cell style="border: hidden;" *matHeaderCellDef> Title </th>
+                    <td mat-cell style="border: hidden;" *matCellDef="let song"> {{song.songTitle}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="singer">
+                    <th mat-header-cell style="border: hidden;" *matHeaderCellDef> Singer </th>
+                    <td mat-cell style="border: hidden;" *matCellDef="let song"> {{song.singer}} </td>
+                </ng-container>
+
+                <tr mat-header-row style="border: hidden;" *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row style="border: hidden;" *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+            </table>
+            
+        </div>
+
+        <mat-paginator style="margin-left: 6px; background-color: transparent;" [length]="resultsLength" [pageSize]="20"></mat-paginator>
+
+    </div>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

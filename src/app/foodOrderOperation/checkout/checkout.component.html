@@ -1,0 +1,58 @@
+<app-header></app-header>
+
+
+
+<section id="content" class="content">
+  <app-main-menu></app-main-menu>
+  <article *ngIf="totalAmt == 0" style="color:ivory; transform: translate(25%, 100%);" >
+    <h2>You haven't purchased anything, go check our <a routerLink="/foodOrderOperation/foodItemMenu" style="color: ivory;">food Menu </a> !</h2>
+ 
+
+ 
+  </article>
+
+  <div *ngIf="totalAmt != 0" style="color:ivory;">
+   <h2>Check Out Form</h2>
+   <h3>Total Amount: ${{totalAmt}} </h3> 
+
+
+   <form #checkOutForm="ngForm" (ngSubmit)="checkOut(checkOutForm)">
+    <label for="CreditCardNo">Credit Card Number: </label>
+    <input id="CreditCardNo" name="CreditCardNo" #creditCardNo="ngModel" type="text" [(ngModel)]="selectedCreditCardNo" required="true" pattern="[0-9]{16}" >
+    <div *ngIf="creditCardNo.invalid && (creditCardNo.dirty || creditCardNo.touched || submitted)" class="errorText">
+        <div *ngIf="creditCardNo.errors.required">
+            Credit Card Number is required.
+        </div>
+        <div *ngIf="creditCardNo.errors.pattern">
+            Please enter a valid credit card number.
+        </div>
+    </div>
+
+   
+    <br>
+    <br>
+    <label for="outlet">Choose Outlet: </label>
+    <select id="outlet" name="outlet" #outlet="ngModel" [(ngModel)]="selectedOutletId" required="true">
+        <option *ngFor="let outlet of outletList" value="{{outlet.outletId}}">{{outlet.outletName}}</option>
+    </select>
+
+  
+
+
+    <div *ngIf="outlet.invalid && (outlet.dirty || outlet.touched || submitted)" class="errorText">
+        <div *ngIf="outlet.errors.required">
+            Outlet is required.
+        </div>
+    </div>
+    <br>
+    <input type="submit" value="Submit Payment" />
+
+    <div *ngIf="infoMessage">
+        {{infoMessage}}
+    </div>
+
+</form>
+ </div>
+</section>
+<app-sidebar></app-sidebar>
+<app-footer></app-footer>

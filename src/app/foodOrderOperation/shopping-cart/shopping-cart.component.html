@@ -1,1 +1,75 @@
-<p>shopping-cart works!</p>
+<app-header></app-header>
+
+
+
+<section id="content" class="content">
+    <app-main-menu></app-main-menu>
+    <br />
+
+    <p-panel>
+        <h2 style="color: ivory; transform: translate(36%, 0%);">Shopping Cart </h2>
+
+        <div style="color: ivory; transform: translate(48%, 0%);">
+            <a routerLink="/foodOrderOperation/checkout" class="button fancy-button" style="color: ivory;">
+                <i class="material-icons" style="color: ivory;">shopping_cart</i>Checkout
+            </a>
+
+        </div>
+
+
+        <div *ngIf="infoMessage" style="color: blue;">
+            {{infoMessage}}
+        </div>
+
+
+        <p-table [value]='transactionLineItems' style=" width: 85%; text-align: center; position:relative; left: 20%; ">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Food Item</th>
+                    <th>Quantity</th>
+                    <th>SubTotal</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-transactionLineItem>
+                <tr>
+                    <td>{{transactionLineItem.foodItem.name}}</td>
+                    <td>{{transactionLineItem.quantity}}</td>
+                    <td>{{transactionLineItem.subTotal}}</td>
+                    <td>
+                        <p-button label="Edit" (onClick)="showDialog(transactionLineItem)"></p-button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <p-dialog *ngIf="display" header="Edit Quantity" modal="true" [(visible)]="display" [style]="{width: '5vw'}"
+            style=" width: 85%; text-align: center; position:relative; left: 20%; ">
+            <form #addToCartForm="ngForm" (ngSubmit)="edit(addToCartForm)">
+                <input id="qty" name="qty" #qty="ngModel" type="number" min="1"
+                    max="{{lineItemToView.foodItem.quantityOnHand}}" [(ngModel)]="lineItemToView.quantity" />
+                &nbsp;
+                <input type="submit" value="Change Quantity" onclick="return alert('Quantity changed!');" />
+            </form>
+
+
+            <div class="ui-g">
+                Subtotal : {{lineItemToView.subTotal}}
+            </div>
+        </p-dialog>
+
+        <div style="color: ivory; transform: translate(48%, 0%);">
+            Total: ${{totalAmt}}
+            &nbsp;
+            <a routerLink="/foodOrderOperation/foodItemMenu" style="color: ivory;">Back</a>
+        </div>
+
+
+
+    </p-panel>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

@@ -20,6 +20,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
@@ -34,18 +35,24 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
+import { CompanyInfoComponent } from './company-info/company-info.component';
+
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
-
 import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOperation/update-customer/update-customer.component';
-
 
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
-import { UpdateShoppingCartComponent } from './foodOrderOperation/update-shopping-cart/update-shopping-cart.component';
+
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
+import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
+import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
+
 import { ViewReservationsComponent } from './reservationOperation/view-reservations/view-reservations.component';
+
+import { SongListComponent } from './songOperation/song-list/song-list.component';
 
 @NgModule({
   declarations: [
@@ -59,13 +66,18 @@ import { ViewReservationsComponent } from './reservationOperation/view-reservati
     RegisterCustomerComponent,
     UpdateCustomerComponent,
     DeleteFoodOrderComponent,
-
     ShoppingCartComponent,
     ViewPastFoodOrdersComponent,
-    UpdateShoppingCartComponent,
     FoodItemMenuComponent,
 
     ConfirmDialogComponent,
+    SongListComponent,
+
+    ViewFoodItemDetailComponent,
+
+    CheckoutComponent,
+
+    CompanyInfoComponent,
 
     ViewReservationsComponent,
 
@@ -97,7 +109,8 @@ import { ViewReservationsComponent } from './reservationOperation/view-reservati
     MatTreeModule,
     MatSelectModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

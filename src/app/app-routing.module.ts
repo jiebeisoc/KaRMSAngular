@@ -13,6 +13,7 @@ import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
+import { PromotionListComponent } from './promotion-list/promotion-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "/index", pathMatch: "full" },
@@ -25,10 +26,11 @@ const routes: Routes = [
   { path:'foodOrderOperation/shoppingCart', component: ShoppingCartComponent},
   { path:'songOperation/songList', component: SongListComponent},
   { path:'foodOrderOperation/foodItemMenu', component: FoodItemMenuComponent},
-  { path: 'foodOrderOperation/viewFoodItemDetails', component:ViewFoodItemDetailComponent},
-  { path: 'foodOrderOperation/viewFoodItemDetails/:foodItemId', component:ViewFoodItemDetailComponent},
+  { path: 'foodOrderOperation/viewFoodItemDetails', component: ViewFoodItemDetailComponent},
+  { path: 'foodOrderOperation/viewFoodItemDetails/:foodItemId', component: ViewFoodItemDetailComponent},
   { path: 'foodOrderOperation/checkout', component:CheckoutComponent},
-  { path: 'aboutUs', component:CompanyInfoComponent }
+  { path: 'aboutUs', component: CompanyInfoComponent },
+  { path: 'promotions', component: PromotionListComponent}
 
 ];
 

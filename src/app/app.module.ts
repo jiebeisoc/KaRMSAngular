@@ -21,6 +21,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
@@ -51,6 +53,7 @@ import { SongListComponent } from './songOperation/song-list/song-list.component
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
+import { PromotionListComponent } from './promotion-list/promotion-list.component';
 
 
 @NgModule({
@@ -68,15 +71,12 @@ import { CompanyInfoComponent } from './company-info/company-info.component';
     ShoppingCartComponent,
     ViewPastFoodOrdersComponent,
     FoodItemMenuComponent,
-
     ConfirmDialogComponent,
     SongListComponent,
-
     ViewFoodItemDetailComponent,
-
     CheckoutComponent,
-
     CompanyInfoComponent,
+    PromotionListComponent,
 
   ],
   imports: [
@@ -107,7 +107,9 @@ import { CompanyInfoComponent } from './company-info/company-info.component';
     MatSelectModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

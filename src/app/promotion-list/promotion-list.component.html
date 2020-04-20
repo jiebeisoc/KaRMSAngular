@@ -1,0 +1,33 @@
+<app-header></app-header>
+
+<section id="content" class="content">
+
+    <div>
+
+        <div style="width: 100%;">        
+
+            <mat-grid-list cols="4" rowHeight="2:1">
+                
+                <div *ngFor="let promotion of promotionViews"> 
+                    <mat-grid-tile>                      
+                        <mat-card style="max-width: 250px;">
+                            <mat-card-header>
+                                <mat-card-title>{{promotion.promotionName}}</mat-card-title>
+                                <mat-card-subtitle>Rate: {{promotion.discountRate}}</mat-card-subtitle>
+                                <mat-card-subtitle>Validity: {{promotion.validity}}</mat-card-subtitle>
+                            </mat-card-header>
+                        </mat-card>  
+                    </mat-grid-tile>                 
+                </div>
+                
+            </mat-grid-list>
+
+        </div>
+
+    </div>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

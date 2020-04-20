@@ -23,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
@@ -32,8 +33,6 @@ import {InputTextModule} from 'primeng/inputtext';
 import {DataViewModule} from 'primeng/dataview';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {SplitButtonModule} from 'primeng/splitbutton';
-import {MessageService} from 'primeng/api';
-import {VirtualScrollerModule} from 'primeng/virtualscroller';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +44,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
+import { PromotionListComponent } from './promotion-list/promotion-list.component';
+import { SongListComponent } from './songOperation/song-list/song-list.component';
 
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOperation/update-customer/update-customer.component';
@@ -52,17 +53,15 @@ import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOpera
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
-
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
 
 import { ViewReservationsComponent } from './reservationOperation/view-reservations/view-reservations.component';
-
-import { SongListComponent } from './songOperation/song-list/song-list.component';
+import { CreateNewReservationComponent } from './reservationOperation/create-new-reservation/create-new-reservation.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CreateNewReservationComponent } from './reservationOperation/create-new-reservation/create-new-reservation.component';
+
 
 @NgModule({
   declarations: [
@@ -79,15 +78,12 @@ import { CreateNewReservationComponent } from './reservationOperation/create-new
     ShoppingCartComponent,
     ViewPastFoodOrdersComponent,
     FoodItemMenuComponent,
-
     ConfirmDialogComponent,
     SongListComponent,
-
     ViewFoodItemDetailComponent,
-
     CheckoutComponent,
-
     CompanyInfoComponent,
+    PromotionListComponent,
 
     ViewReservationsComponent,
 
@@ -128,7 +124,8 @@ import { CreateNewReservationComponent } from './reservationOperation/create-new
     MatPaginatorModule,
     MatCardModule,
     MatButtonToggleModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

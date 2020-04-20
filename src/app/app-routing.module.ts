@@ -8,8 +8,10 @@ import { UpdateCustomerComponent } from './customerOperation/update-customer/upd
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
-import { UpdateShoppingCartComponent } from './foodOrderOperation/update-shopping-cart/update-shopping-cart.component';
 import { SongListComponent } from './songOperation/song-list/song-list.component';
+import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
+import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
+import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "/index", pathMatch: "full" },
@@ -18,10 +20,13 @@ const routes: Routes = [
   { path:'customerOperation/registerCustomer', component: RegisterCustomerComponent },
   { path:'customerOperation/updateCustomer', component: UpdateCustomerComponent },
   { path:'foodOrderOperation/deleteFoodOrder', component: DeleteFoodOrderComponent},
-  { path:'foodOrderOperation/updateShoppingCart', component: UpdateShoppingCartComponent},
   { path:'foodOrderOperation/viewPastFoodOrders', component: ViewPastFoodOrdersComponent},
   { path:'foodOrderOperation/shoppingCart', component: ShoppingCartComponent},
-  { path:'songOperation/songList', component: SongListComponent}
+  { path:'songOperation/songList', component: SongListComponent},
+  { path:'foodOrderOperation/foodItemMenu', component: FoodItemMenuComponent},
+  { path: 'foodOrderOperation/viewFoodItemDetails', component:ViewFoodItemDetailComponent},
+  { path: 'foodOrderOperation/viewFoodItemDetails/:foodItemId', component:ViewFoodItemDetailComponent},
+  { path: 'foodOrderOperation/checkout', component:CheckoutComponent}
 
 ];
 

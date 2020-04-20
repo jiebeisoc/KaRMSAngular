@@ -10,6 +10,15 @@
 
     <div *ngIf="sessionService.getIsLogin() == true">
 
+        <div class="topnav">
+            <a routerLink="/index">Home</a>
+            <a>About</a>
+            <a>Locate Us</a>
+            <a>Songs</a>
+            <a>Promotions</a>
+            <a>Contact Us</a>
+        </div>
+
         <div class="loginbox" style="color: honeydew;">
             Welcome, {{sessionService.getCurrentCustomer().name}}
 

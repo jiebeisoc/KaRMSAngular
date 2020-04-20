@@ -38,13 +38,13 @@ export class ReservationService {
   }
 
   retrieveUpcomingReservationByCustomer(username: string, password: string): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl+'/retrieveReservationByRoomAndDate?username=' + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+    return this.httpClient.get<any>(this.baseUrl+'/retrieveUpcomingReservationByCustomer?username=' + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
       catchError(this.handleError)
     );
   }
 
   retrievePastReservationByCustomer(username: string, password: string): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl+'/retrieveReservationByRoomAndDate?username=' + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+    return this.httpClient.get<any>(this.baseUrl+'/retrievePastReservationByCustomer?username=' + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
       catchError(this.handleError)
     );
   }

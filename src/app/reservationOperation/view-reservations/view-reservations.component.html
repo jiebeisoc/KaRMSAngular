@@ -1,1 +1,42 @@
-<p>view-reservations works!</p>
+<app-header></app-header>
+
+<section id="content" class="content">
+    
+    <div id="reservationContent">
+        <h1>My Reservations</h1>
+        
+        <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="isUpcoming" value="true" (change)="onChange()">
+            <mat-button-toggle value="true">Upcoming</mat-button-toggle>
+            <mat-button-toggle value="false">Past</mat-button-toggle>
+        </mat-button-toggle-group>
+        <br/>
+        <br/>
+
+        <p-dataView [value]="reservations" >
+            <ng-template let-reservation pTemplate="listItem">
+                <div class="p-lg-12">
+                    <span class="ui-g">
+                        
+                        <div class="ui-g-6">Reservation No: <b>{{reservation.reservationId}}</b>
+                            Date: <b>{{formatDate(reservation.date) | date:'EEEE dd MMMM yyyy hh:mm a'}}</b>
+                        </div>
+                        
+                        <div class="ui-g-12">Room No: <b>undefined</b></div>
+                        <div class="ui-g-12">Total Price: <b>{{reservation.totalPrice}}</b>&nbsp;
+                        <span [class]="'reservation-badge status-' + reservation.status">{{reservation.status}}</span>
+                        </div>
+                    </span>
+                    <p-splitButton label="Details" [model]="detailsItems" (onClick)="save()" icon="fas fa-info" class="ui-button-raised"></p-splitButton>
+                    <p-button label="Food" icon="fas fa-utensils" class="ui-button-raised"></p-button>
+                    <p-button label="Song" icon="fas fa-music" class="ui-button-raised"></p-button>
+                    <br/><br/>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

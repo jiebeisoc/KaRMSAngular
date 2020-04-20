@@ -21,12 +21,19 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
+import {DataViewModule} from 'primeng/dataview';
+import {SelectButtonModule} from 'primeng/selectbutton';
+import {SplitButtonModule} from 'primeng/splitbutton';
+import {MessageService} from 'primeng/api';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,6 +60,8 @@ import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.compon
 import { ViewReservationsComponent } from './reservationOperation/view-reservations/view-reservations.component';
 
 import { SongListComponent } from './songOperation/song-list/song-list.component';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -93,6 +102,9 @@ import { SongListComponent } from './songOperation/song-list/song-list.component
     ButtonModule,
     DialogModule,
     InputTextModule,
+    DataViewModule,
+    SelectButtonModule,
+    SplitButtonModule,
     MatIconModule,
     MatFormFieldModule,
     MatMenuModule,
@@ -110,7 +122,10 @@ import { SongListComponent } from './songOperation/song-list/song-list.component
     MatSelectModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule,
+    MatButtonToggleModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

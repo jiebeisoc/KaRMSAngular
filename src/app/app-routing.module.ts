@@ -3,16 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IndexComponent } from './index/index.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
+import { CompanyInfoComponent } from './company-info/company-info.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 import { UpdateCustomerComponent } from './customerOperation/update-customer/update-customer.component';
+
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
-import { SongListComponent } from './songOperation/song-list/song-list.component';
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
-import { CompanyInfoComponent } from './company-info/company-info.component';
+
+import { SongListComponent } from './songOperation/song-list/song-list.component';
+
+import { ViewReservationsComponent } from './reservationOperation/view-reservations/view-reservations.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "/index", pathMatch: "full" },
@@ -28,7 +32,8 @@ const routes: Routes = [
   { path: 'foodOrderOperation/viewFoodItemDetails', component:ViewFoodItemDetailComponent},
   { path: 'foodOrderOperation/viewFoodItemDetails/:foodItemId', component:ViewFoodItemDetailComponent},
   { path: 'foodOrderOperation/checkout', component:CheckoutComponent},
-  { path: 'aboutUs', component:CompanyInfoComponent }
+  { path: 'aboutUs', component:CompanyInfoComponent },
+  { path:'reservationOperation/viewReservations', component: ViewReservationsComponent}
 
 ];
 

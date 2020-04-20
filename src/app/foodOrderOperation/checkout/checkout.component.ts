@@ -13,43 +13,59 @@ import { NgForm } from '@angular/forms';
 })
 export class CheckoutComponent implements OnInit {
 
-  totalAmt:number;
-  newTransaction:FoodOrderTransaction = new FoodOrderTransaction();
-  outletList:Outlet[];
-  creditCartNo:string;
-  submitted:boolean;
+  totalAmt: number;
+  newTransaction: FoodOrderTransaction = new FoodOrderTransaction();
+  outletList: Outlet[];
+  selectedCreditCardNo: string;
+  submitted: boolean;
+  selectedOutletId: number;
+  infoMessage:string;
 
-  constructor( private shoppingCartService: ShoppingCartService,
-               private outletService: OutletService,
-               private sessionService:SessionService) { }
+  constructor(private shoppingCartService: ShoppingCartService,
+    private outletService: OutletService,
+    private sessionService: SessionService) { }
 
   ngOnInit(): void {
-    this.totalAmt=this.shoppingCartService.totalAmount;
+    this.totalAmt = this.shoppingCartService.totalAmount;
 
     this.outletService.retrieveAllOutlets().subscribe(
       response => {
-        this.outletList = response.foodItemEntities;
+        this.outletList = response.outlets;
       },
       error => {
-        console.log('************************ RetrieveAllOutlets.ts: '+error )
+        console.log('************************ RetrieveAllOutlets.ts: ' + error)
       }
     );
-    this.creditCartNo=this.sessionService.getCurrentCustomer().creditCardNo;
+    this.selectedCreditCardNo = this.sessionService.getCurrentCustomer().creditCardNo;
     this.submitted = false;
 
   }
 
-  checkOut(form:NgForm){
+  checkOut(form: NgForm) {
     this.submitted = true;
-    if(form.valid){
-      this.newTransaction.creditCardNo=this.creditCartNo;
-    this.shoppingCartService.checkOut(this.newTransaction);
-    }else{
+    if (form.valid) {
+      this.newTransaction.creditCardNo = this.selectedCreditCardNo;
+      let selectedOutlet: Outlet = new Outlet();
+      this.newTransaction.outlet = selectedOutlet;
+      this.newTransaction.outlet.outletId = this.selectedOutletId;
+      alert("alert checkout component")
+      this.shoppingCartService.checkOut(this.newTransaction).subscribe(
+        response => {
+          this.infoMessage="Transaction created successfully";
+          this.shoppingCartService.clearCart();
+        },
+        error => {
+
+          console.log('********** ERROR: ' + error);
+        }
+      );
+
+    } else {
       alert("Payment failed, please try again!")
     }
-    
+
   }
 
- 
+
 
 }

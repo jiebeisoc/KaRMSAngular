@@ -2,11 +2,22 @@ import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
 import { FoodOrderTransactionLineItem } from './food-order-transaction-line-item';
 import { FoodOrderTransaction } from './food-order-transaction';
+import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { stringify } from 'querystring';
+
+
+const httpOptions = {
+	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
+
+  baseUrl: string = '/api/FoodOrder';
 
   foodOrderTrancationLineItems: FoodOrderTransactionLineItem[];
   foodOrderTransactionToView: FoodOrderTransactionLineItem;
@@ -15,8 +26,10 @@ export class ShoppingCartService {
   totalAmount: number = 0;      
 
 
-  constructor(private sessionService: SessionService) {
+  constructor(private sessionService: SessionService,
+    private httpClient: HttpClient,) {
     this.foodOrderTrancationLineItems = new Array();
+     
   }
 
 
@@ -76,23 +89,45 @@ export class ShoppingCartService {
   this.totalAmount = 0;
   }
 
-  checkOut(newTransaction:FoodOrderTransaction){
+  checkOut(newTransaction:FoodOrderTransaction):Observable<any>{
     newTransaction.foodOrderTransactionLineItemEntities=this.foodOrderTrancationLineItems;
     newTransaction.totalAmount=this.totalAmount;
     newTransaction.totalLineItem=this.totalLineItem;
     newTransaction.totalQuantity = this.totalQuantity;
     newTransaction.customerEntity=this.sessionService.getCurrentCustomer();
     newTransaction.transactionDateTime= new Date();
-
     
+    let createTransactionReq={
+      "customerId": this.sessionService.getCurrentCustomer().customerId,
+      "username": this.sessionService.getCurrentCustomer().username,
+       "password": this.sessionService.getPassword(),
+       "newFoodOrderTransaction": newTransaction
+    }
+
+
+    alert("reach shopping cart service ") 
+    alert("customerID"+createTransactionReq.customerId);
+    console.log(JSON.stringify(createTransactionReq));
+    return this.httpClient.put<any>(this.baseUrl + "/createFoodOrderTransaction", createTransactionReq, httpOptions).pipe (
+      catchError(this.handleError)
+  );
+    
+
+  
   }
 
-
-
-
-
-
-
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage: string = '';
+    
+    if (error.error instanceof ErrorEvent) {
+        errorMessage = 'An unknown error has occurred: ' + error.error.message;
+    } else {
+        errorMessage = 'An HTTP has occurred: ' + `HTTP ${error.status}: ${error.error.message}`;
+    }
+    alert(throwError(errorMessage));
+    return throwError(errorMessage)
+  }
+  
 
 }
 

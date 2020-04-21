@@ -21,6 +21,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
@@ -37,20 +39,20 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
-
 import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOperation/update-customer/update-customer.component';
-
-
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
-
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
 import { SongListComponent } from './songOperation/song-list/song-list.component';
-
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
+
 import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-transaction-details/view-transaction-details.component';
+
+
+import { CompanyInfoComponent } from './company-info/company-info.component';
+import { PromotionListComponent } from './promotion-list/promotion-list.component';
 
 
 
@@ -73,10 +75,16 @@ import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-trans
     SongListComponent,
     ViewFoodItemDetailComponent,
     CheckoutComponent,
+
     ViewTransactionDetailsComponent,
     
 
+    CompanyInfoComponent,
+    PromotionListComponent,
+
+
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -106,7 +114,12 @@ import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-trans
     MatTableModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+
     
+
+    MatCardModule,
+    MatGridListModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

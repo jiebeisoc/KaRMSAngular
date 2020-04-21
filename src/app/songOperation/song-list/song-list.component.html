@@ -22,7 +22,7 @@
 
         <div style="overflow: auto; height: 500px;">
 
-            <table mat-table [dataSource]="data" style="width: 100%; border: hidden;">
+            <table mat-table [dataSource]="data" style="width: 100%; border: hidden; background-color: transparent;">
 
                 <ng-container matColumnDef="songId">
                     <th mat-header-cell style="border: hidden; width: 20%;" *matHeaderCellDef> Song Id </th>
@@ -46,7 +46,7 @@
             
         </div>
 
-        <mat-paginator style="margin-left: 6px;" [length]="resultsLength" [pageSize]="20"></mat-paginator>
+        <mat-paginator style="margin-left: 6px; background-color: transparent;" [length]="resultsLength" [pageSize]="20"></mat-paginator>
 
     </div>
 

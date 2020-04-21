@@ -50,6 +50,8 @@ import { SongListComponent } from './songOperation/song-list/song-list.component
 
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
+import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-transaction-details/view-transaction-details.component';
+
 
 
 @NgModule({
@@ -67,13 +69,12 @@ import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.compon
     ShoppingCartComponent,
     ViewPastFoodOrdersComponent,
     FoodItemMenuComponent,
-
     ConfirmDialogComponent,
     SongListComponent,
-
     ViewFoodItemDetailComponent,
-
     CheckoutComponent,
+    ViewTransactionDetailsComponent,
+    
 
   ],
   imports: [
@@ -104,7 +105,8 @@ import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.compon
     MatSelectModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

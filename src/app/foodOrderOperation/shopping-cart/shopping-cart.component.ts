@@ -40,7 +40,7 @@ export class ShoppingCartComponent implements OnInit {
     this.totalQuantity = this.shoppingCartService.totalQuantity;
     this.customer = this.sessionService.getCurrentCustomer();
     this.transactionLineItems = this.shoppingCartService.foodOrderTrancationLineItems;
-    alert(JSON.stringify(this.transactionLineItems));
+
 
   }
 

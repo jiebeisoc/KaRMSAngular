@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'foodOrderOperation/viewFoodItemDetails/:foodItemId', component: ViewFoodItemDetailComponent},
   { path: 'foodOrderOperation/checkout', component:CheckoutComponent},
   { path: 'aboutUs', component: CompanyInfoComponent },
-  { path: 'promotions', component: PromotionListComponent}
+  { path: 'promotions', component: PromotionListComponent},
 
 ];
 

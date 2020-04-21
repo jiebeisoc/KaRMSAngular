@@ -1,16 +1,16 @@
 export class Reservation {
 
     reservationId: number;
-    date: Date;
+    date: string;
     duration: number;
     numOfPeople: number;
     note: string;
     totalPrice: number;
     status: string;
-    dateReserved: Date;
+    dateReserved: string;
     walkInPhoneNo: string;
 
-    constructor(reservationId?: number, date?: Date, duration?: number, numOfPeople?: number, note?: string, totalPrice?: number, status?: string, dateReserved?: Date, walkInPhoneNo?: string) {
+    constructor(reservationId?: number, date?: string, duration?: number, numOfPeople?: number, note?: string, totalPrice?: number, status?: string, dateReserved?: string, walkInPhoneNo?: string) {
         this.reservationId = reservationId;
         this.date = date;
         this.duration = duration;

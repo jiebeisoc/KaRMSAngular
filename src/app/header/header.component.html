@@ -1,13 +1,14 @@
 <header class="header">
 
-    <h1 style="color: #950740; font-weight: bold; padding: 14px;">Sing-Ah Karaoke Reservation</h1>
+    <button style="background-color: transparent; outline: none; border: none;" routerLink="/index">
+        <h1 style="color: #950740; font-weight: bold; padding: 14px;">Sing-Ah Karaoke</h1>
+    </button>
     <div class="topnav" *ngIf="sessionService.getIsLogin() != true" >
         <a routerLink="/index">Home</a>
         <a routerLink="/aboutUs">About</a>
         <a>Locate Us</a>
         <a>Room</a>
         <a routerLink="/promotions">Promotion</a>
-        <a routerLink="/registerCustomer">Sign Up</a>
     </div>
 
     <div *ngIf="sessionService.getIsLogin() == true">

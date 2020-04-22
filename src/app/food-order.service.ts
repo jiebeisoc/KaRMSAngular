@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 
 import { SessionService } from './session.service';
 import { FoodItem } from './food-item';
+import { FoodOrderTransaction } from './food-order-transaction';
 
 
 const httpOptions = {
@@ -18,6 +19,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class FoodOrderService {
+
+  
+  selectedTransaction:FoodOrderTransaction;
 
   baseUrl: string = "/api/FoodOrder"
 
@@ -39,7 +43,31 @@ export class FoodOrderService {
       );
     }
 
-    private handleError(error: HttpErrorResponse) {
+    getPastFoodOrderTransactions(){
+      let customerId:number=this.sessionService.getCurrentCustomer().customerId;
+      return this.httpClient.get<any>(this.baseUrl+"/retrieveAllPastFoodOrders/"+customerId).pipe(
+        catchError(this.handleError)
+      );
+    }
+
+
+
+
+  
+
+    setSelectedTransaction(transaction:FoodOrderTransaction){
+      alert(JSON.stringify(transaction));
+      this.selectedTransaction=transaction;
+
+    }
+
+     cancelTransaction(foodOrderTransactionId:number){
+      return this.httpClient.delete<any>(this.baseUrl+"/cancelFoodOrderTransaction/"+foodOrderTransactionId).pipe(
+        catchError(this.handleError)
+      );
+     }
+
+     private handleError(error: HttpErrorResponse) {
       let errorMessage: string = "";
       
       if (error.error instanceof ErrorEvent) {		
@@ -51,6 +79,8 @@ export class FoodOrderService {
       alert(errorMessage);
       return throwError(errorMessage);		
     }
+
+
 
 
     

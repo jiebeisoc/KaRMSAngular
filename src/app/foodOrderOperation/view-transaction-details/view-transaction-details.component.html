@@ -1,0 +1,46 @@
+<app-header></app-header>
+
+
+
+<section id="content" class="content">
+    <app-main-menu></app-main-menu>
+    <br />
+
+    <p-panel>
+        <h2 style="color: ivory; transform: translate(30%, 0%);">Details for Food Order Transaction on {{selectedTransaction.transactionDateTime}}</h2>
+
+
+        <div *ngIf="infoMessage" style="color: blue;">
+            {{infoMessage}}
+        </div>
+
+
+        <p-table [value]='selectedTransaction.foodOrderTransactionLineItemEntities' style=" width: 85%; text-align: center; position:relative; left: 20%; ">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Food Item</th>
+                    <th>Quantity</th>
+                    <th>SubTotal</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-transactionLineItem>
+                <tr>
+                    <td>{{transactionLineItem.foodItem.name}}</td>
+                    <td>{{transactionLineItem.quantity}}</td>
+                    <td>{{transactionLineItem.subTotal}}</td>
+                    <td>
+                        <p-button label="View" routerLink="/foodOrderOperation/viewFoodItemDetails/{{transactionLineItem.foodItem.foodItemId}}"></p-button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    
+    </p-panel>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

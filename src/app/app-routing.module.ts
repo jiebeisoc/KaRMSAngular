@@ -12,8 +12,12 @@ import { SongListComponent } from './songOperation/song-list/song-list.component
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
+
+import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-transaction-details/view-transaction-details.component';
+
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { PromotionListComponent } from './promotion-list/promotion-list.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: "/index", pathMatch: "full" },
@@ -26,11 +30,17 @@ const routes: Routes = [
   { path:'foodOrderOperation/shoppingCart', component: ShoppingCartComponent},
   { path:'songOperation/songList', component: SongListComponent},
   { path:'foodOrderOperation/foodItemMenu', component: FoodItemMenuComponent},
-  { path: 'foodOrderOperation/viewFoodItemDetails', component: ViewFoodItemDetailComponent},
-  { path: 'foodOrderOperation/viewFoodItemDetails/:foodItemId', component: ViewFoodItemDetailComponent},
+
+  { path: 'foodOrderOperation/viewFoodItemDetails', component:ViewFoodItemDetailComponent},
+  { path: 'foodOrderOperation/viewFoodItemDetails/:foodItemId', component:ViewFoodItemDetailComponent},
   { path: 'foodOrderOperation/checkout', component:CheckoutComponent},
+  { path: 'foodOrderOperation/viewTransactionDetails/:foodOrderTransactionId', component:ViewTransactionDetailsComponent},
+  { path: 'foodOrderOperation/viewTransactionDetails', component:ViewTransactionDetailsComponent},
+  
+
   { path: 'aboutUs', component: CompanyInfoComponent },
   { path: 'promotions', component: PromotionListComponent},
+
 
 ];
 

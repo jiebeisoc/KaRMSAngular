@@ -10,10 +10,14 @@
     
   
     <p-panel style="text-align: center; position: relative; left: 20%; transform: translate(-50%, -50%); ">
-        <h2 style="color: ivory; transform: translate(-24%, -50%);">All Food Items </h2>
         
         <p-table [value]='foodItems' width="40%">
             <ng-template pTemplate="header">
+                <tr >
+                    <td colspan="6"><h1 style="text-align: center; margin-top:20px;">All Food Items  </h1></td>
+                </tr>
+               
+               
                 <tr>
                     <th>SKU Code</th>
                     <th>Name</th>

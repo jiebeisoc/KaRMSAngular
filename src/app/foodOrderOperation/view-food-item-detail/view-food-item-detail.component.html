@@ -7,16 +7,18 @@
     <br />
 
     <p-panel  style="text-align: center; position:relative; left: 20%; transform: translate(-50%, -50%);"> 
-
-        <h2 *ngIf="foodItemToView" style="color: ivory; transform: translate(-22%, -50%);">View Food Item {{foodItemToView.foodItemId}} </h2>
         
     <span *ngIf="retrieveFoodItemError == true" style="color: red;">Food Item ID {{foodItemId}} does not exist!</span>
 
-    <a  style="color: ivory; width: 20px;" routerLink="/foodOrderOperation/foodItemMenu">Back</a>
-    
-   
      <table *ngIf="retrieveFoodItemError == false && foodItemToView" width="40%" style="color:ivory;">
 
+        <tr >
+            
+            <td colspan="6">
+                <a style="color: ivory;  margin-right: 0%; margin-left: 90%; height: 0px;" routerLink="/foodOrderOperation/foodItemMenu">Back</a>
+                <h1 style="text-align: center; margin-top:20px;">View Food Item {{foodItemToView.foodItemId}}</h1></td>
+        </tr>
+       
         <tr>
             <td width="50%" style="font-weight: bold;">SKU Code</td>
             <td>{{foodItemToView.skuCode}}</td>
@@ -65,7 +67,8 @@
 
 </section>
      <a routerLink="/foodOrderOperation/shoppingCart" class="button fancy-button" style="color: ivory;">
-        <i class="material-icons" style="color: ivory;">shopping_cart</i>Checkout
+        <i class="material-icons" style="color: ivory;">shopping_cart</i>
+        <br><h6>Check out</h6>
       </a>
     </p-panel>
       

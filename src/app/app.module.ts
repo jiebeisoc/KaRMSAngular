@@ -47,8 +47,13 @@ import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-
 import { SongListComponent } from './songOperation/song-list/song-list.component';
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
+
+import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-transaction-details/view-transaction-details.component';
+
+
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { PromotionListComponent } from './promotion-list/promotion-list.component';
+
 
 
 @NgModule({
@@ -70,8 +75,13 @@ import { PromotionListComponent } from './promotion-list/promotion-list.componen
     SongListComponent,
     ViewFoodItemDetailComponent,
     CheckoutComponent,
+
+    ViewTransactionDetailsComponent,
+    
+
     CompanyInfoComponent,
     PromotionListComponent,
+
 
   ],
   
@@ -104,8 +114,12 @@ import { PromotionListComponent } from './promotion-list/promotion-list.componen
     MatTableModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+
+    
+
     MatCardModule,
     MatGridListModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

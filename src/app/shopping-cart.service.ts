@@ -95,7 +95,7 @@ export class ShoppingCartService {
     newTransaction.totalLineItem=this.totalLineItem;
     newTransaction.totalQuantity = this.totalQuantity;
     newTransaction.customerEntity=this.sessionService.getCurrentCustomer();
-    newTransaction.transactionDateTime= new Date();
+    // newTransaction.transactionDateTime= new Date();
     
     let createTransactionReq={
       "customerId": this.sessionService.getCurrentCustomer().customerId,

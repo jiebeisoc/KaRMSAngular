@@ -1,1 +1,56 @@
-<p>view-past-food-orders works!</p>
+
+
+<app-header></app-header>
+
+
+
+<section id="content" class="content">    
+<app-main-menu></app-main-menu>	 
+    <br/>
+
+    
+  
+    <p-panel style="text-align: center; position: relative; left: 20%; transform: translate(-50%, -50%); ">
+        
+        
+        <p-table [value]='pastFoodOrerList' width="40%">
+            <ng-template pTemplate="header">
+                <tr >
+                    <td colspan="6"><h1 style="text-align: center; margin-top:20px;">Past Food Orders </h1></td>
+                </tr>
+                
+                <tr>
+                    <th>Transaction Date</th>
+                    <th>Total LineItem</th>
+                    <th>Total Amount</th>
+                    <th>Pick up Outlet</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                   
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-foodOrder>
+                <tr>
+                    <td>{{foodOrder.transactionDateTime}}</td>
+                    <td>{{foodOrder.totalLineItem}}</td>
+                    <td>{{foodOrder.totalAmount}}</td>
+                    <td>{{foodOrder.outlet.outletName}}</td>
+                    <td>{{foodOrder.foodOrderStatus}}</td>
+                    <td>
+                        <p-button label="View" (click)="viewTransactionDetails(foodOrder)"></p-button>
+                        <p-button  *ngIf="foodOrder.foodOrderStatus=='BOOKED'" label="Cancel" (click)="cancelTransaction(foodOrder)"></p-button>
+                       
+                    </td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+        <h5>*Once the food order status is confirmed, you can not cancel it.</h5>
+
+    </p-panel>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

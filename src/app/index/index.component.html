@@ -7,6 +7,9 @@
         <div class="wrapper">
             <div class="container">
                 <h1>Welcome</h1>
+                <div *ngIf="errorMessage" style="color: red;">
+                    Username or password is incorrect.
+                </div>
                 <form class="form" #loginForm="ngForm" (ngSubmit)="customerLogin(loginForm)">
                     <mat-form-field appearance="fill">
                         <mat-label>Username</mat-label>
@@ -18,11 +21,9 @@
                         <input class="input" type="password" matInput [(ngModel)]="password" name="password" />
                     </mat-form-field>
                     <br />
-                    <button mat-raised-button color="primary" type="submit">Login</button>
-                    <div *ngIf="errorMessage" style="color: red;">
-                        Username or password is incorrect.
-                    </div>
+                    <button mat-raised-button color="primary" type="submit">Login</button>                   
                 </form>
+                <p>No account yet? Click <a href="/registerCustomer" style="color: skyblue;">here</a> to sign up!</p>
             </div>
         </div>
 

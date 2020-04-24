@@ -4,16 +4,16 @@ export class Outlet {
     outletName: string;
     outletAddress: string;
     outletPhone: string;
-    openingHour: Date;
-    closingHour: Date;
+    openingHours: string;
+    closingHours: string;
 
-    constructor(outletId?: number, outletName?: string, outletAddress?: string, outletPhone?: string, openingHour?: Date, closingHour?: Date) {
+    constructor(outletId?: number, outletName?: string, outletAddress?: string, outletPhone?: string, openingHour?: string, closingHour?: string) {
         this.outletId = outletId;
         this.outletName = outletName;
         this.outletAddress = outletAddress;
         this.outletPhone = outletPhone;
-        this.openingHour = openingHour;
-        this.closingHour = closingHour;
+        this.openingHours = openingHour;
+        this.closingHours = closingHour;
     }
 
 }

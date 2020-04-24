@@ -146,32 +146,32 @@ export class IndexComponent implements OnInit {
                 for (let reservation of reservations) {
                   let duration: number = reservation.duration;
                   console.log(reservation.date);
-                  let date: string = reservation.date.toString();
+                  let date: string = new Date(reservation.date.substring(0,20)).toString();
                   console.log(date);
-                  let hour: number = Number(date.substring(11, 13));
+                  let hour: number = Number(date.substring(16, 18));
                   console.log(hour);
                   for (let i = 0; i < duration; i++) {
-                    if (hour == 4) {
+                    if (hour == 12) {
                       roomAvailable.hour12 = false;
-                    } else if (hour == 5) {
-                      roomAvailable.hour13 = false;
-                    } else if (hour == 6) {
-                      roomAvailable.hour14 = false;
-                    } else if (hour == 7) {
-                      roomAvailable.hour15 = false;
-                    } else if (hour == 8) {
-                      roomAvailable.hour16 = false;
-                    } else if (hour == 9) {
-                      roomAvailable.hour17 = false;
-                    } else if (hour == 10) {
-                      roomAvailable.hour18 = false;
-                    } else if (hour == 11) {
-                      roomAvailable.hour19 = false;
-                    } else if (hour == 12) {
-                      roomAvailable.hour20 = false;
                     } else if (hour == 13) {
-                      roomAvailable.hour21 = false;
+                      roomAvailable.hour13 = false;
                     } else if (hour == 14) {
+                      roomAvailable.hour14 = false;
+                    } else if (hour == 15) {
+                      roomAvailable.hour15 = false;
+                    } else if (hour == 16) {
+                      roomAvailable.hour16 = false;
+                    } else if (hour == 17) {
+                      roomAvailable.hour17 = false;
+                    } else if (hour == 18) {
+                      roomAvailable.hour18 = false;
+                    } else if (hour == 19) {
+                      roomAvailable.hour19 = false;
+                    } else if (hour == 20) {
+                      roomAvailable.hour20 = false;
+                    } else if (hour == 21) {
+                      roomAvailable.hour21 = false;
+                    } else if (hour == 22) {
                       roomAvailable.hour22 = false;
                     } else {
                       roomAvailable.hour23 = false;

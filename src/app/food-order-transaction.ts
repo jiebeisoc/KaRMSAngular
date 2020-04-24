@@ -8,7 +8,7 @@ export class FoodOrderTransaction {
     totalLineItem: number;
     totalQuantity: number;
     totalAmount: number;
-    transactionDateTime: Date;
+    transactionDateTime: string;
     foodOrderTransactionLineItemEntities: FoodOrderTransactionLineItem[];
     voidRefund: boolean;
     foodOrderStatus:FoodOrderStatus;
@@ -16,7 +16,7 @@ export class FoodOrderTransaction {
     outlet:Outlet
     creditCardNo:string;
 
-    constructor(customerEntity?:Customer,creditCardNo?:string,foodOrderStatus?:FoodOrderStatus,foodOrderTransactionId?: number,foodOrderTransactionLineItemEntities?: FoodOrderTransactionLineItem[], totalLineItem?: number, totalQuantity?: number, totalAmount?: number, transactionDateTime?: Date, voidRefund?: boolean, outlet?:Outlet) {
+    constructor(customerEntity?:Customer,creditCardNo?:string,foodOrderStatus?:FoodOrderStatus,foodOrderTransactionId?: number,foodOrderTransactionLineItemEntities?: FoodOrderTransactionLineItem[], totalLineItem?: number, totalQuantity?: number, totalAmount?: number, transactionDateTime?: string, voidRefund?: boolean, outlet?:Outlet) {
         this.foodOrderTransactionId = foodOrderTransactionId;
         this.totalLineItem = totalLineItem;
         this.totalQuantity = totalQuantity;

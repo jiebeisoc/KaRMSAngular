@@ -49,22 +49,19 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { PromotionListComponent } from './promotion-list/promotion-list.component';
 import { SongListComponent } from './songOperation/song-list/song-list.component';
-
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOperation/update-customer/update-customer.component';
-
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
-
+import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-transaction-details/view-transaction-details.component';
 import { ViewReservationsComponent } from './reservationOperation/view-reservations/view-reservations.component';
 import { CreateNewReservationComponent } from './reservationOperation/create-new-reservation/create-new-reservation.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 
 @NgModule({
   declarations: [
@@ -85,12 +82,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SongListComponent,
     ViewFoodItemDetailComponent,
     CheckoutComponent,
+    ViewTransactionDetailsComponent,
     CompanyInfoComponent,
     PromotionListComponent,
     ViewReservationsComponent,
     CreateNewReservationComponent,
-
   ],
+  
   imports: [
     FontAwesomeModule,
     BrowserModule,

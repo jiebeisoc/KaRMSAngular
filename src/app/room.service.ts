@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { SessionService } from './session.service';
+
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -15,10 +17,16 @@ export class RoomService {
 
   baseUrl: string = '/api/Room';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private sessionService: SessionService) { }
 
   retrieveRoomByOutletAndRoomType(outletId: number, roomTypeId: number): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl+"/retrieveRoomByOutletAndRoomType?outletId=" + outletId + "&roomTypeId=" + roomTypeId).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  retrieveAvailableRooms(time: number, duration: number, outletId: number, roomTypeId: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl+"/retrieveAvailableRooms?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword() + "&time=" + time + "&duration=" + duration + "&outletId=" + outletId + "&roomTypeId=" + roomTypeId).pipe(
       catchError(this.handleError)
     );
   }

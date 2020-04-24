@@ -46,7 +46,7 @@ export class ViewReservationsComponent implements OnInit {
   ngOnInit(): void {
     this.checkAccessRight();
 
-    this.reservationService.retrieveUpcomingReservationByCustomer(this.sessionService.getUsername(), this.sessionService.getPassword()).subscribe(
+    this.reservationService.retrieveUpcomingReservationByCustomer().subscribe(
       response => {
         this.upcomingReservations = response.reservations;
         this.reservations = this.upcomingReservations;
@@ -56,7 +56,7 @@ export class ViewReservationsComponent implements OnInit {
       }
     )
 
-    this.reservationService.retrievePastReservationByCustomer(this.sessionService.getUsername(), this.sessionService.getPassword()).subscribe(
+    this.reservationService.retrievePastReservationByCustomer().subscribe(
       response => {
         this.pastReservations = response.reservations;
       },

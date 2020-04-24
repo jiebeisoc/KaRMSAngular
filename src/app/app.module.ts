@@ -24,15 +24,18 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatStepperModule } from '@angular/material/stepper';
+import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatRadioModule } from '@angular/material/radio';
 
-import {PanelModule} from 'primeng/panel';
-import {TableModule} from 'primeng/table';
-import {ButtonModule} from 'primeng/button';
-import {DialogModule} from 'primeng/dialog';
-import {InputTextModule} from 'primeng/inputtext';
-import {DataViewModule} from 'primeng/dataview';
-import {SelectButtonModule} from 'primeng/selectbutton';
-import {SplitButtonModule} from 'primeng/splitbutton';
+import { PanelModule } from 'primeng/panel';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule  } from 'primeng/inputtext';
+import { DataViewModule} from 'primeng/dataview';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -84,13 +87,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CheckoutComponent,
     CompanyInfoComponent,
     PromotionListComponent,
-
     ViewReservationsComponent,
-
     CreateNewReservationComponent,
 
   ],
   imports: [
+    FontAwesomeModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -102,7 +104,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DialogModule,
     InputTextModule,
     DataViewModule,
-    SelectButtonModule,
     SplitButtonModule,
     MatIconModule,
     MatFormFieldModule,
@@ -124,8 +125,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatPaginatorModule,
     MatCardModule,
     MatButtonToggleModule,
-    FontAwesomeModule,
-    MatGridListModule
+    MatGridListModule,
+    MatStepperModule,
+    NgxMatMomentModule,
+    NgxMaterialTimepickerModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

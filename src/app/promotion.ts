@@ -12,4 +12,5 @@ export class Promotion {
         this.validFrom = validFrom;
         this.validUntil = this.validUntil;
     }
+
 }

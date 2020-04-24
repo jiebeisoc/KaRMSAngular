@@ -37,31 +37,39 @@ export class ReservationService {
     );
   }
 
-  retrieveUpcomingReservationByCustomer(username: string, password: string): Observable<any> {
+  retrieveUpcomingReservationByCustomer(): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl+'/retrieveUpcomingReservationByCustomer?username=' + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
       catchError(this.handleError)
     );
   }
 
-  retrievePastReservationByCustomer(username: string, password: string): Observable<any> {
+  retrievePastReservationByCustomer(): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl+'/retrievePastReservationByCustomer?username=' + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
       catchError(this.handleError)
     );
   }
 
   getReservation(reservationId: number): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "/retrieveReservation/" + reservationId + "?username=" + this.sessionService.getUsername() + "?password=" + this.sessionService.getPassword()).pipe(
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveReservation/" + reservationId + "&username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
       catchError(this.handleError)
     );
   }
 
-  createNewReservation(newReservation: Reservation, customerId: number, roomId: number, outletId: number, promotionId: number): Observable<any> {
+  calculateTotalPrice(time: number, duration: number, roomTypeId: number, promotionId: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl+"/calculateTotalPrice?time=" + time + "&duration=" + duration + "&roomTypeId=" + roomTypeId + "&promotionId=" + promotionId).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  createNewReservation(newReservation: Reservation, roomId: number, outletId: number, promotionId: number, pointsRedeemed: number, status: string): Observable<any> {
     let createReservationReq = {
       "username": this.sessionService.getUsername(),
       "password": this.sessionService.getPassword(),
       "roomId": roomId,
       "outletId": outletId,
       "promotionId": promotionId,
+      "pointsRedeemed": pointsRedeemed,
+      "status": status,
       "newReservation": newReservation
     };
 

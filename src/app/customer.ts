@@ -8,6 +8,7 @@ export class Customer {
     password: string;
     birthday: Date;
     email: string;
+    points: number;
 
     constructor(customerId?: number, name?: string, phoneNo?: string, creditCardNo?: string, username?: string, password?: string, birthday?: Date, email?: string) {
         this.customerId = customerId;
@@ -18,6 +19,7 @@ export class Customer {
         this.password = password;
         this.birthday = birthday;
         this.email = email;
+        this.points = 0;
     }
 
 }

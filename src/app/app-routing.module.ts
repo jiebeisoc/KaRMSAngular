@@ -17,6 +17,7 @@ import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.compon
 import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-transaction-details/view-transaction-details.component';
 import { CreateNewReservationComponent } from './reservationOperation/create-new-reservation/create-new-reservation.component';
 import { ViewReservationsComponent } from './reservationOperation/view-reservations/view-reservations.component';
+import { UpdateReservationComponent } from './reservationOperation/update-reservation/update-reservation.component';
 
 
 const routes: Routes = [
@@ -38,7 +39,8 @@ const routes: Routes = [
   { path: 'foodOrderOperation/viewTransactionDetails/:foodOrderTransactionId', component:ViewTransactionDetailsComponent},
   { path: 'foodOrderOperation/viewTransactionDetails', component:ViewTransactionDetailsComponent},
   { path: 'reservationOperation/viewReservations', component: ViewReservationsComponent},
-  { path: 'reservationOperation/createNewReservation', component: CreateNewReservationComponent}
+  { path: 'reservationOperation/createNewReservation', component: CreateNewReservationComponent},
+  { path: 'reservationOperation/updateReservation', component: UpdateReservationComponent}
 ];
 
 @NgModule({

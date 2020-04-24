@@ -50,7 +50,7 @@ export class ReservationService {
   }
 
   getReservation(reservationId: number): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "/retrieveReservation/" + reservationId + "&username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveReservation/" + reservationId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
       catchError(this.handleError)
     );
   }
@@ -61,14 +61,13 @@ export class ReservationService {
     );
   }
 
-  createNewReservation(newReservation: Reservation, roomId: number, outletId: number, promotionId: number, pointsRedeemed: number, status: string): Observable<any> {
+  createNewReservation(newReservation: Reservation, roomId: number, outletId: number, promotionId: number, status: string): Observable<any> {
     let createReservationReq = {
       "username": this.sessionService.getUsername(),
       "password": this.sessionService.getPassword(),
       "roomId": roomId,
       "outletId": outletId,
       "promotionId": promotionId,
-      "pointsRedeemed": pointsRedeemed,
       "status": status,
       "newReservation": newReservation
     };

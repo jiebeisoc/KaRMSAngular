@@ -108,8 +108,9 @@
                     </div>
                     <div>
                         <mat-form-field>
-                            <mat-label>Note</mat-label>
-                            <textarea matInput placeholder="Any special requests?" formControlName="noteCtrl"></textarea>
+                            <mat-label hintLabel="Max 20 characters">Note</mat-label>
+                            <textarea matInput #input maxlength="20" placeholder="Any special requests?" formControlName="noteCtrl"></textarea>
+                            <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
                         </mat-form-field>
                     </div>
                     <div>
@@ -141,13 +142,17 @@
                     <div>
                         <br/>
                         <label>Payment Method: </label>
-                        <mat-radio-group formControlName="paymentMethodCtrl" required>
+                        <mat-radio-group formControlName="paymentMethodCtrl" (change)="paymentChange()" required>
                             <mat-radio-button value="NOTPAID">Cash</mat-radio-button>&nbsp;&nbsp;&nbsp;
                             <mat-radio-button value="PAID">Credit Card</mat-radio-button>
                         </mat-radio-group> 
                         <div id="paymentError" *ngIf="paymentMethodCtrl?.hasError('required')" class="errorText">
                             <strong>Required</strong>
-                        </div>
+                        </div> 
+                    </div>
+                    <br/>
+                    <div *ngIf="cautionMessage" style="color:red;">
+                        {{cautionMessage}}
                     </div>
                     <br/>
                     <div>

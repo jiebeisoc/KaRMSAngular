@@ -59,10 +59,12 @@ import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
 import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-transaction-details/view-transaction-details.component';
-import { ViewReservationsComponent } from './reservationOperation/view-reservations/view-reservations.component';
+import { ViewReservationsComponent, ViewDialogComponent, DeleteDialogComponent } from './reservationOperation/view-reservations/view-reservations.component';
 import { CreateNewReservationComponent } from './reservationOperation/create-new-reservation/create-new-reservation.component';
+import { UpdateReservationComponent } from './reservationOperation/update-reservation/update-reservation.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -88,6 +90,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PromotionListComponent,
     ViewReservationsComponent,
     CreateNewReservationComponent,
+    ViewDialogComponent,
+    DeleteDialogComponent,
+    UpdateReservationComponent
   ],
   
   imports: [

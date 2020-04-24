@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { MenuItem, MessageService } from 'primeng/api';
 
 import { Reservation } from '../../reservation';
 import { ReservationService } from '../../reservation.service';
 import { SessionService } from '../../session.service';
 import { error } from '@angular/compiler/src/util';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+export interface ViewReservation {
+  selectedReservation: Reservation;
+  promotionString: string;
+  noteString: string;
+}
 
 @Component({
   selector: 'app-view-reservations',
   templateUrl: './view-reservations.component.html',
   styleUrls: ['./view-reservations.component.css'],
-  providers: [MessageService],
 })
 export class ViewReservationsComponent implements OnInit {
 
@@ -20,27 +25,21 @@ export class ViewReservationsComponent implements OnInit {
   errorMessage: string;
 
   isUpcoming: string;
-  detailsItems: MenuItem[];
+
+  selectedReservation: Reservation;
+  promotionString: string;
+  noteString;
 
   upcomingReservations: Reservation[];
   pastReservations: Reservation[];
   reservations: Reservation[];
 
   constructor(private router: Router,
-    private messageService: MessageService,
     public sessionService: SessionService,
-    private reservationService: ReservationService) {
+    private reservationService: ReservationService,
+    private dialog: MatDialog) {
       
       this.isUpcoming = "true";
-
-      this.detailsItems = [
-        {label: 'Update', icon: 'pi pi-refresh', command: () => {
-          this.update();
-        }},
-        {label: 'Delete', icon: 'pi pi-times', command: () => {
-          this.delete();
-        }}
-      ];
   }
 
   ngOnInit(): void {
@@ -87,22 +86,132 @@ export class ViewReservationsComponent implements OnInit {
     var str = date.slice(0, date.indexOf("["));
     return str;
   }
-
-  save() {
-    this.messageService.add({severity:'info', detail:'save'})
-  }
-
-  update() {
-    this.messageService.add({severity:'info', detail:'update'});
-  }
-
-  delete() {
-    this.messageService.add({severity:'info', detail:'delete'});
-  }
   
   clear() {
     this.isUpcoming = "true";
-    this.messageService.clear();
+  }
+
+  openViewDialog(reservation: Reservation): void {
+
+    this.sessionService.setSelectedReservation(reservation);
+    console.log("reservation: " + this.sessionService.getSelectedReservation().reservationId);
+
+    if (!reservation.promotion) {
+      this.promotionString = "-";
+      console.log("promotion does not exist");
+    } else {
+      this.promotionString = reservation.promotion.promotionName;
+      console.log("promotion exist");
+    }
+
+    if (!reservation.note) {
+      this.noteString = "-";
+    } else {
+      this.noteString = reservation.note;
+    }
+
+    const dialogRef = this.dialog.open(ViewDialogComponent, {
+      width: '350px',
+      data: {selectedReservation: reservation, promotionString: this.promotionString, noteString: this.noteString},
+      disableClose: false
+    });
+
+    dialogRef.afterClosed().subscribe(
+      result => {
+        this.selectedReservation = null;
+        console.log('viewDialog was closed');
+      }
+    );
   }
 
 }
+
+@Component({
+    selector: 'view-dialog',
+    templateUrl: 'view-dialog.html',
+  })
+  export class ViewDialogComponent {
+  
+    constructor(
+      public dialogRef: MatDialogRef<ViewDialogComponent>, 
+      @Inject(MAT_DIALOG_DATA) public data: ViewReservation,
+      private dialog: MatDialog,
+      private reservationService: ReservationService, 
+      private sessionService: SessionService,
+      private snackBar: MatSnackBar, 
+      private router: Router) {}
+  
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
+
+    formatDate(date: Date) {
+      var str = date.toString().slice(0, date.toString().indexOf("["));
+      return str;
+    }
+
+    onUpdate() {
+      if (this.sessionService.getSelectedReservation().status === "PAID") {
+        this.snackBar.open("Reservation is paid! No changes can be made.", '', {
+          duration: 5000,
+          panelClass: ['snackbar']
+        });
+      } else {
+        this.router.navigate(["/reservationOperation/updateReservation"]);
+      }
+      
+    }
+
+    deleteReservation() {
+
+      this.reservationService.deleteReservation(this.sessionService.getSelectedReservation().reservationId).subscribe(
+        response => {
+          this.snackBar.open('Reservation is deleted successfully!', '', {
+            duration: 5000,
+            panelClass: ['snackbar']
+          });
+          window.location.reload();
+        },
+        error => {
+          this.snackBar.open("An error has occurred while deleting the reservation!", '', {
+            duration: 5000,
+            panelClass: ['snackbar']
+          });
+          console.log("******** ViewReservationsComponent.ts: "  + error);
+        }
+      )
+    }
+  
+    deleteDialog(): void {
+
+      console.log(this.sessionService.getSelectedReservation().reservationId);
+
+      const dialogRef = this.dialog.open(DeleteDialogComponent, {
+        disableClose: false
+      });
+  
+      dialogRef.afterClosed().subscribe(
+        result => {
+          if (result) {
+            this.deleteReservation();
+          }
+        }
+      );
+    }
+  
+  }
+
+  @Component({
+    selector: 'delete-dialog',
+    templateUrl: 'delete-dialog.html',
+  })
+  export class DeleteDialogComponent {
+  
+    constructor(
+      public dialogRef: MatDialogRef<DeleteDialogComponent>) {}
+  
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
+  
+  }

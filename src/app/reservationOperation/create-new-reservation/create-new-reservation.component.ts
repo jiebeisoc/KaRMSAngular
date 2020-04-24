@@ -38,16 +38,14 @@ export class CreateNewReservationComponent implements OnInit {
         clockHandColor: '#9fbd90',
         clockFaceTimeInactiveColor: '#fff'
     }
-};
+  };
 
-  submitted: boolean;
   newReservation: Reservation;
   outletId: number;
   roomTypeId: number;
   roomId: number;
   promotionId: number;
   totalPrice: number;
-  pointsRedeemed: number;
   status: string;
 
   outlets: Outlet[]
@@ -66,6 +64,8 @@ export class CreateNewReservationComponent implements OnInit {
   newPoints: number = 0;
   oldPoints: number = 0;
 
+  cautionMessage: string;
+
   constructor(private router: Router,
     public sessionService: SessionService,
     private reservationService: ReservationService,
@@ -76,7 +76,6 @@ export class CreateNewReservationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialog: MatSnackBar) {
 
-      this.submitted = false;
       this.newReservation = new Reservation();
      }
 
@@ -261,6 +260,14 @@ export class CreateNewReservationComponent implements OnInit {
     this.oldPoints = this.newPoints;
   }
 
+  paymentChange() {
+    if (this.paymentMethodCtrl.value === "PAID") {
+      this.cautionMessage = "Caution: Once payment is made, changes cannot be made to the transaction."
+    } else {
+      this.cautionMessage = null;
+    }
+  }
+
   test() {
     console.log("outletId: " + this.outletId);
     console.log("roomTypeId: " + this.roomTypeId);
@@ -270,22 +277,28 @@ export class CreateNewReservationComponent implements OnInit {
     console.log("noOfPeople: " + this.newReservation.numOfPeople);
     console.log("note: " + this.newReservation.note);
     console.log("promotionId: " + this.promotionId);
-    console.log("pointsRedeemed: " + this.pointsRedeemed);
+    console.log("pointsRedeemed: " + this.newReservation.pointsRedeemed);
     console.log("status: " + this.status);
     console.log("totalPrice: " + this.totalPrice);
   }
 
   create() {
-    this.pointsRedeemed = this.pointsCtrl.value;
+    if (!this.pointsCtrl.value) {
+      this.newReservation.pointsRedeemed = 0;
+    } else {
+      this.newReservation.pointsRedeemed = this.pointsCtrl.value;
+    }
     this.status = this.paymentMethodCtrl.value;
     this.newReservation.totalPrice = this.totalPrice;
 
-    this.reservationService.createNewReservation(this.newReservation, this.roomId, this.outletId, this.promotionId, this.pointsRedeemed, this.status).subscribe(
+    this.reservationService.createNewReservation(this.newReservation, this.roomId, this.outletId, this.promotionId, this.status).subscribe(
       response => {
         this.dialog.open("Reservation is successfully created!", '', {
           duration: 5000,
           panelClass: ['snackbar']
         });
+        this.clear();
+        window.location.reload();
       },
       error => {
         this.dialog.open("An error occurred while creating new reservation!", '', {
@@ -306,7 +319,6 @@ export class CreateNewReservationComponent implements OnInit {
   }
 
   clear() {
-		this.submitted = false;
 		this.newReservation = new Reservation();
 	}
 

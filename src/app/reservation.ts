@@ -10,6 +10,7 @@ export class Reservation {
     duration: number;
     numOfPeople: number;
     note: string;
+    pointsRedeemed: number;
     totalPrice: number;
     status: string;
     dateReserved: Date;
@@ -19,12 +20,13 @@ export class Reservation {
     songQueue: Song[];
     promotion: Promotion;
 
-    constructor(reservationId?: number, date?: Date, duration?: number, numOfPeople?: number, note?: string, totalPrice?: number, status?: string, dateReserved?: Date, walkInPhoneNo?: string) {
+    constructor(reservationId?: number, date?: Date, duration?: number, numOfPeople?: number, note?: string, pointsRedeemed?: number, totalPrice?: number, status?: string, dateReserved?: Date, walkInPhoneNo?: string) {
         this.reservationId = reservationId;
         this.date = date;
         this.duration = duration;
         this.numOfPeople = numOfPeople;
         this.note = note;
+        this.pointsRedeemed = pointsRedeemed;
         this.totalPrice = totalPrice;
         this.status = status;
         this.dateReserved = dateReserved;

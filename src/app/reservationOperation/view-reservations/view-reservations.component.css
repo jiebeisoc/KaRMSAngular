@@ -1,4 +1,8 @@
 #reservationContent {
+    display: block;
+    text-align: center;
+    width: 60%;
+    margin-left: 28%;
     margin-bottom: 40px;
 }
 
@@ -12,6 +16,15 @@ mat-button-toggle-group {
 
 mat-button-toggle {
     width: 100px;
+}
+
+.button-row button {
+    width: 130px;
+    margin-bottom: 10px;
+}
+
+::ng-deep mat-button-toggle.split-button-1 {
+    width: max-content;
 }
 
 :host ::ng-deep .mat-button-toggle-label-content{

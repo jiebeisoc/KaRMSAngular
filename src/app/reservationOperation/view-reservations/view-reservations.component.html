@@ -4,7 +4,7 @@
     
     <app-main-menu></app-main-menu>
 
-    <div id="reservationContent" style="text-align: center">
+    <div id="reservationContent">
         <h1>My Reservations</h1>
         
         <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="isUpcoming" value="true" (change)="onChange()">
@@ -14,29 +14,49 @@
         <br/>
         <br/>
 
-        <p-dataView [value]="reservations" >
-            <ng-template let-reservation pTemplate="listItem">
-                <div class="p-lg-12">
-                    <span class="ui-g">
-                        
-                        <div class="ui-g-6">Reservation No: <b>{{reservation.reservationId}}</b>
-                            Date: <b>{{formatDate(reservation.date) | date:'EEEE dd MMMM yyyy hh:mm a'}}</b>
-                        </div>
-                        
-                        <div class="ui-g-12">Room No: <b>undefined</b></div>
-                        <div class="ui-g-12">Total Price: <b>{{reservation.totalPrice}}</b>&nbsp;
-                        <span [class]="'reservation-badge status-' + reservation.status">{{reservation.status}}</span>
-                        </div>
-                    </span>
-                    <p-splitButton label="Details" [model]="detailsItems" (onClick)="save()" icon="fas fa-info" class="ui-button-raised"></p-splitButton>
-                    <p-button label="Food" icon="fas fa-utensils" class="ui-button-raised"></p-button>
-                    <p-button label="Song" icon="fas fa-music" class="ui-button-raised"></p-button>
-                    <br/><br/>
-                </div>
-            </ng-template>
-        </p-dataView>
+        <mat-grid-list cols="1" rowHeight="3.5:1">
+            <mat-grid-tile *ngFor="let reservation of reservations">
+                <mat-grid-tile-header style="background-color: rgba(129, 85, 108, 0.418); height: 35px;">
+                    <h2>Reservation No: &nbsp;<b>{{reservation.reservationId}}</b>&emsp;Room No: &nbsp;<b>{{reservation.room.roomNum}}</b></h2>
+                </mat-grid-tile-header>
+                <span style="width: 30%">
+                    <div>
+                        <img src="../../../assets/images/outlets/{{reservation.outlet.outletName}}.jpg" width="210px" style="margin-left: 30px; margin-top: 5px;">
+                    </div>
+                </span>
+                <span style="width: 40%; text-align: justify; margin-left: 55px;">
+                    <div style="margin-bottom: 5px;">Date: &nbsp;{{formatDate(reservation.date) | date:'EEEE dd MMMM yyyy'}}</div>
+                    <div style="margin-bottom: 5px;">Time: &nbsp;{{formatDate(reservation.date) | date:'hh:mm a'}}</div>
+                    <div style="margin-bottom: 5px;">Duration: &nbsp;{{reservation.duration}} hour(s)</div>
+                    <div style="margin-bottom: 5px;">Total Price: &nbsp;${{reservation.totalPrice | number: '1.2-2'}}&nbsp;&nbsp;<span [class]="'reservation-badge status-' + reservation.status">{{reservation.status}}</span></div>
+                </span>
+                <span style="width: 30%">
+                    <!---
+                    <mat-button-toggle-group>
+                        <mat-button-toggle class="split-button-1">Details</mat-button-toggle>
+                        <mat-button-toggle class="split-button-1 drop-down-button" [matMenuTriggerFor]="dropdownMenuOne">
+                            <mat-icon>more_vert</mat-icon>
+                        </mat-button-toggle>
+                      </mat-button-toggle-group>
+                      
+                      <mat-menu #dropdownMenuOne="matMenu">
+                        <button mat-menu-item>Update</button>
+                        <button mat-menu-item>Delete</button>
+                    </mat-menu>
+                    -->
+                    
+                    <div class="button-row" style="margin-right: 20px;">
+                        <button mat-raised-button>
+                            <i class="fas fa-info"></i>&nbsp;&nbsp;<span>Details</span>
+                        </button><br/>
+                        <button mat-raised-button>
+                            <i class="fas fa-music"></i>&nbsp;&nbsp;<span>Song Playlist</span>
+                        </button>
+                    </div>
+                </span>
+            </mat-grid-tile>
+          </mat-grid-list>
     </div>
-
 
 </section>
 

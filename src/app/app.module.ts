@@ -28,6 +28,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { PanelModule } from 'primeng/panel';
 import { TableModule } from 'primeng/table';
@@ -127,7 +128,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatStepperModule,
     NgxMatMomentModule,
     NgxMaterialTimepickerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

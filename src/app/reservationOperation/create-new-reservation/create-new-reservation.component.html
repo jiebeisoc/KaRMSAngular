@@ -67,7 +67,7 @@
                             <mat-form-field>
                                 <mat-label>Duration</mat-label>
                                 <input matInput type="number" min="1" max="12" formControlName="durationCtrl" (change)="onChange()" required>
-                                <span matSuffix>hrs</span>
+                                <span matSuffix>hour(s)</span>
                                 <mat-error *ngIf="durationCtrl?.hasError('required')">
                                     <strong>Required</strong>
                                 </mat-error>

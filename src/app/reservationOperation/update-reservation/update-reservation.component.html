@@ -1,1 +1,154 @@
-<p>update-reservation works!</p>
+<app-header></app-header>
+
+<section id="content" class="content">
+
+    <app-main-menu></app-main-menu>
+
+    <div id="updateReservationContent">
+
+        <h1>Update Reservations Details</h1>
+        <br/>
+        <h3>Reservation No: <b>{{reservationToUpdate.reservationId}}</b></h3>
+        <form #updateReservationForm="ngForm" (ngSubmit)="update(updateReservationForm)">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Outlet</mat-label>
+                    <mat-select name="outlet" #outlet="ngModel" [(ngModel)]="outletId" (selectionChange)="onChange()" required>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let outlet of outlets" [value]=outlet.outletId>
+                        {{outlet.outletName}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="outlet.invalid && (outlet.dirty || outlet.touched || submitted)" >
+						<div *ngIf="outlet.errors.required" class="errorText">
+                            <strong>Required</strong>
+                        </div>
+					</mat-error>  
+                </mat-form-field>
+            </div>
+            
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Room Type</mat-label>
+                    <mat-select name="roomType" #roomType="ngModel" [(ngModel)]="roomTypeId" (selectionChange)="roomTypeChange()" required>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let roomType of roomTypes" [value]=roomType.roomTypeId>
+                        {{roomType.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="roomType.invalid && (roomType.dirty || roomType.touched || submitted)" >
+						<div *ngIf="roomType.errors.required" class="errorText">
+                            <strong>Required</strong>
+                        </div>
+					</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Date</mat-label>
+                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="datePicker" name="date" #date="ngModel" [(ngModel)]="dateUpdate" (dateChange)="dateChange()" readonly required>
+                    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datePicker></mat-datepicker>
+                    <mat-error *ngIf="date.invalid && (date.dirty || date.touched || submitted)" >
+						<div *ngIf="date.errors.required" class="errorText">
+                            <strong>Required</strong>
+                        </div>
+					</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Time</mat-label>
+                    <input matInput [min]="minTime" [max]="maxTime" [ngxTimepicker]="timePicker" name="time" #time="ngModel" [(ngModel)]="timeUpdate" readonly required>
+                    <ngx-material-timepicker #timePicker [theme]="darkTheme" [hoursOnly]=true [minutesGap]="0" (closed)="onChange()"></ngx-material-timepicker>
+                    <mat-error *ngIf="time.invalid && (time.dirty || time.touched || submitted)" >
+						<div *ngIf="time.errors.required" class="errorText">
+                            <strong>Required</strong>
+                        </div>
+					</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Duration</mat-label>
+                    <input matInput type="number" min="1" max="12" name="duration" #duration="ngModel" [(ngModel)]="reservationToUpdate.duration" (change)="onChange()" required>
+                    <span matSuffix>hour(s)</span>
+                    <mat-error *ngIf="duration.invalid && (duration.dirty || duration.touched || submitted)" >
+						<div *ngIf="duration.errors.required" class="errorText">
+                            <strong>Required</strong>
+                        </div>
+					</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Room</mat-label>
+                    <mat-select name="room" #room="ngModel" [(ngModel)]="roomId" (selectionChange)="onChange()" required>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let room of rooms" [value]="room.roomId">
+                        {{room.roomNum}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="room.invalid && (room.dirty || room.touched || submitted)" >
+						<div *ngIf="room.errors.required" class="errorText">
+                            <strong>Required</strong>
+                        </div>
+					</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>No of People</mat-label>
+                    <input matInput type="number" min="1" max="12" name="noOfPeople" #noOfPeople="ngModel" [(ngModel)]="reservationToUpdate.numOfPeople" required>
+                    <mat-hint>Recommended capacity: {{capacity}} </mat-hint>
+                    <mat-error *ngIf="noOfPeople.invalid && (noOfPeople.dirty || noOfPeople.touched || submitted)" >
+						<div *ngIf="noOfPeople.errors.required" class="errorText">
+                            <strong>Required</strong>
+                        </div>
+					</mat-error>
+                </mat-form-field>
+            </div>
+            <span style="display:block; height: 15px;"></span>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Note</mat-label>
+                    <textarea matInput maxlength="30" placeholder="Any special requests?" name="note" #note="ngModel" [(ngModel)]="reservationToUpdate.note"></textarea>
+                    <mat-hint>Max 30 characters <span style="display:inline-block; width: 45px;"></span> {{note.value?.length || 0}}/30</mat-hint>
+                </mat-form-field>
+            </div>
+            <span style="display:block; height: 15px;"></span>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Promotion</mat-label>
+                    <mat-select name="promotion" #promotion="ngModel" [(ngModel)]="promotionId" (selectionChange)="calculateTotalPrice()">
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let promotion of promotions" [value]="promotion.promotionId">
+                        {{promotion.promotionName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Redeem Points</mat-label>
+                    <input matInput type="number" value="0" [min]="0" [max]="customerPoints" (change)="pointsChange()" name="pointsRedeemed" #pointsRedeemed="ngModel" [(ngModel)]="reservationToUpdate.pointsRedeemed">
+                    <mat-hint>1 point = $1</mat-hint>
+                </mat-form-field>
+            </div>
+            <br/>
+            <div>
+                <h3>Total Price: <strong>${{reservationToUpdate.totalPrice | number: '1.2-2'}}</strong></h3>
+            </div>
+            <br/>
+            <div>
+                <button mat-button [disabled]="!isValid" type="submit">Confirm Update</button>
+            </div>
+        </form>
+
+    </div>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

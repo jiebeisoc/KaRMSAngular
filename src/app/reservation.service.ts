@@ -87,7 +87,7 @@ export class ReservationService {
       "reservation": reservationToUpdate
     };
 
-    return this.httpClient.post<any>(this.baseUrl, updateReservationReq, httpOptions).pipe(
+    return this.httpClient.post<any>(this.baseUrl + "/updateReservation", updateReservationReq, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

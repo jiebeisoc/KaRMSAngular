@@ -111,7 +111,7 @@ export class ViewReservationsComponent implements OnInit {
     }
 
     const dialogRef = this.dialog.open(ViewDialogComponent, {
-      width: '350px',
+      width: '400px',
       data: {selectedReservation: reservation, promotionString: this.promotionString, noteString: this.noteString},
       disableClose: false
     });
@@ -157,6 +157,7 @@ export class ViewReservationsComponent implements OnInit {
           panelClass: ['snackbar']
         });
       } else {
+        this.dialogRef.close();
         this.router.navigate(["/reservationOperation/updateReservation"]);
       }
       

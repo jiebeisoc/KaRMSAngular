@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Reservation Details</h2>
 <div mat-dialog-content style="display: flex; flex-direction: row; height: 100%; width: 100%;">
-    <div class='column' style="display: flex; flex-direction: column">
+    <div class='column' style="display: flex; flex-direction: column; flex-grow: 1;">
         <div class='row'><b>Reservation No: </b></div>
         <div class='row'><b>Room No: </b></div>
         <div class='row'>Outlet: </div>
@@ -15,7 +15,7 @@
         <div class='row'><b>Total Price: </b></div>
       </div>
       <span style="flex: 1 1;"></span>
-      <div class='column' style="display: flex; flex-direction: column">
+      <div class='column' style="display: flex; flex-direction: column; flex-grow: 1;">
         <div class='row'><b>{{data.selectedReservation.reservationId}}</b></div>
         <div class='row'><b>{{data.selectedReservation.room.roomNum}}</b></div>
         <div class='row'>{{data.selectedReservation.outlet.outletName}}</div>
@@ -27,7 +27,7 @@
         <div class='row'>{{data.noteString}}</div>
         <div class='row'>{{data.promotionString}}</div>
         <div class='row'>{{data.selectedReservation.pointsRedeemed}}</div>
-        <div class='row'>${{data.selectedReservation.totalPrice | number: '1.2-2'}}</div>
+        <div class='row'><b>${{data.selectedReservation.totalPrice | number: '1.2-2'}}</b></div>
     </div>
 </div>
 <div mat-dialog-actions>

@@ -1,0 +1,29 @@
+mat-sidenav-container {
+    background-color: transparent;
+}
+
+mat-sidenav {
+    background-color: transparent;
+    border: none;
+}
+
+h1 {
+    margin-left: 3%;
+    text-align: center;
+}
+
+mat-horizontal-stepper {
+    background: none;
+    margin-left: 7%;
+    margin-right: 5%;
+}
+
+mat-radio-button {
+    margin-left: 12px;
+}
+
+#paymentError {
+    text-align: center; 
+    margin-top: 5px; 
+    font-size: 12px;
+}

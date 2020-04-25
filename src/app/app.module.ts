@@ -22,13 +22,21 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatStepperModule } from '@angular/material/stepper';
+import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDividerModule } from '@angular/material/divider';
 
-import {PanelModule} from 'primeng/panel';
-import {TableModule} from 'primeng/table';
-import {ButtonModule} from 'primeng/button';
-import {DialogModule} from 'primeng/dialog';
-import {InputTextModule} from 'primeng/inputtext';
+import { PanelModule } from 'primeng/panel';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule  } from 'primeng/inputtext';
+import { DataViewModule} from 'primeng/dataview';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,23 +45,25 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
+import { CompanyInfoComponent } from './company-info/company-info.component';
+import { PromotionListComponent } from './promotion-list/promotion-list.component';
+import { SongListComponent } from './songOperation/song-list/song-list.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOperation/update-customer/update-customer.component';
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
 import { FoodItemMenuComponent } from './foodOrderOperation/food-item-menu/food-item-menu.component';
-import { SongListComponent } from './songOperation/song-list/song-list.component';
 import { ViewFoodItemDetailComponent } from './foodOrderOperation/view-food-item-detail/view-food-item-detail.component';
 import { CheckoutComponent } from './foodOrderOperation/checkout/checkout.component';
-
 import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-transaction-details/view-transaction-details.component';
+import { ViewReservationsComponent, ViewDialogComponent, DeleteDialogComponent } from './reservationOperation/view-reservations/view-reservations.component';
+import { CreateNewReservationComponent } from './reservationOperation/create-new-reservation/create-new-reservation.component';
+import { UpdateReservationComponent } from './reservationOperation/update-reservation/update-reservation.component';
 
-
-import { CompanyInfoComponent } from './company-info/company-info.component';
-import { PromotionListComponent } from './promotion-list/promotion-list.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -75,17 +85,18 @@ import { PromotionListComponent } from './promotion-list/promotion-list.componen
     SongListComponent,
     ViewFoodItemDetailComponent,
     CheckoutComponent,
-
     ViewTransactionDetailsComponent,
-    
-
     CompanyInfoComponent,
     PromotionListComponent,
-
-
+    ViewReservationsComponent,
+    CreateNewReservationComponent,
+    ViewDialogComponent,
+    DeleteDialogComponent,
+    UpdateReservationComponent
   ],
   
   imports: [
+    FontAwesomeModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -96,6 +107,8 @@ import { PromotionListComponent } from './promotion-list/promotion-list.componen
     ButtonModule,
     DialogModule,
     InputTextModule,
+    DataViewModule,
+    SplitButtonModule,
     MatIconModule,
     MatFormFieldModule,
     MatMenuModule,
@@ -114,12 +127,14 @@ import { PromotionListComponent } from './promotion-list/promotion-list.componen
     MatTableModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-
-    
-
     MatCardModule,
-    MatGridListModule
-
+    MatButtonToggleModule,
+    MatGridListModule,
+    MatStepperModule,
+    NgxMatMomentModule,
+    NgxMaterialTimepickerModule,
+    MatRadioModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

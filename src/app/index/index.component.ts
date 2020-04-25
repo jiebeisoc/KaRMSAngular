@@ -146,9 +146,10 @@ export class IndexComponent implements OnInit {
                 for (let reservation of reservations) {
                   let duration: number = reservation.duration;
                   console.log(reservation.date);
-                  let date: string = new Date(reservation.date.substring(0,20)).toString();
+                  var dateString = reservation.date.toString();
+                  let date: Date = new Date(dateString.substring(0, dateString.indexOf("[")));
                   console.log(date);
-                  let hour: number = Number(date.substring(16, 18));
+                  let hour: number = date.getHours();
                   console.log(hour);
                   for (let i = 0; i < duration; i++) {
                     if (hour == 12) {

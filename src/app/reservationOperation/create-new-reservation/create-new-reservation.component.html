@@ -1,0 +1,177 @@
+<app-header></app-header>
+
+<section id="content" class="content">
+    <mat-sidenav-container>
+        <mat-sidenav id="sidenav" mode="side" opened>
+            <app-main-menu></app-main-menu>
+        </mat-sidenav>
+
+        <mat-sidenav-content id="createReservationContent">
+            <h1>Create New Reservation</h1>
+
+            <form [formGroup]="reservationFormGroup" (ngSubmit)="create()">
+            <mat-horizontal-stepper linear  #stepper formArrayName="formArray">
+                
+                <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
+                        <ng-template matStepLabel>Choose Slot</ng-template>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Outlet</mat-label>
+                                <mat-select formControlName="outletCtrl" (selectionChange)="onChange()" required>
+                                    <mat-option>--</mat-option>
+                                    <mat-option *ngFor="let outlet of outlets" [value]="outlet">
+                                    {{outlet.outletName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="outletCtrl?.hasError('required')">
+                                    <strong>Required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Room Type</mat-label>
+                                <mat-select formControlName="roomTypeCtrl" (selectionChange)="onChange()" required>
+                                    <mat-option>--</mat-option>
+                                    <mat-option *ngFor="let roomType of roomTypes" [value]="roomType">
+                                    {{roomType.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="roomTypeCtrl?.hasError('required')">
+                                    <strong>Required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Date</mat-label>
+                                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="date" formControlName="dateCtrl" (dateChange)="dateChange()" readonly required>
+                                <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                                <mat-datepicker #date></mat-datepicker>
+                                <mat-error *ngIf="dateCtrl?.hasError('matDatepickerParse')">
+                                    <strong>Required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Time</mat-label>
+                                <input matInput [min]="minTime" [max]="maxTime" [ngxTimepicker]="time" [value]="minTime" formControlName="timeCtrl" readonly required>
+                                <ngx-material-timepicker #time [theme]="darkTheme"  [hoursOnly]=true [minutesGap]="0" (closed)="onChange()"></ngx-material-timepicker>
+                                <mat-error *ngIf="timeCtrl?.hasError('required')">
+                                    <strong>Required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Duration</mat-label>
+                                <input matInput type="number" min="1" max="12" formControlName="durationCtrl" (change)="onChange()" required>
+                                <span matSuffix>hour(s)</span>
+                                <mat-error *ngIf="durationCtrl?.hasError('required')">
+                                    <strong>Required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div>
+                            <button mat-button (click)="onCheck()" type="button">Check</button>
+                            <button mat-button matStepperNext [disabled]="!formArray?.get([0]).valid" type="button">Fill Details</button>
+                        </div>
+                </mat-step>
+
+                <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
+                    <ng-template matStepLabel>Fill in Details</ng-template>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Room</mat-label>
+                            <mat-select formControlName="roomCtrl" required>
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let room of rooms" [value]="room">
+                                {{room.roomNum}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="roomCtrl?.hasError('required')">
+                                <strong>Required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>No of People</mat-label>
+                            <input matInput type="number" min="1" max="12" formControlName="noOfPeopleCtrl" required>
+                            <mat-hint>Recommended capacity: {{roomTypeCtrl?.value.capacity}} </mat-hint>
+                            <mat-error *ngIf="noOfPeopleCtrl?.hasError('required')">
+                                <strong>Required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <mat-label hintLabel="Max 30 characters">Note</mat-label>
+                            <textarea matInput #input maxlength="30" placeholder="Any special requests?" formControlName="noteCtrl"></textarea>
+                            <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-button matStepperPrevious type="button">Back</button>
+                        <button mat-button matStepperNext (click)="onMakePayment(); test()" type="button">Make Payment</button>
+                    </div>
+                </mat-step>
+
+                <mat-step formGroupName="2" [stepControl]="formArray?.get([2])">
+                    <ng-template matStepLabel>Settle Payment</ng-template>
+                    <div>
+                        <mat-form-field >
+                            <mat-label>Promotion</mat-label>
+                            <mat-select formControlName="promotionCtrl" (selectionChange)="calculateTotalPrice()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let promotion of promotions" [value]="promotion">
+                                {{promotion.promotionName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Redeem Points</mat-label>
+                            <input matInput type="number" value="0" [min]="0" [max]="customerPoints" (change)="pointsChange();" formControlName="pointsCtrl">
+                            <mat-hint>1 point = $1</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <br/>
+                        <label>Payment Method: </label>
+                        <mat-radio-group formControlName="paymentMethodCtrl" (change)="paymentChange()" required>
+                            <mat-radio-button value="NOTPAID">Cash</mat-radio-button>&nbsp;&nbsp;&nbsp;
+                            <mat-radio-button value="PAID">Credit Card</mat-radio-button>
+                        </mat-radio-group> 
+                        <div id="paymentError" *ngIf="paymentMethodCtrl?.hasError('required')" class="errorText">
+                            <strong>Required</strong>
+                        </div> 
+                    </div>
+                    <br/>
+                    <div *ngIf="cautionMessage" style="color:red;">
+                        {{cautionMessage}}
+                    </div>
+                    <br/>
+                    <div>
+                        Total Price: <strong>${{totalPrice | number: '1.2-2'}}</strong>
+                    </div>
+                    <br/>
+                    <div>
+                        <button mat-button matStepperPrevious type="button">Back</button>
+                        <button mat-button type="submit">Confirm Reservation</button>
+                    </div>
+                </mat-step>
+
+            </mat-horizontal-stepper>
+            
+            </form>
+        </mat-sidenav-content>
+    </mat-sidenav-container>    
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

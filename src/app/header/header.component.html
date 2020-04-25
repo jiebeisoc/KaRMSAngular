@@ -13,28 +13,38 @@
 
     <div *ngIf="sessionService.getIsLogin() == true">
 
-        <div class="loginbox" style="color: honeydew;">
-            Welcome, {{sessionService.getCurrentCustomer().name}}
+        <div class="topnav">
+            <a routerLink="/index">Home</a>
+            <a routerLink="/aboutUs">About</a>
+            <a>Locate Us</a>
+            <a>Room</a>
+            <a routerLink="/promotions">Promotion</a>
 
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon style="font-size: 20px;">more_vert</mat-icon>
-            </button>
+            <div class="loginbox" style="color: honeydew;">
+                Welcome, {{sessionService.getCurrentCustomer().name}}
+    
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon style="font-size: 20px;">more_vert</mat-icon>
+                </button>
+    
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/index">
+                        <mat-icon>home</mat-icon>
+                        <span>Home</span>
+                    </button>
+                    <button mat-menu-item routerLink="/customerOperation/updateCustomer">
+                        <mat-icon>account_circle</mat-icon>
+                        <span>Manage account</span>
+                    </button>
+                    <button mat-menu-item button (click)="customerLogout()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </div> 
+        </div>
 
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="/index">
-                    <mat-icon>home</mat-icon>
-                    <span>Home</span>
-                </button>
-                <button mat-menu-item routerLink="/customerOperation/updateCustomer">
-                    <mat-icon>account_circle</mat-icon>
-                    <span>Manage account</span>
-                </button>
-                <button mat-menu-item button (click)="customerLogout()">
-                    <mat-icon>exit_to_app</mat-icon>
-                    <span>Logout</span>
-                </button>
-            </mat-menu>
-        </div>   
+          
     </div>
 
 </header>

@@ -7,6 +7,8 @@ import { catchError } from 'rxjs/operators';
 import { Outlet } from './outlet';
 import { RoomType } from './room-type';
 import { Room } from './room';
+import { SessionService } from './session.service';
+import { Reservation } from './reservation';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,11 +17,12 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class ReservationService {
 
   baseUrl: string = '/api/Reservation';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private sessionService: SessionService) { }
 
   retrieveReservationByDate(date: string, outlet: Outlet, roomType: RoomType): Observable<any> {
 
@@ -34,13 +37,74 @@ export class ReservationService {
     );
   }
 
+  retrieveUpcomingReservationByCustomer(): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl+'/retrieveUpcomingReservationByCustomer?username=' + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  retrievePastReservationByCustomer(): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl+'/retrievePastReservationByCustomer?username=' + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getReservation(reservationId: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveReservation/" + reservationId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  calculateTotalPrice(time: number, duration: number, roomTypeId: number, promotionId: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl+"/calculateTotalPrice?time=" + time + "&duration=" + duration + "&roomTypeId=" + roomTypeId + "&promotionId=" + promotionId).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  createNewReservation(newReservation: Reservation, roomId: number, outletId: number, promotionId: number, status: string): Observable<any> {
+    let createReservationReq = {
+      "username": this.sessionService.getUsername(),
+      "password": this.sessionService.getPassword(),
+      "roomId": roomId,
+      "outletId": outletId,
+      "promotionId": promotionId,
+      "status": status,
+      "newReservation": newReservation
+    };
+
+    return this.httpClient.put<any>(this.baseUrl, createReservationReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateReservation(reservationToUpdate: Reservation, roomId: number, outletId: number, promotionId: number): Observable<any> {
+    let updateReservationReq = {
+      "username": this.sessionService.getUsername(),
+      "password": this.sessionService.getPassword(),
+      "roomId": roomId,
+      "outletId": outletId,
+      "promotionId": promotionId,
+      "reservation": reservationToUpdate
+    };
+
+    return this.httpClient.post<any>(this.baseUrl + "/updateReservation", updateReservationReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteReservation(reservationId: number): Observable<any> {
+    return this.httpClient.delete<any>(this.baseUrl + "/" + reservationId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = '';
     
     if (error.error instanceof ErrorEvent) {
         errorMessage = 'An unknown error has occurred: ' + error.error.message;
     } else {
-        errorMessage = 'An HTTP has occurred: ' + `HTTP ${error.status}: ${error.error.message}`;
+        errorMessage = 'An HTTP error has occurred: ' + `HTTP ${error.status}: ${error.error.message}`;
     }
     return throwError(errorMessage)
   }

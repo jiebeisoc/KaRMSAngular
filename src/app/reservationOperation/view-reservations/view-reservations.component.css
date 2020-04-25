@@ -1,0 +1,57 @@
+#reservationContent {
+    display: block;
+    text-align: center;
+    width: 60%;
+    margin-left: 28%;
+    margin-bottom: 40px;
+}
+
+h1 {
+    color: aliceblue;
+}
+
+mat-button-toggle-group {
+    height: 30px;  
+}
+
+mat-button-toggle {
+    width: 100px;
+}
+
+.button-row button {
+    width: 130px;
+    margin-bottom: 10px;
+}
+
+::ng-deep mat-button-toggle.split-button-1 {
+    width: max-content;
+}
+
+:host ::ng-deep .mat-button-toggle-label-content{
+    line-height: 0px !important;
+    padding: 15px 10px 10px 10px !important
+  }
+
+.reservation-badge {
+    border-radius: 2px;
+    padding: .25em .5em;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+
+}
+
+.status-PAID {
+    background-color: #C8E6C9;
+    color: #256029;
+}
+
+.status-NOTPAID {
+    background-color: #FFCDD2;
+    color: #C63737;
+}
+
+.status-COMPLETED {
+    background-color: #B3E5FC;
+    color: #23547B;
+}

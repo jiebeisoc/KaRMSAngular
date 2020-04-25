@@ -17,8 +17,8 @@ const TREE_DATA: MenuNode[] = [
   {
     name: 'Reservation',
     children: [
-      {name: 'Create Reservation', link: '/index'},
-      {name: 'Past Reservation', link: '/index'}
+      {name: 'Create Reservation', link: '/reservationOperation/createNewReservation'},
+      {name: 'View Reservations', link: '/reservationOperation/viewReservations'}
     ]
   },
   {

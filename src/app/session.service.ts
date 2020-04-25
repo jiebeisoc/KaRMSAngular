@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Customer } from './customer';
 import { FoodOrderTransactionLineItem } from './food-order-transaction-line-item';
+import { Reservation } from './reservation';
 
 @Injectable({
   providedIn: 'root'
@@ -91,6 +92,14 @@ export class SessionService {
 
   setTotalAmount(totalAmount: number) {
     sessionStorage.totalAmount = totalAmount;
+  }
+
+  getSelectedReservation(): Reservation {
+    return JSON.parse(sessionStorage.selectedReservation);
+  }
+
+  setSelectedReservation(selectedReservation: Reservation): void {
+    sessionStorage.selectedReservation = JSON.stringify(selectedReservation);
   }
 
 }

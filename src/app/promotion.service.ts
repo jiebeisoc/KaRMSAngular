@@ -23,6 +23,12 @@ export class PromotionService {
     );
   }
 
+  retrievePromotionsByTime(time: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl+"/retrievePromotionsByTime?time=" + time).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = '';
     

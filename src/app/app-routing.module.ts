@@ -18,6 +18,7 @@ import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-trans
 import { CreateNewReservationComponent } from './reservationOperation/create-new-reservation/create-new-reservation.component';
 import { ViewReservationsComponent } from './reservationOperation/view-reservations/view-reservations.component';
 import { UpdateReservationComponent } from './reservationOperation/update-reservation/update-reservation.component';
+import { OutletListComponent } from './outlet-list/outlet-list.component';
 
 
 const routes: Routes = [
@@ -40,7 +41,8 @@ const routes: Routes = [
   { path: 'foodOrderOperation/viewTransactionDetails', component:ViewTransactionDetailsComponent},
   { path: 'reservationOperation/viewReservations', component: ViewReservationsComponent},
   { path: 'reservationOperation/createNewReservation', component: CreateNewReservationComponent},
-  { path: 'reservationOperation/updateReservation', component: UpdateReservationComponent}
+  { path: 'reservationOperation/updateReservation', component: UpdateReservationComponent},
+  { path: 'locateUs', component: OutletListComponent },
 ];
 
 @NgModule({

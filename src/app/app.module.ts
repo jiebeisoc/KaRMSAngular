@@ -64,6 +64,7 @@ import { CreateNewReservationComponent } from './reservationOperation/create-new
 import { UpdateReservationComponent } from './reservationOperation/update-reservation/update-reservation.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { OutletListComponent } from './outlet-list/outlet-list.component';
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CreateNewReservationComponent,
     ViewDialogComponent,
     DeleteDialogComponent,
-    UpdateReservationComponent
+    UpdateReservationComponent,
+    OutletListComponent
   ],
   
   imports: [

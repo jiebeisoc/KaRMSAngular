@@ -45,6 +45,20 @@ div {
     background-color: transparent;
 }
 
+.logo img {
+    padding-top: 5px;
+    float: left;
+    width: 80px;
+    height: 80px;
+
+  }
+  
+  .logo p {
+    top: 18px;
+    left: 10px;
+    text-align: left;
+  }
+
 .mainmenu {
     display: block;
     width: 20%;

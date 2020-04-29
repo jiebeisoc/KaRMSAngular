@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 
 import { SessionService } from './session.service';
 import { Customer } from './customer';
+import { Song } from './song';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,6 +24,47 @@ export class CustomerService {
 
   customerLogin(username: string, password: string): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl + "/customerLogin?username=" + username + "&password=" + password).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  retrieveFavouritePlaylist(): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveFavouritePlaylist?customerId=" + this.sessionService.getCurrentCustomer().customerId).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  addSongToFavouritePlaylist(song: Song): Observable<any> {
+    let updateFavouritePlaylistReq = {
+      "song": song,
+      "customerId": this.sessionService.getCurrentCustomer().customerId
+      
+    };
+
+    return this.httpClient.post<any>(this.baseUrl + "/addSongToFavouritePlaylist", updateFavouritePlaylistReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteSongFromFavouritePlaylist(song: Song): Observable<any> {
+    let updateFavouritePlaylistReq = {
+      "song": song,
+      "customerId": this.sessionService.getCurrentCustomer().customerId
+      
+    };
+
+    return this.httpClient.post<any>(this.baseUrl + "/deleteSongFromFavouritePlaylist", updateFavouritePlaylistReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  addFavouritePlaylistToSongQueue(reservationId: number): Observable<any> {
+    let favouritePlaylistSongQueueReq = {
+      "customerId": this.sessionService.getCurrentCustomer().customerId,
+      "reservationId": reservationId
+    };
+
+    return this.httpClient.post<any>(this.baseUrl + "/addFavouritePlaylistToSongQueue", favouritePlaylistSongQueueReq, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

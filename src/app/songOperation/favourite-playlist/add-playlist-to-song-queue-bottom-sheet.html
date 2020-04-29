@@ -1,0 +1,7 @@
+<mat-action-list>
+    <button mat-list-item *ngFor="let reservation of data.reservations" (click)="onClick(reservation)">
+        <mat-icon mat-list-icon>library_music</mat-icon>
+        <div mat-line>Reservation <b>{{reservation.reservationId}}</b></div>
+        <div mat-line>{{formatDate(reservation.date) | date:'EEEE dd MMMM yyyy hh:mm a'}}</div> 
+    </button>
+</mat-action-list>

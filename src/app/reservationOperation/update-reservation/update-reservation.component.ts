@@ -303,7 +303,7 @@ export class UpdateReservationComponent implements OnInit {
       );
 
     } else {
-      console.log("form not valid");
+      console.log("Form not valid");
     } 
   }
  

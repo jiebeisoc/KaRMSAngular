@@ -30,27 +30,13 @@
                     <div style="margin-bottom: 5px;">Duration: &nbsp;{{reservation.duration}} hour(s)</div>
                     <div style="margin-bottom: 5px;">Total Price: &nbsp;${{reservation.totalPrice | number: '1.2-2'}}&nbsp;&nbsp;<span [class]="'reservation-badge status-' + reservation.status">{{reservation.status}}</span></div>
                 </span>
-                <span style="width: 30%">
-                    <!---
-                    <mat-button-toggle-group>
-                        <mat-button-toggle class="split-button-1">Details</mat-button-toggle>
-                        <mat-button-toggle class="split-button-1 drop-down-button" [matMenuTriggerFor]="dropdownMenuOne">
-                            <mat-icon>more_vert</mat-icon>
-                        </mat-button-toggle>
-                      </mat-button-toggle-group>
-                      
-                      <mat-menu #dropdownMenuOne="matMenu">
-                        <button mat-menu-item>Update</button>
-                        <button mat-menu-item>Delete</button>
-                    </mat-menu>
-                    -->
-                    
+                <span style="width: 30%">                   
                     <div class="button-row" style="margin-right: 20px;">
                         <button mat-raised-button (click)="openViewDialog(reservation)">
                             <i class="fas fa-info"></i>&nbsp;&nbsp;<span>Details</span>
                         </button><br/>
-                        <button mat-raised-button>
-                            <i class="fas fa-music"></i>&nbsp;&nbsp;<span>Song Playlist</span>
+                        <button mat-raised-button (click)="viewSongQueue(reservation)">
+                            <mat-icon>queue_music</mat-icon>&nbsp;<span>Song Queue</span>
                         </button>
                     </div>
                 </span>

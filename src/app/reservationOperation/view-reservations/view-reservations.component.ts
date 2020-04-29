@@ -26,9 +26,8 @@ export class ViewReservationsComponent implements OnInit {
 
   isUpcoming: string;
 
-  selectedReservation: Reservation;
   promotionString: string;
-  noteString;
+  noteString: string;
 
   upcomingReservations: Reservation[];
   pastReservations: Reservation[];
@@ -66,29 +65,19 @@ export class ViewReservationsComponent implements OnInit {
     
   }
 
-  checkAccessRight() {
-		if(!this.sessionService.checkAccessRight(this.router.url)) {
-			this.router.navigate(["/accessRightError"]);
-		}
-  }
-
   onChange() {
     if (this.isUpcoming === "true") {
       this.reservations = this.upcomingReservations;
-      console.log("upcoming");
+      //console.log("upcoming");
     } else if (this.isUpcoming === "false") {
       this.reservations = this.pastReservations;
-      console.log("past");
+      //console.log("past");
     }
   }
 
   formatDate(date: string) {
     var str = date.slice(0, date.indexOf("["));
     return str;
-  }
-  
-  clear() {
-    this.isUpcoming = "true";
   }
 
   openViewDialog(reservation: Reservation): void {
@@ -118,12 +107,26 @@ export class ViewReservationsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(
       result => {
-        this.selectedReservation = null;
+        this.sessionService.setSelectedReservation(null);
         console.log('viewDialog was closed');
       }
     );
   }
 
+  viewSongQueue(reservation: Reservation) {
+    this.sessionService.setSelectedReservation(reservation);
+    this.router.navigate(["/songOperation/songQueue"]);
+  }
+
+  clear() {
+    this.isUpcoming = "true";
+  }
+
+  checkAccessRight() {
+		if(!this.sessionService.checkAccessRight(this.router.url)) {
+			this.router.navigate(["/accessRightError"]);
+		}
+  }
 }
 
 @Component({
@@ -152,7 +155,7 @@ export class ViewReservationsComponent implements OnInit {
 
     onUpdate() {
       if (this.sessionService.getSelectedReservation().status === "PAID") {
-        this.snackBar.open("Reservation is paid! No changes can be made.", '', {
+        this.snackBar.open("Reservation is paid, no changes can be made! Cancel and make a new reservation if needed.", '', {
           duration: 5000,
           panelClass: ['snackbar']
         });

@@ -19,7 +19,7 @@ const TREE_DATA: MenuNode[] = [
     children: [
       {name: 'View Available Rooms', link: '/index'},
       {name: 'Create Reservation', link: '/reservationOperation/createNewReservation'},
-      {name: 'View Reservations', link: '/reservationOperation/viewReservations'}
+      {name: 'My Reservations', link: '/reservationOperation/viewReservations'}
     ]
   },
   {
@@ -33,7 +33,8 @@ const TREE_DATA: MenuNode[] = [
   {
     name: 'Songs',
     children: [
-      {name: 'Songs', link: '/songOperation/songList'}
+      {name: 'Songs', link: '/songOperation/songList'},
+      {name: 'My Favourite Playlist', link: 'songOperation/favouritePlaylist'}
     ]
   }
 ]

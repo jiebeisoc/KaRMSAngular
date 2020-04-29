@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -13,20 +13,18 @@ import { Song } from 'src/app/song';
 import { SongCategory } from 'src/app/song-category';
 import { CustomerService } from '../../customer.service';
 import { Reservation } from 'src/app/reservation';
-import { ReservationService } from '../../reservation.service';
-
+import { ReservationService } from 'src/app/reservation.service';
 
 @Component({
-  selector: 'app-song-list',
-  templateUrl: './song-list.component.html',
-  styleUrls: ['./song-list.component.css']
+  selector: 'app-favourite-playlist',
+  templateUrl: './favourite-playlist.component.html',
+  styleUrls: ['./favourite-playlist.component.css']
 })
-export class SongListComponent implements OnInit {
+export class FavouritePlaylistComponent implements OnInit {
 
   songCategories: SongCategory[] = [];
   songs: Song[] = [];
   selectedSongCategory: SongCategory;
-  errorMessage: string;
 
   displayedColumns: string[] = ['songId', 'songTitle', 'singer', 'action'];
   data = new MatTableDataSource();
@@ -43,21 +41,18 @@ export class SongListComponent implements OnInit {
     public sessionService: SessionService,
     private reservationService: ReservationService,
     private router: Router,
-    private snackBar: MatSnackBar,
-    private bottomSheet: MatBottomSheet) { }
+    private bottomSheet: MatBottomSheet,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.checkAccessRight();
 
-    this.songService.viewAllSongs().subscribe(
+    this.customerService.retrieveFavouritePlaylist().subscribe(
       response => {
         this.songs = response.songs;
-        this.data = new MatTableDataSource(response.songs);
+        this.data = new MatTableDataSource(this.songs);
         this.resultsLength = this.songs.length;
         this.data.paginator = this.paginator;
-      },
-      error => {
-        this.errorMessage = error;
       }
     );
 
@@ -72,7 +67,6 @@ export class SongListComponent implements OnInit {
         this.reservations = response.reservations;
       }
     )
-
   }
 
   applyFilter(event: Event) {
@@ -84,17 +78,7 @@ export class SongListComponent implements OnInit {
   filterCategory(categoryId: number) {
 
     if (categoryId != 0) {
-      this.songService.viewSongByCategory(categoryId).subscribe(
-        response => {
-          this.songs = response.songs;
-          this.data = new MatTableDataSource(response.songs);
-          this.resultsLength = this.songs.length;
-          this.data.paginator = this.paginator;
-
-        }
-      )
-    } else {
-      this.songService.viewAllSongs().subscribe(
+      this.songService.viewFavouritePlaylistByCategory(categoryId).subscribe(
         response => {
           this.songs = response.songs;
           this.data = new MatTableDataSource(response.songs);
@@ -102,40 +86,43 @@ export class SongListComponent implements OnInit {
           this.data.paginator = this.paginator;
         }
       );
+    } else {
+      this.customerService.retrieveFavouritePlaylist().subscribe(
+        response => {
+          this.songs = response.songs;
+          this.data = new MatTableDataSource(this.songs);
+          this.resultsLength = this.songs.length;
+          this.data.paginator = this.paginator;
+        }
+      );
     }
   }
 
-  addToFavouritePlaylist(song: Song) {
-
-    this.customerService.addSongToFavouritePlaylist(song).subscribe(
-      response => {
-        this.snackBar.open("Added song to your favourite playlist!", '', {
-          duration: 5000,
-          panelClass: ['snackbar']
-        });  
-      },
-      error => {
-        var string = error.slice(error.lastIndexOf(":")+2);
-        if (string === "undefined") {
-          this.snackBar.open("Invalid options!", '', {
-            duration: 5000,
-            panelClass: ['snackbar']
-          });
-        } else {
-          this.snackBar.open(string, '', {
-            duration: 5000,
-            panelClass: ['snackbar']
-          });
-        }
-        console.log("******** SongListComponent.ts: "  + error);
-      }
-    )
+  addSongs() {
+    this.router.navigate(["/songOperation/songList"]);
   }
 
-  addToSongQueue(song: Song) {
-    const bottomSheetRef = this.bottomSheet.open(AddToSongQueueBottomSheet, {
-      data: {reservations: this.reservations, selectedSong: song}
+  addPlaylistToSongQueue() {
+    const bottomSheetRef = this.bottomSheet.open(AddPlaylistToSongQueueBottomSheet, {
+      data: {reservations: this.reservations}
     });
+  }
+
+  deleteSong(song: Song) {
+    this.customerService.deleteSongFromFavouritePlaylist(song).subscribe(
+      response => {
+        const index = this.songs.findIndex(s => s.songId === song.songId);
+        this.songs.splice(index, 1);
+        this.data = new MatTableDataSource(this.songs);
+        this.resultsLength = this.songs.length;
+        this.data.paginator = this.paginator;
+
+        this.snackBar.open("Deleted song from playlist!", '', {
+          duration: 5000,
+          panelClass: ['snackbar']
+        });
+      }
+    )
   }
 
   checkAccessRight() {
@@ -147,48 +134,33 @@ export class SongListComponent implements OnInit {
 }
 
 @Component({
-  selector: 'add-to-song-queue-bottom-sheet',
-  templateUrl: 'add-to-song-queue-bottom-sheet.html',
+  selector: 'add-playlist-to-song-queue-bottom-sheet',
+  templateUrl: 'add-playlist-to-song-queue-bottom-sheet.html',
 })
-export class AddToSongQueueBottomSheet {
-  
-  constructor(private bottomSheetRef: MatBottomSheetRef<AddToSongQueueBottomSheet>,
+export class AddPlaylistToSongQueueBottomSheet {
+
+  constructor(private bottomSheetRef: MatBottomSheetRef<AddPlaylistToSongQueueBottomSheet>,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
-    private reservationService: ReservationService,
+    private customerService: CustomerService,
     private snackBar: MatSnackBar) {}
 
-    formatDate(date: Date) {
-      var str = date.toString().slice(0, date.toString().indexOf("["));
-      return str;
-    }
+  formatDate(date: Date) {
+    var str = date.toString().slice(0, date.toString().indexOf("["));
+    return str;
+  }
 
-    onClick(reservation: Reservation) {
+  onClick(reservation: Reservation) {
 
-      this.reservationService.addSongToQueue(this.data.selectedSong, reservation).subscribe(
-        response => {
-          this.snackBar.open("Song is added to song queue!", '', {
-            duration: 5000,
-            panelClass: ['snackbar']
-          });
-        },
-        error => {
-          var string = error.slice(error.lastIndexOf(":")+2);
-          if (string === "undefined") {
-            this.snackBar.open("Invalid options!", '', {
-              duration: 5000,
-              panelClass: ['snackbar']
-            });
-          } else {
-            this.snackBar.open(string, '', {
-              duration: 5000,
-              panelClass: ['snackbar']
-            });
-          }
-          console.log("******** SongListComponent.ts: "  + error);
-        }
-      );
-      
-      this.bottomSheetRef.dismiss();
-    }
+    this.customerService.addFavouritePlaylistToSongQueue(reservation.reservationId).subscribe(
+      response => {
+        this.snackBar.open("Playlist is added to song queue!", '', {
+          duration: 5000,
+          panelClass: ['snackbar']
+        });
+      }
+    )
+
+    this.bottomSheetRef.dismiss();
+  }
+
 }
-

@@ -4,7 +4,27 @@
 
     <app-main-menu></app-main-menu>
     <div style="margin-left: 16%;">
-
+        <br/>
+        <div style="font-size: 25px;">
+            Song Queue (Reservation ID: {{selectedReservation.reservationId}})
+            <button mat-icon-button [matMenuTriggerFor]="menu" style="font-size: 25px;">
+                <mat-icon>add_box</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="addSongs()">
+                    <mat-icon>playlist_add</mat-icon>
+                    <span>Add Songs</span>
+                </button>
+                <button mat-menu-item (click)="addQueueToFavouritePlaylist()">
+                    <mat-icon>queue_music</mat-icon>
+                    <span>Add Queue to Favourite Playlist</span>
+                </button>
+                <button mat-menu-item (click)="saveQueueAsFavouritePlaylist()">
+                    <mat-icon>queue_music</mat-icon>
+                    <span>Save Queue as Favourite Playlist</span>
+                </button>
+            </mat-menu>
+        </div>
         <mat-form-field style="width: 70%;">
             <mat-label>Search</mat-label>
             <input matInput (keyup)="applyFilter($event)">
@@ -42,19 +62,9 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell style="border: hidden;" *matHeaderCellDef></th>
                     <td mat-cell style="border: hidden;" *matCellDef="let song"> 
-                        <button mat-icon-button [matMenuTriggerFor]="menu">
-                            <mat-icon>add</mat-icon>
+                        <button mat-icon-button (click)="deleteSong(song)">
+                            <mat-icon>delete_forever</mat-icon>
                         </button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="addToFavouritePlaylist(song)">
-                                <mat-icon>playlist_add</mat-icon>
-                                <span>Add to Favourite Playlist</span>
-                            </button>
-                            <button mat-menu-item (click)="addToSongQueue(song)">
-                                <mat-icon>queue_music</mat-icon>
-                                <span>Add to Song Queue</span>
-                            </button>
-                        </mat-menu>
                     </td>
                 </ng-container>
 

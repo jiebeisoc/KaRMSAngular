@@ -1,3 +1,5 @@
+import { Song } from './song';
+
 export class Customer {
 
     customerId: number;

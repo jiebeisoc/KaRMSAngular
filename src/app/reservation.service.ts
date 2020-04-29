@@ -9,6 +9,7 @@ import { RoomType } from './room-type';
 import { Room } from './room';
 import { SessionService } from './session.service';
 import { Reservation } from './reservation';
+import { Song } from './song';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -51,6 +52,56 @@ export class ReservationService {
 
   getReservation(reservationId: number): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl + "/retrieveReservation/" + reservationId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  retrieveSongQueue(reservationId: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveSongQueue?reservationId=" + reservationId).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  addSongToQueue(song: Song, reservation: Reservation): Observable<any> {
+    let updateSongQueueReq = {
+      "song": song,
+      "reservation": reservation
+    };
+
+    return this.httpClient.post<any>(this.baseUrl + "/addSongToQueue", updateSongQueueReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteSongFromQueue(song: Song, reservation: Reservation): Observable<any> {
+    let updateSongQueueReq = {
+      "song": song,
+      "reservation": reservation
+    };
+
+    return this.httpClient.post<any>(this.baseUrl + "/deleteSongFromQueue", updateSongQueueReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  addQueueToFavouritePlaylist(reservationId: number): Observable<any> {
+    let favouritePlaylistSongQueueReq = {
+      "customerId": this.sessionService.getCurrentCustomer().customerId,
+      "reservationId": reservationId
+    };
+
+    return this.httpClient.post<any>(this.baseUrl + "/addQueueToFavouritePlaylist", favouritePlaylistSongQueueReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  saveQueueAsFavouritePlaylist(reservationId: number): Observable<any> {
+    let favouritePlaylistSongQueueReq = {
+      "customerId": this.sessionService.getCurrentCustomer().customerId,
+      "reservationId": reservationId
+    };
+
+    return this.httpClient.post<any>(this.baseUrl + "/saveQueueAsFavouritePlaylist", favouritePlaylistSongQueueReq, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

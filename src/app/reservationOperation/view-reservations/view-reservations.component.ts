@@ -155,7 +155,7 @@ export class ViewReservationsComponent implements OnInit {
 
     onUpdate() {
       if (this.sessionService.getSelectedReservation().status === "PAID") {
-        this.snackBar.open("Reservation is paid, no changes can be made! Cancel and make a new reservation if needed.", '', {
+        this.snackBar.open("Reservation is paid, no changes can be made!", '', {
           duration: 5000,
           panelClass: ['snackbar']
         });

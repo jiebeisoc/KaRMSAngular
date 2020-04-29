@@ -265,7 +265,7 @@ export class UpdateReservationComponent implements OnInit {
 
   pointsChange() {
     this.newPoints = this.reservationToUpdate.pointsRedeemed;
-    this.reservationToUpdate.totalPrice = this.reservationToUpdate.totalPrice + this.oldPoints - this.newPoints;
+    this.reservationToUpdate.totalPrice = this.reservationToUpdate.totalPrice + (this.oldPoints * 0.1) - (this.newPoints * 0.1);
     console.log("New value: " + this.newPoints + "\n" + "Old value: " + this.oldPoints);
     this.oldPoints = this.newPoints;
   }
@@ -318,6 +318,10 @@ export class UpdateReservationComponent implements OnInit {
     console.log("promotionId: " + this.promotionId);
     console.log("pointsRedeemed: " + this.reservationToUpdate.pointsRedeemed);
     console.log("totalPrice: " + this.reservationToUpdate.totalPrice);
+  }
+
+  onBack() {
+    this.router.navigate(["/reservationOperation/viewReservations"]);
   }
 
   checkAccessRight() {

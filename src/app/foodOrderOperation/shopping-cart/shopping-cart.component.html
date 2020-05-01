@@ -6,10 +6,10 @@
     <app-main-menu></app-main-menu>
     <br />
 
-    <p-panel>
+    <div style="text-align: center; position: fixed; left: 50%; transform: translate(-50%, 0%);">
    
 
-        <div style="color: ivory; transform: translate(48%, 0%);">
+        <div style="color: ivory;">
             <a routerLink="/foodOrderOperation/checkout" class="button fancy-button" style="color: ivory;">
                 <i class="material-icons" style="color: ivory;">shopping_cart</i>Checkout
             </a>
@@ -22,7 +22,7 @@
         </div>
 
 
-        <p-table [value]='transactionLineItems' style=" width: 85%; text-align: center; position:relative; left: 20%; ">
+        <p-table [value]='transactionLineItems'>
             <ng-template pTemplate="header">
                 <tr>
                     <td colspan="6">
@@ -66,14 +66,14 @@
             </div>
         </p-dialog>
 
-        <div style="color: ivory; transform: translate(48%, 0%);">
+        <div style="color: ivory;">
             Total: ${{totalAmt}}
            
         </div>
 
 
 
-    </p-panel>
+    </div>
 
 </section>
 

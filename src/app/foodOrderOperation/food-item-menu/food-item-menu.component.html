@@ -7,36 +7,38 @@
 <app-main-menu></app-main-menu>	 
     <br/>
 
-    
+    <article>
   
-    <p-panel style="text-align: center; position: relative; left: 20%; transform: translate(-50%, -50%); ">
-        
-        <p-table [value]='foodItems' width="40%">
-            <ng-template pTemplate="header">
-                <tr >
-                    <td colspan="6"><h1 style="text-align: center; margin-top:20px;">All Food Items  </h1></td>
-                </tr>
-               
-               
-                <tr>
-                    <th>SKU Code</th>
-                    <th>Name</th>
-                    <th>Unit Price</th>
-                    <th>Action</th>
-                   
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-foodItem>
-                <tr>
-                    <td>{{foodItem.skuCode}}</td>
-                    <td>{{foodItem.name}}</td>
-                    <td>{{foodItem.unitPrice}}</td>
-                    <td><p-button label="View" routerLink="/foodOrderOperation/viewFoodItemDetails/{{foodItem.foodItemId}}"></p-button></td>
-                </tr>
-            </ng-template>
-        </p-table>
+        <div style="text-align: center; position: fixed; left: 50%; transform: translate(-50%, 0%);">
+            
+            <p-table [value]='foodItems'>
+                <ng-template pTemplate="header">
+                    <tr >
+                        <td colspan="6"><h1 style="text-align: center; margin-top:20px;">All Food Items  </h1></td>
+                    </tr>
+                
+                
+                    <tr>
+                        <th>SKU Code</th>
+                        <th>Name</th>
+                        <th>Unit Price</th>
+                        <th>Action</th>
+                    
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-foodItem>
+                    <tr>
+                        <td>{{foodItem.skuCode}}</td>
+                        <td>{{foodItem.name}}</td>
+                        <td>{{foodItem.unitPrice}}</td>
+                        <td><p-button label="View" routerLink="/foodOrderOperation/viewFoodItemDetails/{{foodItem.foodItemId}}"></p-button></td>
+                    </tr>
+                </ng-template>
+            </p-table>
 
-    </p-panel>
+        </div>
+
+    </article>
 
 </section>
 

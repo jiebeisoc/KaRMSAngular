@@ -10,10 +10,10 @@
 
     
   
-    <p-panel style="text-align: center; position: relative; left: 20%; transform: translate(-50%, -50%); ">
+    <div style="text-align: center; position: relative; left: 50%; transform: translate(-50%, 0%); width: 70%">
         
         
-        <p-table [value]='pastFoodOrerList' width="40%">
+        <p-table [value]='pastFoodOrerList'>
             <ng-template pTemplate="header">
                 <tr >
                     <td colspan="6"><h1 style="text-align: center; margin-top:20px;">Past Food Orders </h1></td>
@@ -47,7 +47,7 @@
         </p-table>
         <h5>*Once the food order status is confirmed, you can not cancel it.</h5>
 
-    </p-panel>
+    </div>
 
 </section>
 

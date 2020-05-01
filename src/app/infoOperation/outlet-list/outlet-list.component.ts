@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Outlet } from '../outlet';
-import { OutletService } from '../outlet.service';
+import { Outlet } from '../../outlet';
+import { OutletService } from '../../outlet.service';
+import { SessionService } from '../../session.service';
 
 export class OutletView {
   outletName: string;
@@ -28,7 +29,8 @@ export class OutletListComponent implements OnInit {
   outletViews: OutletView[] = [];
   errorMessage: string;
 
-  constructor(public outletService: OutletService) { }
+  constructor(public outletService: OutletService,
+    public sessionService: SessionService) { }
 
   ngOnInit(): void {
     this.outletService.retrieveAllOutlets().subscribe(

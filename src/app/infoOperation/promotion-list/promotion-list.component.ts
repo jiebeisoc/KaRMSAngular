@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Promotion } from '../promotion';
-import { PromotionService } from '../promotion.service'; 
+import { Promotion } from '../../promotion';
+import { PromotionService } from '../../promotion.service';
+import { SessionService } from '../../session.service'; 
 
 export class PromotionView {
   promotionName: string;
@@ -33,7 +34,8 @@ export class PromotionListComponent implements OnInit {
   data = new MatTableDataSource();
 
   constructor(public promotionService: PromotionService,
-    public datePipe: DatePipe) { }
+    public datePipe: DatePipe,
+    public sessionService: SessionService) { }
 
   ngOnInit(): void {
 

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {FlatTreeControl} from '@angular/cdk/tree';
 
-import { SessionService } from '../session.service';
+import { SessionService } from '../../session.service';
 
 
 interface MenuNode {
@@ -14,6 +14,15 @@ interface MenuNode {
 }
 
 const TREE_DATA: MenuNode[] = [
+  {
+    name: 'Info',
+    children: [
+      {name: 'About', link: '/aboutUs'},
+      {name: 'Locate Us', link: '/locateUs'},
+      {name: 'Promotions', link: '/promotion'},
+      {name: 'Price', link: '/price'},
+    ]
+  },
   {
     name: 'Reservation',
     children: [
@@ -56,8 +65,9 @@ export class MainMenuComponent implements OnInit {
     public sessionService: SessionService) { 
       this.dataSource.data = TREE_DATA;
     }
-
+  
   ngOnInit(): void {
+    this.treeControl.expandAll();
   }
 
   public customerLogout(): void
@@ -79,7 +89,7 @@ export class MainMenuComponent implements OnInit {
       link: node.link,
       level: level,
     };
-  }
+  } 
 
   treeControl = new FlatTreeControl<FlatNode>(
     node => node.level, node => node.expandable);
@@ -90,5 +100,7 @@ export class MainMenuComponent implements OnInit {
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   hasChild = (_: number, node: FlatNode) => node.expandable;
+
+  
 
 }

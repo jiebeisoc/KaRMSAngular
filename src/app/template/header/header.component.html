@@ -6,11 +6,11 @@
             <p style="color: #950740; font-weight: bolder; padding: 14px; font-size: 40px;">&nbsp;Sing-Ah Karaoke</p>
         </div>
     </button>
-    <div class="topnav" *ngIf="sessionService.getIsLogin() != true" >
+    <div class="topnav" *ngIf="sessionService.getIsLogin() != true">
         <a routerLink="/index">Home</a>
         <a routerLink="/aboutUs">About</a>
         <a routerLink="/locateUs">Locate Us</a>
-        <a>Room</a>
+        <a routerLink="/price">Price</a>
         <a routerLink="/promotions">Promotion</a>
     </div>
 
@@ -18,13 +18,13 @@
 
         <div class="topnav">
 
-            <div class="loginbox" style="color: honeydew;">
+            <div class="loginbox" style="color: white;">
                 Welcome, {{sessionService.getCurrentCustomer().name}}
-    
+
                 <button mat-icon-button [matMenuTriggerFor]="menu">
                     <mat-icon style="font-size: 20px;">more_vert</mat-icon>
                 </button>
-    
+
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item routerLink="/index">
                         <mat-icon>home</mat-icon>
@@ -34,15 +34,19 @@
                         <mat-icon>account_circle</mat-icon>
                         <span>Manage account</span>
                     </button>
+                    <button mat-menu-item routerLink="/customerOperation/myMembershipPoints">
+                        <mat-icon>account_balance_wallet</mat-icon>
+                        <span>My points</span>
+                    </button>
                     <button mat-menu-item button (click)="customerLogout()">
                         <mat-icon>exit_to_app</mat-icon>
                         <span>Logout</span>
                     </button>
                 </mat-menu>
-            </div> 
+            </div>
         </div>
 
-          
+
     </div>
 
 </header>

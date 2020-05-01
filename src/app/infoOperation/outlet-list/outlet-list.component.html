@@ -1,0 +1,69 @@
+<app-header></app-header>
+
+<section id="content" class="content">
+
+    <div *ngIf="sessionService.getIsLogin() == true">
+        <app-main-menu></app-main-menu>
+    </div>
+
+    <div *ngIf="sessionService.getIsLogin() == true" style="margin-left: 20%;">
+
+        <mat-grid-list cols="3">
+
+            <div *ngFor="let outlet of outletViews">
+                <mat-grid-tile>
+                    <mat-card style="background-color: transparent;">
+                        <mat-card-header>
+                            <mat-card-title>{{outlet.outletName}}</mat-card-title>
+
+                        </mat-card-header>
+
+                        <img src="../../../assets/images/outlets/{{outlet.outletName}}.jpg" width="210px" style="margin-top: 5px; margin-left: 15px;">
+
+                        <mat-card-content style="margin-left: 15px;">
+                            <mat-card-subtitle>Address: {{outlet.outletAddress}}</mat-card-subtitle>
+                            <mat-card-subtitle>Phone No.: {{outlet.outletPhone}}</mat-card-subtitle>
+                            <mat-card-subtitle>Operating Hour: {{outlet.operatingHour}}</mat-card-subtitle>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
+            </div>
+
+        </mat-grid-list>
+
+    </div>
+
+    <div *ngIf="sessionService.getIsLogin() == false">
+
+        <mat-grid-list cols="3">
+
+            <div *ngFor="let outlet of outletViews">
+                <mat-grid-tile>
+                    <mat-card style="background-color: transparent;">
+                        <mat-card-header>
+                            <mat-card-title>{{outlet.outletName}}</mat-card-title>
+
+                        </mat-card-header>
+
+                        <img src="../../../assets/images/outlets/{{outlet.outletName}}.jpg" width="210px" style="margin-top: 5px; margin-left: 15px;">
+
+                        <mat-card-content style="margin-left: 15px;">
+                            <mat-card-subtitle>Address: {{outlet.outletAddress}}</mat-card-subtitle>
+                            <mat-card-subtitle>Phone No.: {{outlet.outletPhone}}</mat-card-subtitle>
+                            <mat-card-subtitle>Operating Hour: {{outlet.operatingHour}}</mat-card-subtitle>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
+            </div>
+
+        </mat-grid-list>
+
+    </div>
+
+
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

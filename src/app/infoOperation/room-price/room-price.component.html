@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+<section id="content" class="content">
+
+    <div *ngIf="sessionService.getIsLogin() == true">
+        <app-main-menu></app-main-menu>
+    </div>
+
+    <div>
+
+        <table mat-table [dataSource]="data" style="width: 75%; border: hidden; background-color: #565656; margin-left: 12.5%; margin-top: 5%;">
+
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">No</th>
+                <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="No">
+                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Type</th>
+            </ng-container>
+
+            <ng-container matColumnDef="wkDayHappy">
+                <th mat-header-cell *matHeaderCellDef> &nbsp;Happy Hour (12pm - 6pm)</th>
+                <td mat-cell *matCellDef="let element"> &nbsp;{{element.wkDayHappy}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="wkDayPeak">
+                <th mat-header-cell *matHeaderCellDef> &nbsp;Peak Hour (6pm - 12am)</th>
+                <td mat-cell *matCellDef="let element"> &nbsp;{{element.wkDayPeak}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="wkEndHappy">
+                <th mat-header-cell *matHeaderCellDef> &nbsp;Happy Hour (12pm - 6pm)</th>
+                <td mat-cell *matCellDef="let element"> &nbsp;{{element.wkEndHappy}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="wkEndPeak">
+                <th mat-header-cell *matHeaderCellDef> &nbsp;Peak Hour (6pm - 12am)</th>
+                <td mat-cell *matCellDef="let element"> &nbsp;{{element.wkEndPeak}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="header-row-second-group">
+                <th mat-header-cell *matHeaderCellDef [attr.colspan]="2" style="text-align: center;"> Weekday </th>
+            </ng-container>
+
+            <ng-container matColumnDef="header-row-third-group">
+                <th mat-header-cell *matHeaderCellDef [attr.colspan]="2" style="text-align: center;"> Weekend </th>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['No', 'header-row-second-group', 'header-row-third-group']"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+    </div>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

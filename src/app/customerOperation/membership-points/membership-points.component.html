@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<section id="content" class="content">
+
+    <div>
+        <h1 style="padding: 20px;">
+            My Membership Points
+            <button mat-icon-button color="primary" matTooltip="1 points = $0.10 discount">
+                <mat-icon style="font-size: 30px;">info</mat-icon>
+            </button>
+        </h1>
+        <p style="padding-left: 20px; font-size: xx-large;">
+            <mat-icon>euro_symbol</mat-icon>
+            {{currentCustomer.points}}          
+        </p>
+        <br/>
+        <h3 style="padding-left: 20px; font-weight: bold;">How to earn membership points?</h3>
+        <h4 style="padding-left: 20px; max-width: 500px;">
+            Every dollar spent is equivalent to 1 point. Points can be redeemed in the next
+            reservation made. Each point will have $0.10 discount.
+        </h4>
+    </div>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

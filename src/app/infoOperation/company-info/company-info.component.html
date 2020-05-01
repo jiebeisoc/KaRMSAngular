@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<section id="content" class="content">
+
+    <div class="wrapper">
+
+        <div *ngIf="sessionService.getIsLogin() == true">
+            <app-main-menu></app-main-menu>
+        </div>
+
+        <p style="padding: 20px;">
+            Sing-Ah! Karaoke has 8 outlets all across Singapore. We are very committed to provide a comfortable and budget platform for all to enjoy the highest quality karaoke system.
+        </p>
+
+    </div>
+
+</section>
+
+<app-sidebar></app-sidebar>
+
+<app-footer></app-footer>

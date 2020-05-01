@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IndexComponent } from './index/index.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
-import { CompanyInfoComponent } from './company-info/company-info.component';
-import { PromotionListComponent } from './promotion-list/promotion-list.component';
+import { CompanyInfoComponent } from './infoOperation/company-info/company-info.component';
+import { PromotionListComponent } from './infoOperation/promotion-list/promotion-list.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 import { UpdateCustomerComponent } from './customerOperation/update-customer/update-customer.component';
-import { SongListComponent } from './songOperation/song-list/song-list.component';
+import { SongListComponent } from './infoOperation/song-list/song-list.component';
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
 import { ViewPastFoodOrdersComponent } from './foodOrderOperation/view-past-food-orders/view-past-food-orders.component';
 import { ShoppingCartComponent } from './foodOrderOperation/shopping-cart/shopping-cart.component';
@@ -18,7 +18,9 @@ import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-trans
 import { CreateNewReservationComponent } from './reservationOperation/create-new-reservation/create-new-reservation.component';
 import { ViewReservationsComponent } from './reservationOperation/view-reservations/view-reservations.component';
 import { UpdateReservationComponent } from './reservationOperation/update-reservation/update-reservation.component';
-import { OutletListComponent } from './outlet-list/outlet-list.component';
+import { OutletListComponent } from './infoOperation/outlet-list/outlet-list.component';
+import { RoomPriceComponent } from './infoOperation/room-price/room-price.component';
+import { MembershipPointsComponent } from './customerOperation/membership-points/membership-points.component';
 
 
 const routes: Routes = [
@@ -43,7 +45,9 @@ const routes: Routes = [
   { path: 'reservationOperation/createNewReservation', component: CreateNewReservationComponent},
   { path: 'reservationOperation/updateReservation', component: UpdateReservationComponent},
   { path: 'locateUs', component: OutletListComponent },
-];
+  { path: 'price', component: RoomPriceComponent },
+  { path: 'customerOperation/myMembershipPoints', component: MembershipPointsComponent }
+];  
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

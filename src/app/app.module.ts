@@ -29,6 +29,7 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { PanelModule } from 'primeng/panel';
 import { TableModule } from 'primeng/table';
@@ -41,15 +42,15 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { MainMenuComponent } from './main-menu/main-menu.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './template/header/header.component';
+import { FooterComponent } from './template/footer/footer.component';
+import { MainMenuComponent } from './template/main-menu/main-menu.component';
+import { SidebarComponent } from './template/sidebar/sidebar.component';
 
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
-import { CompanyInfoComponent } from './company-info/company-info.component';
-import { PromotionListComponent } from './promotion-list/promotion-list.component';
-import { SongListComponent } from './songOperation/song-list/song-list.component';
+import { CompanyInfoComponent } from './infoOperation/company-info/company-info.component';
+import { PromotionListComponent } from './infoOperation/promotion-list/promotion-list.component';
+import { SongListComponent } from './infoOperation/song-list/song-list.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOperation/update-customer/update-customer.component';
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
@@ -64,7 +65,9 @@ import { CreateNewReservationComponent } from './reservationOperation/create-new
 import { UpdateReservationComponent } from './reservationOperation/update-reservation/update-reservation.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { OutletListComponent } from './outlet-list/outlet-list.component';
+import { OutletListComponent } from './infoOperation/outlet-list/outlet-list.component';
+import { RoomPriceComponent } from './infoOperation/room-price/room-price.component';
+import { MembershipPointsComponent } from './customerOperation/membership-points/membership-points.component';
 
 
 @NgModule({
@@ -94,7 +97,9 @@ import { OutletListComponent } from './outlet-list/outlet-list.component';
     ViewDialogComponent,
     DeleteDialogComponent,
     UpdateReservationComponent,
-    OutletListComponent
+    OutletListComponent,
+    RoomPriceComponent,
+    MembershipPointsComponent
   ],
   
   imports: [
@@ -136,7 +141,8 @@ import { OutletListComponent } from './outlet-list/outlet-list.component';
     NgxMatMomentModule,
     NgxMaterialTimepickerModule,
     MatRadioModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

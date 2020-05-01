@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SessionService } from '../session.service';
+import { SessionService } from '../../session.service';
 
 @Component({
   selector: 'app-header',

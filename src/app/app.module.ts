@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
@@ -30,6 +31,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+
 
 import { PanelModule } from 'primeng/panel';
 import { TableModule } from 'primeng/table';
@@ -50,7 +53,7 @@ import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { CompanyInfoComponent } from './infoOperation/company-info/company-info.component';
 import { PromotionListComponent } from './infoOperation/promotion-list/promotion-list.component';
-import { SongListComponent } from './infoOperation/song-list/song-list.component';
+import { SongListComponent, AddToSongQueueBottomSheet } from './infoOperation/song-list/song-list.component';
 import { RegisterCustomerComponent } from './customerOperation/register-customer/register-customer.component';
 import { UpdateCustomerComponent, ConfirmDialogComponent } from './customerOperation/update-customer/update-customer.component';
 import { DeleteFoodOrderComponent } from './foodOrderOperation/delete-food-order/delete-food-order.component';
@@ -63,11 +66,11 @@ import { ViewTransactionDetailsComponent } from './foodOrderOperation/view-trans
 import { ViewReservationsComponent, ViewDialogComponent, DeleteDialogComponent } from './reservationOperation/view-reservations/view-reservations.component';
 import { CreateNewReservationComponent } from './reservationOperation/create-new-reservation/create-new-reservation.component';
 import { UpdateReservationComponent } from './reservationOperation/update-reservation/update-reservation.component';
-
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { OutletListComponent } from './infoOperation/outlet-list/outlet-list.component';
 import { RoomPriceComponent } from './infoOperation/room-price/room-price.component';
 import { MembershipPointsComponent } from './customerOperation/membership-points/membership-points.component';
+import { SongQueueComponent } from './infoOperation/song-queue/song-queue.component';
+import { FavouritePlaylistComponent, AddPlaylistToSongQueueBottomSheet } from './infoOperation/favourite-playlist/favourite-playlist.component';
 
 
 @NgModule({
@@ -87,6 +90,7 @@ import { MembershipPointsComponent } from './customerOperation/membership-points
     FoodItemMenuComponent,
     ConfirmDialogComponent,
     SongListComponent,
+    AddToSongQueueBottomSheet,
     ViewFoodItemDetailComponent,
     CheckoutComponent,
     ViewTransactionDetailsComponent,
@@ -99,7 +103,10 @@ import { MembershipPointsComponent } from './customerOperation/membership-points
     UpdateReservationComponent,
     OutletListComponent,
     RoomPriceComponent,
-    MembershipPointsComponent
+    MembershipPointsComponent,
+    SongQueueComponent,
+    FavouritePlaylistComponent,
+    AddPlaylistToSongQueueBottomSheet
   ],
   
   imports: [
@@ -142,7 +149,8 @@ import { MembershipPointsComponent } from './customerOperation/membership-points
     NgxMaterialTimepickerModule,
     MatRadioModule,
     MatDividerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatBottomSheetModule
   ],
   providers: [],
   bootstrap: [AppComponent]

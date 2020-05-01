@@ -21,6 +21,8 @@ import { UpdateReservationComponent } from './reservationOperation/update-reserv
 import { OutletListComponent } from './infoOperation/outlet-list/outlet-list.component';
 import { RoomPriceComponent } from './infoOperation/room-price/room-price.component';
 import { MembershipPointsComponent } from './customerOperation/membership-points/membership-points.component';
+import { SongQueueComponent } from './infoOperation/song-queue/song-queue.component';
+import { FavouritePlaylistComponent } from './infoOperation/favourite-playlist/favourite-playlist.component';
 
 
 const routes: Routes = [
@@ -46,8 +48,10 @@ const routes: Routes = [
   { path: 'reservationOperation/updateReservation', component: UpdateReservationComponent},
   { path: 'locateUs', component: OutletListComponent },
   { path: 'price', component: RoomPriceComponent },
-  { path: 'customerOperation/myMembershipPoints', component: MembershipPointsComponent }
-];  
+  { path: 'customerOperation/myMembershipPoints', component: MembershipPointsComponent },
+  { path: 'songOperation/songQueue', component: SongQueueComponent},
+  { path: 'songOperation/favouritePlaylist', component: FavouritePlaylistComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

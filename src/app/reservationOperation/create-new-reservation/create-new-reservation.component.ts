@@ -255,7 +255,7 @@ export class CreateNewReservationComponent implements OnInit {
 
   pointsChange() {
     this.newPoints = this.pointsCtrl.value;
-    this.totalPrice = this.totalPrice + this.oldPoints - this.newPoints;
+    this.totalPrice = this.totalPrice + (this.oldPoints * 0.1) - (this.newPoints * 0.1);
     console.log("New value: " + this.newPoints + "\n" + "Old value: " + this.oldPoints);
     this.oldPoints = this.newPoints;
   }
@@ -298,7 +298,7 @@ export class CreateNewReservationComponent implements OnInit {
           panelClass: ['snackbar']
         });
         this.clear();
-        window.location.reload();
+        this.router.navigate(["/reservationOperation/viewReservations"]);
       },
       error => {
         this.dialog.open("An error occurred while creating new reservation!", '', {

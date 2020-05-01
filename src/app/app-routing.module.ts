@@ -21,8 +21,8 @@ import { UpdateReservationComponent } from './reservationOperation/update-reserv
 import { OutletListComponent } from './infoOperation/outlet-list/outlet-list.component';
 import { RoomPriceComponent } from './infoOperation/room-price/room-price.component';
 import { MembershipPointsComponent } from './customerOperation/membership-points/membership-points.component';
-import { SongQueueComponent } from './infoOperation/song-queue/song-queue.component';
-import { FavouritePlaylistComponent } from './infoOperation/favourite-playlist/favourite-playlist.component';
+import { SongQueueComponent } from './reservationOperation/song-queue/song-queue.component';
+import { FavouritePlaylistComponent } from './customerOperation/favourite-playlist/favourite-playlist.component';
 
 
 const routes: Routes = [

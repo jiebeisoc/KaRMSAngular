@@ -142,6 +142,9 @@
                     <div>
                         <br/>
                         <label>Payment Method: </label>
+                    </div>
+                    <span style="display:block; height: 8px;"></span>
+                    <div>
                         <mat-radio-group formControlName="paymentMethodCtrl" (change)="paymentChange()" required>
                             <mat-radio-button value="NOTPAID">Cash</mat-radio-button>&nbsp;&nbsp;&nbsp;
                             <mat-radio-button value="PAID">Credit Card</mat-radio-button>

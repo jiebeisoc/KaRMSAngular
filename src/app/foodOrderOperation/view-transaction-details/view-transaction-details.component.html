@@ -7,8 +7,7 @@
     <br />
 
     <p-panel>
-        <h2 style="color: ivory; transform: translate(30%, 0%);">Details for Food Order Transaction on {{selectedTransaction.transactionDateTime}}</h2>
-
+        
 
         <div *ngIf="infoMessage" style="color: blue;">
             {{infoMessage}}
@@ -17,6 +16,12 @@
 
         <p-table [value]='selectedTransaction.foodOrderTransactionLineItemEntities' style=" width: 85%; text-align: center; position:relative; left: 20%; ">
             <ng-template pTemplate="header">
+                <tr >
+                    <td colspan="6"><h1 style="text-align: center; margin-top:20px;">Details for Food Order Transaction on {{selectedTransaction.transactionDateTime}}</h1></td>
+                </tr>
+                
+                
+                
                 <tr>
                     <th>Food Item</th>
                     <th>Quantity</th>

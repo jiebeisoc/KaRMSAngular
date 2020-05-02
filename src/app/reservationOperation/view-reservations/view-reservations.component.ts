@@ -47,7 +47,7 @@ export class ViewReservationsComponent implements OnInit {
     this.reservationService.retrieveUpcomingReservationByCustomer().subscribe(
       response => {
         this.upcomingReservations = response.reservations;
-        this.reservations = this.upcomingReservations;
+        this.reservations = this.upcomingReservations.sort((a, b) => new Date(this.formatDate(a.date.toString())).getTime() - new Date(this.formatDate(b.date.toString())).getTime());
       },
       error => {
         console.log('********** ViewReservationsComponent.ts: ' + error);
@@ -57,6 +57,7 @@ export class ViewReservationsComponent implements OnInit {
     this.reservationService.retrievePastReservationByCustomer().subscribe(
       response => {
         this.pastReservations = response.reservations;
+        this.pastReservations.sort((a, b) => new Date(this.formatDate(a.date.toString())).getTime() - new Date(this.formatDate(b.date.toString())).getTime());
       },
       error => {
         console.log('********** ViewReservationsComponent.ts: ' + error);

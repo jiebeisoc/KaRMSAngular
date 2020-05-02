@@ -19,7 +19,7 @@ const TREE_DATA: MenuNode[] = [
     children: [
       {name: 'About', link: '/aboutUs'},
       {name: 'Locate Us', link: '/locateUs'},
-      {name: 'Promotions', link: '/promotion'},
+      {name: 'Promotions', link: '/promotions'},
       {name: 'Price', link: '/price'},
     ]
   },

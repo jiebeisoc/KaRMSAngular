@@ -8,18 +8,11 @@ mat-sidenav {
 }
 
 h1 {
-    margin-left: 3%;
     text-align: center;
 }
 
 mat-horizontal-stepper {
     background: none;
-    margin-left: 7%;
-    margin-right: 5%;
-}
-
-mat-radio-button {
-    margin-left: 12px;
 }
 
 #paymentError {

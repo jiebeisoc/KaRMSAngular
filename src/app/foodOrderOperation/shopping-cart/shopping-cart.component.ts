@@ -6,6 +6,7 @@ import { SessionService } from 'src/app/session.service';
 import { FoodOrderService } from 'src/app/food-order.service';
 import { ShoppingCartService } from 'src/app/shopping-cart.service';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -28,7 +29,8 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private router: Router,
               public sessionService: SessionService,
               private foodOrderService: FoodOrderService,
-              private shoppingCartService: ShoppingCartService
+              private shoppingCartService: ShoppingCartService,
+              private dialog:MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +60,10 @@ export class ShoppingCartComponent implements OnInit {
     this.transactionLineItems = this.shoppingCartService.getFoodOrderTransactionLineItems();
     this.totalAmt = this.shoppingCartService.totalAmount;
     this.totalQuantity = this.shoppingCartService.totalQuantity;
+    this.dialog.open("Quantity Changed!", '', {
+      duration: 5000,
+      panelClass: ['snackbar']
+    });     
 
   }
 

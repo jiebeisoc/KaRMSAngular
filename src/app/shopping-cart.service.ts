@@ -105,9 +105,9 @@ export class ShoppingCartService {
     }
 
 
-    alert("reach shopping cart service ") 
-    alert("customerID"+createTransactionReq.customerId);
-    console.log(JSON.stringify(createTransactionReq));
+
+
+ 
     return this.httpClient.put<any>(this.baseUrl + "/createFoodOrderTransaction", createTransactionReq, httpOptions).pipe (
       catchError(this.handleError)
   );

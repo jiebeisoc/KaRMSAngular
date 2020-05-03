@@ -5,6 +5,8 @@ import { OutletService } from 'src/app/outlet.service';
 import { Outlet } from 'src/app/outlet';
 import { SessionService } from 'src/app/session.service';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -23,7 +25,9 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private shoppingCartService: ShoppingCartService,
     private outletService: OutletService,
-    private sessionService: SessionService) { }
+    private sessionService: SessionService,
+    private dialog:MatSnackBar,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.totalAmt = this.shoppingCartService.totalAmount;
@@ -48,20 +52,30 @@ export class CheckoutComponent implements OnInit {
       let selectedOutlet: Outlet = new Outlet();
       this.newTransaction.outlet = selectedOutlet;
       this.newTransaction.outlet.outletId = this.selectedOutletId;
-      alert("alert checkout component")
       this.shoppingCartService.checkOut(this.newTransaction).subscribe(
         response => {
-          this.infoMessage="Transaction created successfully";
+
+          this.dialog.open("Transaction created successfully!", '', {
+            duration: 5000,
+            panelClass: ['snackbar']
+          });    
           this.shoppingCartService.clearCart();
+          this.router.navigate(["/foodOrderOperation/viewPastFoodOrders"]);
         },
         error => {
-
-          console.log('********** ERROR: ' + error);
+          this.dialog.open(error, '', {
+            duration: 5000,
+            panelClass: ['snackbar']
+          });    
         }
       );
 
     } else {
-      alert("Payment failed, please try again!")
+      this.dialog.open("Invalid input, please try again!", '', {
+        duration: 5000,
+        panelClass: ['snackbar']
+      });    
+     
     }
 
   }

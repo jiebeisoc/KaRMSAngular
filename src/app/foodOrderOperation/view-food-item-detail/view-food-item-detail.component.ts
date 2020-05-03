@@ -7,6 +7,7 @@ import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component'
 import { ShoppingCartService } from 'src/app/shopping-cart.service';
 import { NgForm } from '@angular/forms';
 import { FoodOrderTransactionLineItem } from 'src/app/food-order-transaction-line-item';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-view-food-item-detail',
@@ -26,7 +27,8 @@ export class ViewFoodItemDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public sessionService: SessionService,
     public foodOrderService:FoodOrderService,
-    public shoppingCartService: ShoppingCartService
+    public shoppingCartService: ShoppingCartService,
+    private dialog: MatSnackBar
   ) {
     this.retrieveFoodItemError= false;
     this.quantity=0;
@@ -49,6 +51,10 @@ export class ViewFoodItemDetailComponent implements OnInit {
   addToCart(addToCartForm: NgForm){
     this.checkAccessRight();
     this.shoppingCartService.createNewFoodOrderTransactionLineItem(new FoodOrderTransactionLineItem(this.foodItemToView,this.quantity,this.foodItemToView.unitPrice));
+    this.dialog.open("Added to Cart!", '', {
+      duration: 5000,
+      panelClass: ['snackbar']
+    });     
   }
 
   checkAccessRight()

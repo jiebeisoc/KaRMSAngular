@@ -53,7 +53,7 @@
                     <td colspan="2">
                         <form #addToCartForm="ngForm" (ngSubmit)="addToCart(addToCartForm)" style="height: -100%; border: 2px solid red;">
                             <input id="qty" name="qty" #qty="ngModel" type="number" min="0" max="{{foodItemToView.quantityOnHand}}" [(ngModel)]="quantity" style="size: 20px;" /> &nbsp;
-                            <input type="submit" value="Add to cart" onclick="return alert('Added to cart!');" />
+                            <input type="submit" value="Add to cart"  />
                         </form>
                     </td>
                 </tr>

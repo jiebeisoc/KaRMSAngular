@@ -56,7 +56,7 @@ export class FoodOrderService {
   
 
     setSelectedTransaction(transaction:FoodOrderTransaction){
-      alert(JSON.stringify(transaction));
+      
       this.selectedTransaction=transaction;
 
     }

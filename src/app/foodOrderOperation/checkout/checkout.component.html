@@ -34,6 +34,7 @@
     <br>
     <label for="outlet">Choose Outlet: </label>
     <select id="outlet" name="outlet" #outlet="ngModel" [(ngModel)]="selectedOutletId" required="true">
+        <option value="">[choose outlet]</option>
         <option *ngFor="let outlet of outletList" value="{{outlet.outletId}}">{{outlet.outletName}}</option>
     </select>
 
